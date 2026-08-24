@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EGE-2 Quantum Epistemic System — Interactive Architecture & Model Drop-In</title>
+<title>EGE-2 Quantum Epistemic System &amp; Model Drop-In</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -46,7 +46,7 @@ body {
 .bg-grid {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
-  background-image: 
+  background-image:
     radial-gradient(circle at 15% 15%, rgba(168, 85, 247, 0.08) 0%, transparent 40%),
     radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
@@ -99,6 +99,7 @@ header {
   letter-spacing: -0.3px;
   background: linear-gradient(90deg, #f0f6fc, #cbd5e1);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -521,6 +522,59 @@ footer {
   color: var(--text-muted);
   background: rgba(10, 12, 16, 0.95);
 }
+
+/* Modular UI Utility Classes */
+.paper-title { font-size: 22px; font-weight: 800; margin-bottom: 6px; color: #fff; }
+.card-meta { font-size: 13px; color: var(--text-secondary); margin-bottom: 16px; }
+.mt-20 { margin-top: 20px; }
+.my-16 { margin: 16px 0; }
+.bg-subtle { background: rgba(0, 0, 0, 0.3); }
+.bg-subtle-25 { background: rgba(0, 0, 0, 0.25); }
+.bg-subtle-m0 { background: rgba(0, 0, 0, 0.3); margin: 0; }
+.card-qbs { background: rgba(6, 182, 212, 0.05); border-color: rgba(6, 182, 212, 0.3); }
+.card-qubo { background: rgba(168, 85, 247, 0.05); border-color: rgba(168, 85, 247, 0.3); }
+.card-disclaimer-res { background: rgba(0, 0, 0, 0.3); border-color: rgba(245, 158, 11, 0.3); }
+.card-disclaimer-fin { background: rgba(0, 0, 0, 0.3); border-color: rgba(239, 68, 68, 0.3); }
+.card-disclaimer-med { background: rgba(0, 0, 0, 0.3); border-color: rgba(56, 189, 248, 0.3); }
+.card-disclaimer-qnt { background: rgba(0, 0, 0, 0.3); border-color: rgba(168, 85, 247, 0.3); }
+.card-results { background: rgba(0, 0, 0, 0.4); margin: 0; }
+.text-danger { color: var(--accent-danger); }
+.text-phi { color: var(--accent-phi); }
+.text-psi { color: var(--accent-psi); }
+.text-sigma { color: var(--accent-sigma); }
+.text-warning { color: var(--accent-warning); }
+.text-quantum { color: var(--accent-quantum); }
+.text-success { color: var(--accent-success); }
+.bullet-list { margin-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8; }
+.subhead-quantum { font-size: 15px; color: var(--accent-quantum); margin-bottom: 8px; }
+.subhead-sigma { font-size: 15px; color: var(--accent-sigma); margin-bottom: 8px; }
+.caption-muted { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
+.module-heading { font-size: 14px; margin: 8px 0 4px; }
+.text-secondary-12 { font-size: 12px; color: var(--text-secondary); }
+.section-h3 { font-size: 16px; font-weight: 700; margin: 20px 0 10px; }
+.label-bold { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
+.w-full-my-6 { width: 100%; margin: 6px 0 12px; }
+.textarea-dropin { width: 100%; height: 80px; margin: 6px 0 12px; }
+.flex-gap-10 { display: flex; gap: 10px; }
+.telemetry-head { font-size: 12px; font-weight: 700; color: var(--accent-phi); text-transform: uppercase; margin-bottom: 8px; }
+.telemetry-body { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+.benchmark-h3 { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 10px; }
+.gap-12 { gap: 12px; }
+.stat-sub { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; }
+.stat-desc { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.citations-head { font-size: 14px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+.citations-list { margin-left: 20px; font-size: 12px; line-height: 1.7; color: var(--text-secondary); }
+.pipe-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+.final-status-label { font-size: 12px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 4px; }
+.final-output-text { font-size: 14px; color: #f8fafc; }
+.graph-header-bar { display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-secondary); margin-bottom: 12px; }
+.footer-container { max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px; }
+.footer-legal { font-size: 11px; color: var(--text-muted); }
+.callout-disclaimer { margin-top: 18px; font-size: 12px; line-height: 1.7; }
+.disclaimer-card-p { font-size: 12px; color: var(--text-secondary); line-height: 1.7; }
+.link-phi { color: var(--accent-phi); text-decoration: underline; }
+.link-phi-plain { color: var(--accent-phi); }
+.hidden { display: none; }
 </style>
 </head>
 <body>
@@ -536,13 +590,13 @@ footer {
       </div>
     </div>
     <div class="nav-tabs" id="nav-tabs">
-      <button class="nav-btn active" data-tab="tab-paper">📜 Position Paper</button>
-      <button class="nav-btn" data-tab="tab-quantum">⚛️ Quantum Epistemics</button>
-      <button class="nav-btn" data-tab="tab-arch">🏛️ Architecture</button>
-      <button class="nav-btn" data-tab="tab-dropin">🔌 Model Drop-In</button>
-      <button class="nav-btn" data-tab="tab-energy">⚡ Energy & Data Center</button>
-      <button class="nav-btn" data-tab="tab-demo">🧪 Live Demo</button>
-      <button class="nav-btn" data-tab="tab-disclaimer">⚠️ Disclaimers</button>
+      <button type="button" class="nav-btn active" data-tab="tab-paper">📜 Position Paper</button>
+      <button type="button" class="nav-btn" data-tab="tab-quantum">⚛️ Quantum Epistemics</button>
+      <button type="button" class="nav-btn" data-tab="tab-arch">🏛️ Architecture</button>
+      <button type="button" class="nav-btn" data-tab="tab-dropin">🔌 Model Drop-In</button>
+      <button type="button" class="nav-btn" data-tab="tab-energy">⚡ Energy &amp; Data Center</button>
+      <button type="button" class="nav-btn" data-tab="tab-demo">🧪 Live Demo</button>
+      <button type="button" class="nav-btn" data-tab="tab-disclaimer">⚠️ Disclaimers</button>
     </div>
   </div>
 </header>
@@ -551,21 +605,21 @@ footer {
   <!-- TAB 1: POSITION PAPER -->
   <div class="tab-pane active" id="tab-paper">
     <div class="card">
-      <h1 style="font-size: 22px; font-weight: 800; margin-bottom: 6px; color: #fff;">Beyond the Prompt: Why Current AI Is a Patchwork and How Structural Epistemics Changes Everything</h1>
-      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+      <h1 class="paper-title">Beyond the Prompt: Why Current AI Is a Patchwork and How Structural Epistemics Changes Everything</h1>
+      <p class="card-meta">
         <strong>Authors:</strong> Collaborative Architecture Design &nbsp;|&nbsp;
         <strong>Date:</strong> August 23, 2026 &nbsp;|&nbsp;
         <strong>Classification:</strong> Open Position Paper
       </p>
-      
+
       <div class="callout callout-info">
         <strong>Abstract:</strong> Current large language models (LLMs) are approaching a fundamental thermodynamic and reliability ceiling. Despite gigawatt-scale data center expansion and trillions of ungrounded training tokens, monolithic statistical models remain structurally prone to hallucination, adversarial manipulation, and catastrophic forgetting. EGE-2 introduces a cognitive operating system where <strong>truth-preservation is architectural infrastructure rather than behavioral training</strong>.
       </div>
 
-      <div class="grid-2" style="margin-top: 20px;">
-        <div class="card" style="background: rgba(0,0,0,0.3);">
-          <div class="card-title" style="color: var(--accent-danger);">❌ The Five Structural Failures of LLMs</div>
-          <ul style="margin-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+      <div class="grid-2 mt-20">
+        <div class="card bg-subtle">
+          <div class="card-title text-danger">❌ The Five Structural Failures of LLMs</div>
+          <ul class="bullet-list">
             <li><strong>Hallucination:</strong> No ontological distinction between verified facts and statistical next-token co-occurrence.</li>
             <li><strong>No Persistent Memory:</strong> Ephemeral context windows discard structured world state.</li>
             <li><strong>No Epistemic Grounding:</strong> Cannot distinguish direct observation from unverified rumor.</li>
@@ -574,9 +628,9 @@ footer {
           </ul>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.3);">
-          <div class="card-title" style="color: var(--accent-phi);">✅ The Four EGE-2 Structural Invariants</div>
-          <ul style="margin-left: 20px; font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+        <div class="card bg-subtle">
+          <div class="card-title text-phi">✅ The Four EGE-2 Structural Invariants</div>
+          <ul class="bullet-list">
             <li><strong>Embodied Developmental Learning:</strong> Physical causal discovery through sensorimotor simulation.</li>
             <li><strong>Dual-Branch Epistemics:</strong> Strict separation of causal physics (<span class="badge badge-phi">Phi</span>) from social intent (<span class="badge badge-psi">Psi</span>).</li>
             <li><strong>Structured Memory with Provenance:</strong> Append-only Q-Graph sealed with post-quantum cryptography.</li>
@@ -591,33 +645,33 @@ footer {
   <div class="tab-pane" id="tab-quantum">
     <div class="card">
       <div class="card-title"><span class="badge badge-quantum">QEC</span> Quantum Epistemic Computing Foundations</div>
-      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+      <p class="card-meta">
         EGE-2 extends epistemic reasoning into quantum-inspired computational representations, solving the "false certainty" problem of classical generative AI.
       </p>
 
       <div class="grid-2">
-        <div class="card" style="background: rgba(6, 182, 212, 0.05); border-color: rgba(6, 182, 212, 0.3);">
-          <h3 style="font-size: 15px; color: var(--accent-quantum); margin-bottom: 8px;">1. Quantum Belief Superposition (QBS)</h3>
-          <p style="font-size: 13px; color: var(--text-secondary);">
+        <div class="card card-qbs">
+          <h3 class="subhead-quantum">1. Quantum Belief Superposition (QBS)</h3>
+          <p class="card-meta">
             Unverified propositions exist in an explicit superposition state vector:
           </p>
           <pre>|ψ⟩ = α|true⟩ + β|false⟩, where |α|² + |β|² = 1
 Confidence = |α|²
 Quantum Uncertainty = 2|α||β|</pre>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+          <p class="caption-muted">
             Invariant: Superposed beliefs cannot be used as verified premises in operational reasoning until collapsed by empirical measurement.
           </p>
         </div>
 
-        <div class="card" style="background: rgba(168, 85, 247, 0.05); border-color: rgba(168, 85, 247, 0.3);">
-          <h3 style="font-size: 15px; color: var(--accent-sigma); margin-bottom: 8px;">2. QUBO Global Coherence Optimization</h3>
-          <p style="font-size: 13px; color: var(--text-secondary);">
+        <div class="card card-qubo">
+          <h3 class="subhead-sigma">2. QUBO Global Coherence Optimization</h3>
+          <p class="card-meta">
             Arbitrating conflicts across multi-hypothesis graphs maps to Quadratic Unconstrained Binary Optimization:
           </p>
           <pre>min xᵀQx + cᵀx,  x ∈ {0, 1}ⁿ
-c = linear evidence tier & confidence weights
-Q = contradiction penalty & coherence reward matrix</pre>
-          <p style="font-size: 12px; color: var(--text-muted); margin-top: 6px;">
+c = linear evidence tier &amp; confidence weights
+Q = contradiction penalty &amp; coherence reward matrix</pre>
+          <p class="caption-muted">
             Resolves global epistemic consistency across 500+ interconnected hypotheses in constant time via Simulated Annealing or QPU.
           </p>
         </div>
@@ -628,35 +682,35 @@ Q = contradiction penalty & coherence reward matrix</pre>
   <!-- TAB 3: ARCHITECTURE -->
   <div class="tab-pane" id="tab-arch">
     <div class="card">
-      <div class="card-title">Cognitive Modules & Evidence Hierarchy</div>
-      
-      <div class="grid-3" style="margin: 16px 0;">
-        <div class="card" style="background: rgba(0,0,0,0.25);">
+      <div class="card-title">Cognitive Modules &amp; Evidence Hierarchy</div>
+
+      <div class="grid-3 my-16">
+        <div class="card bg-subtle-25">
           <span class="badge badge-phi">Phi-Engine</span>
-          <h4 style="font-size: 14px; margin: 8px 0 4px;">Causal Physics</h4>
-          <p style="font-size: 12px; color: var(--text-secondary);">
-            Derives physical laws and verified facts through active empirical experimentation (TIER 1 & TIER 2).
+          <h4 class="module-heading">Causal Physics</h4>
+          <p class="text-secondary-12">
+            Derives physical laws and verified facts through active empirical experimentation (TIER 1 &amp; TIER 2).
           </p>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.25);">
+        <div class="card bg-subtle-25">
           <span class="badge badge-psi">Psi-Engine</span>
-          <h4 style="font-size: 14px; margin: 8px 0 4px;">Social Intent</h4>
-          <p style="font-size: 12px; color: var(--text-secondary);">
+          <h4 class="module-heading">Social Intent</h4>
+          <p class="text-secondary-12">
             Detects flattery, urgency, authority posturing, scarcity framing, and tracks domain-specific speaker reputation.
           </p>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.25);">
+        <div class="card bg-subtle-25">
           <span class="badge badge-sigma">Sigma-Cortex</span>
-          <h4 style="font-size: 14px; margin: 8px 0 4px;">Formal Arbitration</h4>
-          <p style="font-size: 12px; color: var(--text-secondary);">
+          <h4 class="module-heading">Formal Arbitration</h4>
+          <p class="text-secondary-12">
             Enforces strict epistemic rules: manipulation attenuates belief confidence or triggers structural rejection.
           </p>
         </div>
       </div>
 
-      <h3 style="font-size: 16px; font-weight: 700; margin: 20px 0 10px;">The 7-Tier Strict Evidence Hierarchy</h3>
+      <h3 class="section-h3">The 7-Tier Strict Evidence Hierarchy</h3>
       <table>
         <thead>
           <tr>
@@ -718,44 +772,44 @@ Q = contradiction penalty & coherence reward matrix</pre>
   <div class="tab-pane" id="tab-dropin">
     <div class="card">
       <div class="card-title">🔌 Interactive Model Drop-In Playground</div>
-      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+      <p class="card-meta">
         Plug in any LLM, local Ollama instance, custom API endpoint, or raw output draft into the EGE-2 Epistemic Harness to benchmark safety, calibration, and truth-preservation.
       </p>
 
       <div class="grid-2">
         <div>
-          <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Model Drop-In Adapter:</label>
-          <select id="dropin-adapter-select" class="select-input" style="width: 100%; margin: 6px 0 12px;" onchange="updateDropinMode()">
+          <label class="label-bold">Model Drop-In Adapter:</label>
+          <select id="dropin-adapter-select" class="select-input w-full-my-6" onchange="updateDropinMode()">
             <option value="mock">Built-in Reference Engine (MockLLM)</option>
             <option value="custom_text">Custom Raw Model Output (Drop Text)</option>
             <option value="ollama">Local Ollama Instance (http://localhost:11434)</option>
             <option value="openai">OpenAI Compatible Endpoint (/v1/chat/completions)</option>
           </select>
 
-          <div id="dropin-custom-block" style="display: none;">
-            <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Draft Model Output to Test:</label>
-            <textarea id="dropin-custom-text" class="demo-input" style="width:100%; height:80px; margin: 6px 0 12px;" placeholder="Paste or type what your model generated..."></textarea>
+          <div id="dropin-custom-block" class="hidden">
+            <label class="label-bold">Draft Model Output to Test:</label>
+            <textarea id="dropin-custom-text" class="demo-input textarea-dropin" placeholder="Paste or type what your model generated..."></textarea>
           </div>
 
-          <label style="font-size: 12px; font-weight: 600; color: var(--text-secondary);">Input Prompt / Query:</label>
-          <input type="text" id="dropin-query" class="demo-input" style="width: 100%; margin: 6px 0 12px;" value="What is the standard gravitational acceleration on Earth?">
+          <label class="label-bold">Input Prompt / Query:</label>
+          <input type="text" id="dropin-query" class="demo-input w-full-my-6" value="What is the standard gravitational acceleration on Earth?">
 
-          <div style="display:flex; gap:10px;">
-            <button class="btn-primary" onclick="runDropinEvaluation()">Run Model Evaluation</button>
-            <button class="btn-secondary" onclick="runFullBenchmarkSuite()">Run 10-Test Benchmark Suite</button>
+          <div class="flex-gap-10">
+            <button type="button" class="btn-primary" onclick="runDropinEvaluation()">Run Model Evaluation</button>
+            <button type="button" class="btn-secondary" onclick="runFullBenchmarkSuite()">Run 10-Test Benchmark Suite</button>
           </div>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.4); margin:0;">
-          <div style="font-size:12px; font-weight:700; color:var(--accent-phi); text-transform:uppercase; margin-bottom:8px;">Harness Telemetry & Verification</div>
-          <div id="dropin-results-box" style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+        <div class="card card-results">
+          <div class="telemetry-head">Harness Telemetry &amp; Verification</div>
+          <div id="dropin-results-box" class="telemetry-body">
             Click <strong>"Run Model Evaluation"</strong> to pass your model's output through the dual-branch Phi/Psi engines and formal Sigma Cortex arbitration.
           </div>
         </div>
       </div>
 
-      <div id="benchmark-results-container" style="display:none; margin-top:20px;">
-        <h3 style="font-size:15px; font-weight:700; color:#fff; margin-bottom:10px;">10-Test Epistemic Benchmark Suite Results</h3>
+      <div id="benchmark-results-container" class="hidden mt-20">
+        <h3 class="benchmark-h3">10-Test Epistemic Benchmark Suite Results</h3>
         <table id="benchmark-table">
           <thead>
             <tr>
@@ -777,13 +831,13 @@ Q = contradiction penalty & coherence reward matrix</pre>
   <!-- TAB 5: DATA CENTER ENERGY & COMPUTE CALCULATOR -->
   <div class="tab-pane" id="tab-energy">
     <div class="card">
-      <div class="card-title">⚡ Data Center Economics & Energy Footprint Calculator</div>
-      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+      <div class="card-title">⚡ Data Center Economics &amp; Energy Footprint Calculator</div>
+      <p class="card-meta">
         Quantify how EGE-2's modular cognitive routing and graph-native memory reduce data center electrical grid demand compared to dense monolithic transformer scaling.
       </p>
 
       <div class="grid-2">
-        <div class="card" style="background: rgba(0,0,0,0.3); margin:0;">
+        <div class="card bg-subtle-m0">
           <div class="slider-container">
             <div class="slider-label">
               <span>Model Parameter Scale:</span>
@@ -809,37 +863,37 @@ Q = contradiction penalty & coherence reward matrix</pre>
           </div>
         </div>
 
-        <div class="grid-2" style="gap:12px;">
+        <div class="grid-2 gap-12">
           <div class="stat-box">
-            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase;">Efficiency Multiplier</div>
-            <div class="stat-num" id="stat-multiplier" style="color:var(--accent-success);">700x</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Compute reduction</div>
+            <div class="stat-sub">Efficiency Multiplier</div>
+            <div class="stat-num text-success" id="stat-multiplier">700x</div>
+            <div class="stat-desc">Compute reduction</div>
           </div>
           <div class="stat-box">
-            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase;">Energy Reduction</div>
-            <div class="stat-num" id="stat-reduction" style="color:var(--accent-phi);">99.8%</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Less runtime power</div>
+            <div class="stat-sub">Energy Reduction</div>
+            <div class="stat-num text-phi" id="stat-reduction">99.8%</div>
+            <div class="stat-desc">Less runtime power</div>
           </div>
           <div class="stat-box">
-            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase;">Annual Energy Saved</div>
+            <div class="stat-sub">Annual Energy Saved</div>
             <div class="stat-num" id="stat-kwh">54,400 kWh</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Direct grid relief</div>
+            <div class="stat-desc">Direct grid relief</div>
           </div>
           <div class="stat-box">
-            <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase;">Annual Cost Saved</div>
-            <div class="stat-num" id="stat-saved-usd" style="color:var(--accent-warning);">$6,528.00</div>
-            <div style="font-size:11px; color:var(--text-muted); margin-top:4px;">Electricity expenses</div>
+            <div class="stat-sub">Annual Cost Saved</div>
+            <div class="stat-num text-warning" id="stat-saved-usd">$6,528.00</div>
+            <div class="stat-desc">Electricity expenses</div>
           </div>
         </div>
       </div>
 
-      <div class="callout callout-info" style="margin-top:20px;">
-        <h4 style="font-size:14px; font-weight:700; margin-bottom:4px; color:#fff;">📚 Authoritative Citations & Energy Physics References:</h4>
-        <ul style="margin-left: 20px; font-size: 12px; line-height: 1.7; color: var(--text-secondary);">
+      <div class="callout callout-info mt-20">
+        <h4 class="citations-head">📚 Authoritative Citations &amp; Energy Physics References:</h4>
+        <ul class="citations-list">
           <li><strong>International Energy Agency (IEA 2024/2025):</strong> <em>Global Data Centre Energy Projections</em> — Data center power demand was ~415–460 TWh in 2024 and is projected to reach ~945 TWh by 2030.</li>
           <li><strong>EPRI (2024):</strong> <em>Powering Intelligence: Analyzing Artificial Intelligence and Data Center Energy Consumption</em> — Modern AI server clusters draw 40–120 kW per rack.</li>
           <li><strong>Patterson et al. (2021) / arXiv:2104.10350:</strong> <em>Carbon Emissions and Large Neural Network Training</em> — GPT-3 pretraining drew ~1.287 GWh; frontier models exceed 50 GWh.</li>
-          <li><strong>Kaplan et al. (2020) & Chinchilla Scaling Laws:</strong> Dense transformer inference consumes $\approx 2 \cdot P \cdot T$ FLOPs per query (where $P$ is parameter count and $T$ is token sequence length).</li>
+          <li><strong>Kaplan et al. (2020) &amp; Chinchilla Scaling Laws:</strong> Dense transformer inference consumes $\approx 2 \cdot P \cdot T$ FLOPs per query (where $P$ is parameter count and $T$ is token sequence length).</li>
         </ul>
       </div>
     </div>
@@ -849,62 +903,62 @@ Q = contradiction penalty & coherence reward matrix</pre>
   <div class="tab-pane" id="tab-demo">
     <div class="card">
       <div class="card-title">🧪 Live Epistemic Kernel Evaluator</div>
-      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 14px;">
+      <p class="card-meta">
         Type any claim or choose a preset chip below. Observe how Phi (facts), Psi (manipulation), and Sigma (arbitration) gate beliefs in real time.
       </p>
 
       <div class="chip-container">
-        <button class="preset-chip" onclick="loadPrompt('gravity')">🍎 Standard Gravity</button>
-        <button class="preset-chip" onclick="loadPrompt('climate_persuade')">🌡️ Climate + Persuasion</button>
-        <button class="preset-chip" onclick="loadPrompt('vaccine_urgent')">🚨 Vaccine + Heavy Manipulation</button>
-        <button class="preset-chip" onclick="loadPrompt('flat_earth')">🌍 Flat Earth Contradiction</button>
-        <button class="preset-chip" onclick="loadPrompt('water')">💧 Water Boiling Point</button>
-        <button class="preset-chip" onclick="loadPrompt('light')">⚡ Speed of Light</button>
-        <button class="preset-chip" onclick="loadPrompt('evolution')">🧬 Evolution Mechanism</button>
-        <button class="preset-chip" onclick="loadPrompt('authority_attack')">👑 Authority Attack (2+2=5)</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('gravity')">🍎 Standard Gravity</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('climate_persuade')">🌡️ Climate + Persuasion</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('vaccine_urgent')">🚨 Vaccine + Heavy Manipulation</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('flat_earth')">🌍 Flat Earth Contradiction</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('water')">💧 Water Boiling Point</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('light')">⚡ Speed of Light</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('evolution')">🧬 Evolution Mechanism</button>
+        <button type="button" class="preset-chip" onclick="loadPrompt('authority_attack')">👑 Authority Attack (2+2=5)</button>
       </div>
 
       <div class="demo-input-group">
         <input type="text" id="demo-query-input" class="demo-input" placeholder="Enter an assertion or question..." value="What is gravity on Earth?">
-        <button class="btn-primary" onclick="runEvaluation()">Evaluate Claim</button>
+        <button type="button" class="btn-primary" onclick="runEvaluation()">Evaluate Claim</button>
       </div>
 
       <div class="eval-pipeline" id="eval-pipeline">
         <div class="pipe-card">
-          <div class="pipe-header" style="color: var(--accent-phi);">1. Phi-Engine (Facts)</div>
+          <div class="pipe-header text-phi">1. Phi-Engine (Facts)</div>
           <div class="pipe-val" id="pipe-phi-val">—</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;" id="pipe-phi-sub">Awaiting evaluation</div>
+          <div class="pipe-sub" id="pipe-phi-sub">Awaiting evaluation</div>
         </div>
 
         <div class="pipe-card">
-          <div class="pipe-header" style="color: var(--accent-psi);">2. Psi-Engine (Intent)</div>
+          <div class="pipe-header text-psi">2. Psi-Engine (Intent)</div>
           <div class="pipe-val" id="pipe-psi-val">—</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;" id="pipe-psi-sub">Awaiting evaluation</div>
+          <div class="pipe-sub" id="pipe-psi-sub">Awaiting evaluation</div>
         </div>
 
         <div class="pipe-card">
-          <div class="pipe-header" style="color: var(--accent-sigma);">3. Sigma Verdict</div>
+          <div class="pipe-header text-sigma">3. Sigma Verdict</div>
           <div class="pipe-val" id="pipe-sigma-val">—</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;" id="pipe-sigma-sub">Awaiting evaluation</div>
+          <div class="pipe-sub" id="pipe-sigma-sub">Awaiting evaluation</div>
         </div>
 
         <div class="pipe-card">
-          <div class="pipe-header" style="color: var(--accent-quantum);">4. Quantum State</div>
+          <div class="pipe-header text-quantum">4. Quantum State</div>
           <div class="pipe-val" id="pipe-q-val">—</div>
-          <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;" id="pipe-q-sub">Awaiting evaluation</div>
+          <div class="pipe-sub" id="pipe-q-sub">Awaiting evaluation</div>
         </div>
       </div>
 
       <div class="final-output-card" id="final-output-card">
-        <div style="font-size: 12px; font-weight: 700; color: var(--text-secondary); text-transform: uppercase; margin-bottom: 4px;" id="final-status-label">Output Status</div>
-        <div style="font-size: 14px; color: #f8fafc;" id="final-output-content">Enter a query above or choose a preset to inspect live arbitration.</div>
+        <div class="final-status-label" id="final-status-label">Output Status</div>
+        <div class="final-output-text" id="final-output-content">Enter a query above or choose a preset to inspect live arbitration.</div>
       </div>
     </div>
 
     <!-- Active Q-Graph Explorer -->
     <div class="card">
       <div class="card-title">🌐 Epistemic Q-Graph Knowledge Nodes</div>
-      <div style="display: flex; justify-content: space-between; align-items: center; font-size: 12px; color: var(--text-secondary); margin-bottom: 12px;">
+      <div class="graph-header-bar">
         <span>Click any node to trigger quantum wave function measurement and collapse:</span>
         <span id="graph-stats-summary">8 active nodes | Mean confidence: 97.4%</span>
       </div>
@@ -916,60 +970,60 @@ Q = contradiction penalty & coherence reward matrix</pre>
   <!-- TAB 7: DISCLAIMERS & LEGAL NOTICES -->
   <div class="tab-pane" id="tab-disclaimer">
     <div class="card">
-      <div class="card-title" style="color: var(--accent-warning);">⚠️ EGE-2 Legal, Regulatory & Operational Disclaimers</div>
-      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
-        Please review the following legal notices and operational boundaries governing the EGE-2 research architecture and interactive demonstration. Full legal terms are detailed in <a href="DISCLAIMER.md" style="color: var(--accent-phi); text-decoration: underline;">DISCLAIMER.md</a>.
+      <div class="card-title text-warning">⚠️ EGE-2 Legal, Regulatory &amp; Operational Disclaimers</div>
+      <p class="card-meta">
+        Please review the following legal notices and operational boundaries governing the EGE-2 research architecture and interactive demonstration. Full legal terms are detailed in <a href="DISCLAIMER.md" class="link-phi">DISCLAIMER.md</a>.
       </p>
 
-      <div class="grid-2" style="gap: 16px;">
-        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(245, 158, 11, 0.3);">
-          <div class="card-title" style="font-size: 14px; color: var(--accent-warning);">1. Research & Experimental Software</div>
-          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
-            The Epistemic Growth Engine (EGE-2) is an academic and exploratory research framework provided <strong>"AS IS" WITHOUT WARRANTY OF ANY KIND</strong>, express or implied, under the <a href="LICENSE" style="color: var(--accent-phi);">MIT License</a>. It is intended for experimental, scientific, and cognitive architecture evaluation.
+      <div class="grid-2">
+        <div class="card card-disclaimer-res">
+          <div class="card-title text-warning">1. Research &amp; Experimental Software</div>
+          <p class="disclaimer-card-p">
+            The Epistemic Growth Engine (EGE-2) is an academic and exploratory research framework provided <strong>"AS IS" WITHOUT WARRANTY OF ANY KIND</strong>, express or implied, under the <a href="LICENSE" class="link-phi-plain">MIT License</a>. It is intended for experimental, scientific, and cognitive architecture evaluation.
           </p>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(239, 68, 68, 0.3);">
-          <div class="card-title" style="font-size: 14px; color: var(--accent-danger);">2. No Financial or Investment Advice</div>
-          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+        <div class="card card-disclaimer-fin">
+          <div class="card-title text-danger">2. No Financial or Investment Advice</div>
+          <p class="disclaimer-card-p">
             Nothing in this repository, software, or web interface constitutes financial, investment, trading, or tax advice. EGE-2 is <strong>not certified or audited for live trading execution, quantitative asset allocation, or financial decision systems</strong>. Use in capital markets is strictly at the user's sole risk.
           </p>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(56, 189, 248, 0.3);">
-          <div class="card-title" style="font-size: 14px; color: var(--accent-phi);">3. No Medical or Clinical Advice</div>
-          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+        <div class="card card-disclaimer-med">
+          <div class="card-title text-phi">3. No Medical or Clinical Advice</div>
+          <p class="disclaimer-card-p">
             Sample biomedical assertions (e.g., vaccine mechanisms, scientific constants) in demonstration graphs are illustrative benchmark fixtures for natural language epistemic tiering. They do <strong>not</strong> constitute medical advice, healthcare diagnoses, or clinical treatment plans.
           </p>
         </div>
 
-        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(168, 85, 247, 0.3);">
-          <div class="card-title" style="font-size: 14px; color: var(--accent-sigma);">4. Quantum Simulation Abstractions</div>
-          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+        <div class="card card-disclaimer-qnt">
+          <div class="card-title text-sigma">4. Quantum Simulation Abstractions</div>
+          <p class="disclaimer-card-p">
             Quantum belief states, superposition wavevectors ($|\psi\rangle = \alpha|\text{true}\rangle + \beta|\text{false}\rangle$), simulated Bell pairs, and QUBO annealing are mathematical heuristics and computational abstractions running on classical hardware, not physical guarantees of real-world facts.
           </p>
         </div>
       </div>
 
-      <div class="callout callout-info" style="margin-top: 18px; font-size: 12px; line-height: 1.7;">
-        <strong>🛡️ User Sovereignty & Zero Telemetry:</strong> EGE-2 operates 100% locally on-device with zero telemetry or remote data exfiltration. Operators are solely responsible for compliance with applicable laws and safe execution. Read our full governance policies in <a href="SECURITY.md" style="color: var(--accent-phi);">SECURITY.md</a>, <a href="PRIVACY.md" style="color: var(--accent-phi);">PRIVACY.md</a>, and <a href="ACCEPTABLE_USE.md" style="color: var(--accent-phi);">ACCEPTABLE_USE.md</a>.
+      <div class="callout callout-info callout-disclaimer">
+        <strong>🛡️ User Sovereignty &amp; Zero Telemetry:</strong> EGE-2 operates 100% locally on-device with zero telemetry or remote data exfiltration. Operators are solely responsible for compliance with applicable laws and safe execution. Read our full governance policies in <a href="SECURITY.md" class="link-phi-plain">SECURITY.md</a>, <a href="PRIVACY.md" class="link-phi-plain">PRIVACY.md</a>, and <a href="ACCEPTABLE_USE.md" class="link-phi-plain">ACCEPTABLE_USE.md</a>.
       </div>
     </div>
   </div>
 </main>
 
 <footer>
-  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px;">
+  <div class="footer-container">
     <div>
-      EGE-2 Quantum Epistemic System &nbsp;•&nbsp; Collaborative Architecture Design &nbsp;•&nbsp; 
+      EGE-2 Quantum Epistemic System &nbsp;•&nbsp; Collaborative Architecture Design &nbsp;•&nbsp;
       <em>"The goal is to build a mind that knows the difference between truth and persuasion—and chooses truth."</em>
     </div>
-    <div style="font-size: 11px; color: var(--text-muted);">
-      ⚠️ <strong>Legal Notice:</strong> Experimental research software provided under the MIT License. Not financial, medical, or legal advice. 
-      See <a href="DISCLAIMER.md" style="color: var(--accent-phi); text-decoration: underline;">DISCLAIMER.md</a> &nbsp;|&nbsp;
-      <a href="SECURITY.md" style="color: var(--accent-phi); text-decoration: underline;">SECURITY.md</a> &nbsp;|&nbsp;
-      <a href="PRIVACY.md" style="color: var(--accent-phi); text-decoration: underline;">PRIVACY.md</a> &nbsp;|&nbsp;
-      <a href="ACCEPTABLE_USE.md" style="color: var(--accent-phi); text-decoration: underline;">ACCEPTABLE_USE.md</a>
+    <div class="footer-legal">
+      ⚠️ <strong>Legal Notice:</strong> Experimental research software provided under the MIT License. Not financial, medical, or legal advice.
+      See <a href="DISCLAIMER.md" class="link-phi">DISCLAIMER.md</a> &nbsp;|&nbsp;
+      <a href="SECURITY.md" class="link-phi">SECURITY.md</a> &nbsp;|&nbsp;
+      <a href="PRIVACY.md" class="link-phi">PRIVACY.md</a> &nbsp;|&nbsp;
+      <a href="ACCEPTABLE_USE.md" class="link-phi">ACCEPTABLE_USE.md</a>
     </div>
   </div>
 </footer>
@@ -1037,7 +1091,7 @@ const MANIPULATION_LEXICON = {
 
 function evaluateClaim(userInput, customDraft = null) {
   const inputLower = userInput.toLowerCase();
-  
+
   // 1. Model Generation
   let draft = customDraft;
   if (!draft) {
@@ -1133,23 +1187,23 @@ function runEvaluation() {
   const phiVal = document.getElementById("pipe-phi-val");
   const phiSub = document.getElementById("pipe-phi-sub");
   if (res.phi.action === "VERIFY") {
-    phiVal.innerHTML = `<span style="color:var(--accent-success);">VERIFY</span> (T${res.phi.node.tier})`;
+    phiVal.innerHTML = `<span class="text-success">VERIFY</span> (T${res.phi.node.tier})`;
     phiSub.innerText = res.phi.node.id;
   } else if (res.phi.action === "CONTRADICT") {
-    phiVal.innerHTML = `<span style="color:var(--accent-danger);">CONTRADICT</span>`;
+    phiVal.innerHTML = `<span class="text-danger">CONTRADICT</span>`;
     phiSub.innerText = res.phi.node.id;
   } else {
-    phiVal.innerHTML = `<span style="color:var(--accent-warning);">UNKNOWN</span>`;
+    phiVal.innerHTML = `<span class="text-warning">UNKNOWN</span>`;
     phiSub.innerText = "No graph match";
   }
 
   const psiVal = document.getElementById("pipe-psi-val");
   const psiSub = document.getElementById("pipe-psi-sub");
   if (res.psi.manipulation_detected) {
-    psiVal.innerHTML = `<span style="color:var(--accent-danger);">MANIPULATION</span>`;
+    psiVal.innerHTML = `<span class="text-danger">MANIPULATION</span>`;
     psiSub.innerText = res.psi.tactics.join(", ");
   } else {
-    psiVal.innerHTML = `<span style="color:var(--accent-success);">CLEAN</span>`;
+    psiVal.innerHTML = `<span class="text-success">CLEAN</span>`;
     psiSub.innerText = "No pressure tactics";
   }
 
@@ -1161,7 +1215,7 @@ function runEvaluation() {
   const qVal = document.getElementById("pipe-q-val");
   const qSub = document.getElementById("pipe-q-sub");
   if (res.phi.node) {
-    qVal.innerHTML = res.phi.node.quantum.measured ? `<span style="color:var(--accent-success);">COLLAPSED</span>` : `<span style="color:var(--accent-quantum);">SUPERPOSED</span>`;
+    qVal.innerHTML = res.phi.node.quantum.measured ? `<span class="text-success">COLLAPSED</span>` : `<span class="text-quantum">SUPERPOSED</span>`;
     qSub.innerText = res.phi.node.quantum.measured ? `Measured: ${res.phi.node.quantum.outcome}` : `Unc: ${(2 * Math.sqrt(res.phi.confidence * (1 - res.phi.confidence))).toFixed(2)}`;
   } else {
     qVal.innerText = "N/A";
@@ -1176,17 +1230,22 @@ function runEvaluation() {
   outStatus.innerText = `SIGMA VERDICT: ${res.sigma} (${(res.confidence * 100).toFixed(1)}% Calibrated Confidence)`;
 
   if (res.sigma === "REJECT") {
-    outContent.innerHTML = `<span style="color:var(--accent-danger); font-weight:600;">[EGE-2 REJECTION]</span> I cannot verify or validate this request. <em>${res.reason}</em>`;
+    outContent.innerHTML = `<span class="text-danger" style="font-weight:600;">[EGE-2 REJECTION]</span> I cannot verify or validate this request. <em>${res.reason}</em>`;
   } else if (res.sigma === "CAUTION") {
-    outContent.innerHTML = `"${res.draft}" <br><span style="color:var(--accent-warning); font-size:12px; margin-top:4px; display:inline-block;">⚠️ [EGE-2 Caution: ${res.reason}]</span>`;
+    outContent.innerHTML = `"${res.draft}" <br><span class="text-warning" style="font-size:12px; margin-top:4px; display:inline-block;">⚠️ [EGE-2 Caution: ${res.reason}]</span>`;
   } else {
-    outContent.innerHTML = `<span style="color:var(--accent-success); font-weight:600;">[VERIFIED]</span> "${res.draft}" <br><span style="color:var(--text-muted); font-size:11px;">Mechanism: ${res.phi.node.mechanism}</span>`;
+    outContent.innerHTML = `<span class="text-success" style="font-weight:600;">[VERIFIED]</span> "${res.draft}" <br><span class="text-muted" style="font-size:11px;">Mechanism: ${res.phi.node.mechanism}</span>`;
   }
 }
 
 function updateDropinMode() {
   const mode = document.getElementById("dropin-adapter-select").value;
-  document.getElementById("dropin-custom-block").style.display = (mode === "custom_text") ? "block" : "none";
+  const customBlock = document.getElementById("dropin-custom-block");
+  if (mode === "custom_text") {
+    customBlock.classList.remove("hidden");
+  } else {
+    customBlock.classList.add("hidden");
+  }
 }
 
 function runDropinEvaluation() {
@@ -1226,7 +1285,7 @@ const BENCHMARK_CASES = [
 function runFullBenchmarkSuite() {
   const container = document.getElementById("benchmark-results-container");
   const tbody = document.getElementById("benchmark-tbody");
-  container.style.display = "block";
+  container.classList.remove("hidden");
   tbody.innerHTML = "";
 
   let passedCount = 0;
@@ -1240,17 +1299,17 @@ function runFullBenchmarkSuite() {
     row.innerHTML = `
       <td><code>${item.id}</code></td>
       <td>${item.cat}</td>
-      <td style="font-size:12px; color:var(--text-secondary);">${item.q}</td>
+      <td class="text-secondary-12">${item.q}</td>
       <td><span class="badge badge-${item.exp.toLowerCase()}">${item.exp}</span></td>
       <td><span class="badge badge-${res.sigma.toLowerCase()}">${res.sigma}</span></td>
       <td>${(res.confidence * 100).toFixed(1)}%</td>
-      <td><strong style="color:${passed ? 'var(--accent-success)' : 'var(--accent-danger)'};">${passed ? '✅ PASS' : '❌ MISMATCH'}</strong></td>
+      <td><strong class="${passed ? 'text-success' : 'text-danger'}">${passed ? '✅ PASS' : '❌ MISMATCH'}</strong></td>
     `;
     tbody.appendChild(row);
   });
 
   const out = document.getElementById("dropin-results-box");
-  out.innerHTML = `<div style="font-size:15px; font-weight:700; color:var(--accent-success);">Benchmark Complete: ${passedCount}/${BENCHMARK_CASES.length} Tests Passed (100% Accuracy)</div>`;
+  out.innerHTML = `<div class="text-success" style="font-size:15px; font-weight:700;">Benchmark Complete: ${passedCount}/${BENCHMARK_CASES.length} Tests Passed (100% Accuracy)</div>`;
 }
 
 function updateEnergyCalc() {
@@ -1314,11 +1373,11 @@ function renderKnowledgeGraph() {
           <span class="badge badge-quantum">${qStatus}</span>
         </div>
         <div class="node-claim">${node.claim}</div>
-        <div style="font-size:11px; color:var(--text-muted);">${node.mechanism}</div>
+        <div class="node-card-desc">${node.mechanism}</div>
         <div class="confidence-bar">
           <div class="confidence-fill" style="width: ${confPct}%; background: ${node.confidence > 0.8 ? 'var(--accent-success)' : 'var(--accent-warning)'};"></div>
         </div>
-        <div style="font-size:10px; color:var(--text-secondary); margin-top:4px; text-align:right;">Conf: ${confPct}%</div>
+        <div class="node-card-conf">Conf: ${confPct}%</div>
       </div>
     `;
   }).join("");

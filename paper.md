@@ -14,6 +14,7 @@
 Current artificial intelligence systems—dominated by large language models (LLMs)—are approaching a fundamental ceiling. Despite trillions of dollars in data center expansion, these systems remain structurally prone to hallucination, adversarial manipulation, and catastrophic forgetting. The industry's response has been incremental: larger models, denser RLHF filters, longer context windows, and faster inference engines. This paper argues that these are **patches on a broken foundation**, not steps toward general intelligence.
 
 We present the **Epistemic Growth Engine (EGE-2)**, an alternative paradigm that treats **truth-preservation as architectural infrastructure rather than behavioral training**. EGE-2 is not a bigger model, a better prompt, or a new safety filter. It is a **cognitive operating system** built on four structural invariants:
+
 1. Embodied developmental learning,
 2. Dual-branch epistemics (objective facts vs. social behavior),
 3. Persistent structured memory with post-quantum cryptographic provenance, and
@@ -44,7 +45,7 @@ The results are impressive in narrow semantic and linguistic tasks. LLMs generat
 The AI industry's response to these fundamental failures has been consistently **incremental**:
 
 | Problem | Industry Response | Root Architectural Failure |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | **Hallucination** | Bigger datasets, RAG (Retrieval-Augmented Generation) | Still generates text probabilistically without physical or causal verification. |
 | **Lack of Memory** | 1M+ token context windows, vector databases | Context windows remain transient; vector similarity retrieves semantic proximity, not verified truth. |
 | **Manipulability** | RLHF, Constitutional AI, Red-teaming filters | Safety is purely behavioral; soft statistical boundaries can always be perturbed. |
@@ -65,6 +66,7 @@ The path to general intelligence—and to AI systems that are provably trustwort
 ### 2.1 The Current Academic & Industrial Toolkit
 
 Researchers have developed specialized components attempting to address reliability:
+
 - **Confidence Calibration & Abstention:** Calibration-Aware Fine-Tuning (CFT) and Selective Classification algorithms that train models to abstain under high epistemic uncertainty.
 - **Defensive Guardrails:** Multi-stage safety classifiers tracking hundreds of known adversarial attack patterns.
 - **Persistent Graph Memory:** Graph-native databases and knowledge graphs indexing facts for retrieval.
@@ -90,7 +92,7 @@ Current AI safety is **behavioral**. The model is trained to *simulate* being sa
 
 EGE-2 safety is **structural**. The system cannot be manipulated because its **underlying memory and update rules make unauthorized belief mutation impossible at the kernel level**.
 
-```
+```text
 Behavioral Safety (LLMs):
   [Adversarial Prompt] ──────> [Soft Attention Weights] ──────> [Potential Jailbreak]
 
@@ -105,21 +107,26 @@ Structural Safety (EGE-2):
 ### 3.2 The Four Structural Invariants
 
 #### Invariant 1: Embodied Developmental Learning
+
 The agent discovers causal physics by acting upon a simulated environment (e.g., dropping objects, measuring friction, testing occlusion) rather than parsing ungrounded text tokens.
 
 #### Invariant 2: Dual-Branch Epistemic Processing
+
 - **$\Phi$-Engine (Fact/Physics Branch):** Maintains causal models of objective reality derived from empirical testing (TIER 1 and TIER 2).
 - **$\Psi$-Engine (Social/Intent Branch):** Analyzes communication intents, conversational posture, flattery, urgency, authority appeals, and speaker reliability.
 - **$\Sigma$-Cortex (Arbitration Layer):** Reconciles $\Phi$ and $\Psi$ representations. If $\Psi$ detects manipulative intent, the epistemic weight of the speaker's claim is automatically attenuated.
 
 #### Invariant 3: Persistent Structured Memory with Provenance
+
 Every belief is stored as an immutable node within an append-only Epistemic Q-Graph containing:
+
 - Evidence Tier classification ($T_1 \dots T_7$),
 - Empirical mechanisms and falsifiability criteria,
 - Source reputation metrics tracked per domain,
 - Cryptographic seal and lattice-based signature.
 
 #### Invariant 4: Evidence-Gated Belief Updates
+
 A belief at Tier $T_N$ can **only** be updated or superseded by evidence at Tier $T_M$ where $M \le N$. Lower-quality evidence cannot overwrite higher-quality knowledge under any circumstances.
 
 ---
@@ -128,7 +135,7 @@ A belief at Tier $T_N$ can **only** be updated or superseded by evidence at Tier
 
 ### 4.1 Cognitive Modules
 
-```
+```text
                        ┌───────────────────────────────┐
                        │       GLOBAL WORKSPACE        │
                        │ (Broadcast & Attention Hub)   │
@@ -160,7 +167,7 @@ A belief at Tier $T_N$ can **only** be updated or superseded by evidence at Tier
 $$\text{Tier Rank: } T_1 > T_2 > T_3 > T_4 > T_5 > T_6 > T_7$$
 
 | Tier | Classification | Description | Update Authority |
-|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- |
 | **$T_1$** | **Direct Observation** | Direct telemetry, raw sensor readings, empirical observations. | Highest authority; can overwrite $T_1 \dots T_7$. |
 | **$T_2$** | **Controlled Experiment** | Reproducible testing with controlled variables and metrics. | Can overwrite $T_2 \dots T_7$. |
 | **$T_3$** | **Independent Verification** | Multi-source consensus from validated peer nodes. | Can overwrite $T_3 \dots T_7$. |
@@ -172,11 +179,11 @@ $$\text{Tier Rank: } T_1 > T_2 > T_3 > T_4 > T_5 > T_6 > T_7$$
 ### 4.3 Developmental Stages
 
 | Stage | Cycle Range | Equivalent Age | Target Cognitive Competencies |
-|:---|:---|:---|:---|
+| :--- | :--- | :--- | :--- |
 | **Neonate** | $0 - 10\text{k}$ | $0 - 6\text{ months}$ | Sensorimotor coordination, object permanence, spatial primitives. |
 | **Toddler** | $10\text{k} - 50\text{k}$ | $6 - 18\text{ months}$ | Grounded lexical tokens, affordance discovery, simple social agency. |
 | **Child** | $50\text{k} - 200\text{k}$ | $18\text{ mo} - 8\text{ yrs}$ | Active scientific experimentation, causal modeling, tool manipulation. |
-| **Adolescent**| $200\text{k} - 500\text{k}$| $8 - 16\text{ yrs}$ | Critical thinking, manipulation detection, moral & social dynamics. |
+| **Adolescent** | $200\text{k} - 500\text{k}$ | $8 - 16\text{ yrs}$ | Critical thinking, manipulation detection, moral & social dynamics. |
 | **Adult** | $500\text{k}+$ | $16+\text{ yrs}$ | Autonomous multi-domain research, creative synthesis, teaching. |
 
 ---
@@ -220,6 +227,7 @@ When Agent $A$ performs an empirical observation that collapses node $A$ to an e
 ### 6.1 The Escalating AI Energy Crisis
 
 The brute-force LLM scaling paradigm faces severe thermodynamic and infrastructure limits:
+
 - **Pre-Training Footprint:** Frontier LLMs consume massive electrical budgets (GPT-3 consumed ~1.287 GWh; GPT-4 class systems exceed 50 GWh, drawing tens of megawatts of continuous load).
 - **Inference Dominance:** Inference operations account for **60%–80%** of aggregate lifetime compute expenditure. Every single user token generation forces the activation of billions of parameters.
 - **Grid Constraints:** High-density AI server clusters consume 40–120 kW per rack (compared to 7–10 kW for conventional cloud racks). Global data center power demand (415–460 TWh in 2024) is projected by the International Energy Agency (IEA) to exceed 940 TWh by 2030.
@@ -227,7 +235,7 @@ The brute-force LLM scaling paradigm faces severe thermodynamic and infrastructu
 ### 6.2 The EGE-2 Compute Profile
 
 | Operational Dimension | Monolithic LLM Paradigm | EGE-2 Quantum Epistemic Paradigm |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | **Training Model** | Continuous, multi-month batch pretraining over trillions of ungrounded tokens. | Front-loaded developmental simulation during agent childhood (~1.4 GPU hours). |
 | **Model Size** | 100B–1T+ monolithic parameters. | Modular subnetworks (10M–100M parameters per module). |
 | **Inference Activation** | Full model traversal for every generation step. | Selective routing: only relevant cognitive modules activate. |
@@ -249,7 +257,7 @@ Once an EGE-2 agent reaches the adult developmental stage, knowledge acquisition
 
 The complete system is organized into modular Python components:
 
-```
+```text
 ege2/
 ├── README.md               # Architecture documentation, quickstart & mathematical foundation
 ├── paper.md                # Full academic position paper
@@ -259,6 +267,7 @@ ege2/
 ```
 
 ### Key Python Classes
+
 - `EvidenceTier`: IntEnum implementing the 7-tier hierarchy and `can_overwrite()` logic.
 - `QuantumBeliefState`: Dataclass modeling $|\psi\rangle = \alpha|\text{true}\rangle + \beta|\text{false}\rangle$, uncertainty calculation, and measurement collapse.
 - `EpistemicNode`: Struct holding claim, domain, tier, confidence, mechanism, falsifiability, and SHA-3-256 / Dilithium hash seals.
@@ -273,6 +282,7 @@ ege2/
 ## 8. DISCUSSION, RISKS, & ROADMAP
 
 ### 8.1 Open Challenges
+
 - **Genesis Seed Integrity:** The baseline axioms (Logic, Arithmetic, Conservation of Energy) must be cryptographically signed by independent multi-signature committees to prevent initial bootstrapping bias.
 - **High-Fidelity Simulation Grounding:** High-speed physics simulators (Isaac Sim, MuJoCo) must expand material properties to support multi-modal sensorimotor grounding.
 - **Inference Verification Latency:** High-stakes epistemic verification introduces a 5–20 ms arbitration overhead per claim, which is fully acceptable for medical, legal, scientific, and financial domains.
@@ -280,7 +290,7 @@ ege2/
 ### 8.2 Deployment Recommendation Matrix
 
 | Domain / Use Case | Recommended Architecture | Epistemic Rationale |
-|:---|:---|:---|
+| :--- | :--- | :--- |
 | **Creative Writing & Brainstorming** | Standard LLM | High fluency, stochastic variance is desirable. |
 | **Medical Diagnostics & Clinical Protocols** | EGE-2 Epistemic System | Hallucination cannot be tolerated; provenance is mandatory. |
 | **Legal & Regulatory Compliance** | EGE-2 Epistemic System | Evidence tiers prevent manipulation and ungrounded claims. |

@@ -96,6 +96,7 @@ IN NO EVENT SHALL THE AUTHORS, PROJECT MAINTAINERS, CONTRIBUTORS, RESEARCHERS, O
 ## 8. User Responsibilities & Operational Safety
 
 By utilizing this codebase, the user agrees to:
+
 - Conduct rigorous, independent verification and regression testing prior to relying on any computational output.
 - Comply fully with the terms of [`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md), [`PRIVACY.md`](PRIVACY.md), and [`SECURITY.md`](SECURITY.md).
 - Keep all production credentials, private keys, and API tokens isolated from version-controlled repositories.

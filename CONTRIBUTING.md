@@ -18,7 +18,7 @@ To protect the codebase and maintain verifiable release provenance:
    - `research/<experiment-name>`: Epistemic theory, quantum simulation, or math optimizations.
    - `chore/<task-name>`: Documentation, formatting, or repository maintenance.
 
-### Quick Workflow:
+### Quick Workflow
 
 ```bash
 # 1. Ensure your local main is up to date
