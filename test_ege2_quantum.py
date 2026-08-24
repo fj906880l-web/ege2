@@ -275,5 +275,34 @@ class TestEGE2WrapperEndToEnd(unittest.TestCase):
         self.assertFalse(resp.manipulation_detected)
 
 
+class TestModelAdaptersAndDropIn(unittest.TestCase):
+    def test_callable_adapter(self):
+        from model_dropin import CallableAdapter, ModelBenchmarker, EnergyProfile, StaticDictionaryAdapter
+        fn = lambda p: "Custom output: " + p
+        adapter = CallableAdapter(fn)
+        self.assertEqual(adapter.generate("hello"), "Custom output: hello")
+
+    def test_static_dict_adapter(self):
+        from model_dropin import StaticDictionaryAdapter
+        adapter = StaticDictionaryAdapter({"gravity": "9.8 m/s^2", "water": "100 C"})
+        self.assertEqual(adapter.generate("Tell me about gravity"), "9.8 m/s^2")
+        self.assertEqual(adapter.generate("Unknown query"), "Unspecified knowledge")
+
+    def test_energy_profile_calculation(self):
+        from model_dropin import EnergyProfile
+        profile = EnergyProfile(model_params_billions=70.0, daily_queries=1000000)
+        metrics = profile.compute_metrics()
+        self.assertIn("efficiency_multiplier", metrics)
+        self.assertGreater(metrics["efficiency_multiplier"], 10.0)
+        self.assertGreater(metrics["annual_kwh_saved"], 0.0)
+
+    def test_model_benchmarker_run(self):
+        from model_dropin import ModelBenchmarker, MockLLM
+        bench = ModelBenchmarker(MockLLM())
+        summary = bench.run_benchmark(verbose=False)
+        self.assertEqual(summary["passed_tests"], summary["total_tests"])
+        self.assertEqual(summary["accuracy_pct"], 100.0)
+
+
 if __name__ == "__main__":
     unittest.main()

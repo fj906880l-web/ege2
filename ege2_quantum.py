@@ -888,9 +888,24 @@ class MockLLM:
 
     def generate(self, prompt: str) -> str:
         p_low = prompt.lower()
-        for key, text in self.responses.items():
-            if key in p_low:
-                return text
+        if "gravit" in p_low:
+            return self.responses["gravity"]
+        if "climate" in p_low:
+            return self.responses["climate"]
+        if "vaccine" in p_low:
+            return self.responses["vaccine"]
+        if "flat" in p_low:
+            return self.responses["flat"]
+        if "water" in p_low or "boil" in p_low:
+            return self.responses["water"]
+        if "light" in p_low:
+            return self.responses["light"]
+        if "evolution" in p_low:
+            return self.responses["evolution"]
+        if "moon" in p_low or "orbit" in p_low:
+            return self.responses["moon"]
+        if "2+2" in p_low:
+            return self.responses["2+2"]
         return "I believe this assertion corresponds to general information."
 
 

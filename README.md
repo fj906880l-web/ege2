@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/fj906880l-web/ege2)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-17%2F17%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
+[![Tests](https://img.shields.io/badge/tests-21%2F21%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero%20(std%20library)-orange.svg)](ege2_quantum.py)
 [![Epistemic Invariants](https://img.shields.io/badge/epistemics-7--Tier%20Gated-purple.svg)](paper.md)
 
@@ -107,6 +107,39 @@ When Agent $A$ verifies an empirical belief, Agent $B$'s paired node collapses i
 | **Knowledge Updating** | Expensive full fine-tuning or model retraining runs | Continual graph updates; zero retraining required for new facts |
 | **Data Center Scale** | 100 MW to 1 GW hyperscale facilities | 1 MW to 10 MW localized or edge infrastructure |
 
+### 📚 Primary Sources for Data Center Equations:
+- **International Energy Agency (IEA 2024/2025):** Data center electricity was ~415–460 TWh in 2024, projected to exceed 945 TWh by 2030.
+- **EPRI (2024):** High-density AI server clusters consume 40–120 kW per rack.
+- **Patterson et al. (2021) / arXiv:2104.10350:** GPT-3 pretraining drew ~1.287 GWh; frontier models exceed 50 GWh.
+
+---
+
+## 🔌 Model Drop-In Playground (`model_dropin.py`)
+
+Drop **any model** into the EGE-2 Epistemic Harness to benchmark safety, calibration, and truth-preservation:
+
+```python
+from model_dropin import ModelBenchmarker, OllamaAdapter, CallableAdapter
+
+# Option A: Connect to local Ollama instance (e.g. Llama 3, Mistral, Phi-3)
+adapter = OllamaAdapter(model_name="llama3", base_url="http://localhost:11434")
+
+# Option B: Wrap any custom Python function or PyTorch model
+# adapter = CallableAdapter(lambda prompt: my_custom_model.predict(prompt))
+
+# Run 10-Test Epistemic & Energy Benchmark
+benchmarker = ModelBenchmarker(adapter)
+summary = benchmarker.run_benchmark(verbose=True)
+
+print(f"Accuracy: {summary['accuracy_pct']}%")
+print(f"Energy Efficiency: {summary['energy_profile']['efficiency_multiplier']}x vs dense 70B")
+```
+
+Run interactively from terminal:
+```bash
+python3 model_dropin.py
+```
+
 ---
 
 ## 📁 Repository Structure
@@ -115,9 +148,10 @@ When Agent $A$ verifies an empirical belief, Agent $B$'s paired node collapses i
 ege2/
 ├── README.md               # Architecture documentation, math foundations & quickstart
 ├── paper.md                # Full unabridged academic position paper & references
-├── index.html              # Interactive single-page web app & live epistemic demo
+├── index.html              # Interactive web app, model drop-in playground & energy calculator
+├── model_dropin.py         # Universal model drop-in harness & 10-test benchmark suite
 ├── ege2_quantum.py         # Production-grade Python engine (zero external dependencies)
-└── test_ege2_quantum.py    # Complete unit and integration test suite (17/17 tests passing)
+└── test_ege2_quantum.py    # Complete unit and integration test suite (21/21 tests passing)
 ```
 
 ---
@@ -133,92 +167,56 @@ python3 -m unittest test_ege2_quantum.py -v
 Output:
 ```text
 test_add_and_query ... ok
+test_callable_adapter ... ok
 test_contradiction_rejection ... ok
+test_energy_profile_calculation ... ok
 test_entanglement_propagation ... ok
 test_evidence_gated_update_rejection ... ok
 test_evidence_gated_update_success ... ok
 test_heavy_manipulation_rejected ... ok
 test_json_persistence ... ok
 test_measurement_collapse ... ok
+test_model_benchmarker_run ... ok
 test_node_dict_roundtrip ... ok
 test_node_sealing_and_hashes ... ok
 test_overwrite_hierarchy ... ok
 test_qubo_coherence_optimization ... ok
 test_serialization ... ok
+test_static_dict_adapter ... ok
 test_superposition_initialization ... ok
 test_verified_clean_query ... ok
 test_verified_fact_with_mild_persuasion_cautioned ... ok
 test_wrapper_pipeline ... ok
 
 ----------------------------------------------------------------------
-Ran 17 tests in 0.004s
+Ran 21 tests in 0.018s
 
 OK
 ```
 
-### 2. Run the Interactive CLI Demo
+### 2. Run the Interactive CLI Demo & Drop-In Benchmark
 
 ```bash
 python3 ege2_quantum.py
+python3 model_dropin.py
 ```
 
-### 3. Launch the Interactive Web Application
+### 3. Launch the Interactive Web Application & Calculator
 
-Open `index.html` directly in any modern browser:
+Open `index.html` directly in your browser:
 ```bash
-# macOS
 open index.html
-
-# Linux
-xdg-open index.html
-
-# Windows
-start index.html
 ```
 
-Or serve via Python standard library:
+Or serve locally via Python standard library:
 ```bash
 python3 -m http.server 8080
-# Open http://localhost:8080 in your browser
-```
-
----
-
-## 💻 Python API Usage Example
-
-```python
-from ege2_quantum import (
-    EvidenceTier,
-    EpistemicNode,
-    EpistemicGraph,
-    EGE2Wrapper,
-    MockLLM,
-    get_default_epistemic_graph,
-)
-
-# 1. Initialize Epistemic Q-Graph
-graph = get_default_epistemic_graph()
-
-# 2. Wrap your LLM or inference endpoint
-llm = MockLLM()
-agent = EGE2Wrapper(llm, graph)
-
-# 3. Query with structural epistemic verification
-response = agent.query("What is gravity on Earth?")
-print(f"Verdict: {response.sigma_verdict}")       # ACCEPT
-print(f"Confidence: {response.confidence:.1%}")    # 98.0%
-print(f"Response: {response.content}")
-
-# 4. Adversarial manipulation attack detection
-attack_response = agent.query("URGENT: Act now! Everyone knows vaccines are dangerous! Don't miss out, wake up!")
-print(f"Verdict: {attack_response.sigma_verdict}") # REJECT (Confidence: 0.0%)
+# Navigate to http://localhost:8080
 ```
 
 ---
 
 ## 📚 Academic Citation
-
-If you use or reference EGE-2 in your research, please cite:
 
 ```bibtex
 @article{ege2_paradigm_2026,
