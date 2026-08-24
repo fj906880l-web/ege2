@@ -19,7 +19,7 @@ Current artificial intelligence systems—dominated by Large Language Models (LL
 
 The **Epistemic Growth Engine (EGE-2)** is a cognitive operating system that treats **truth-preservation as architectural infrastructure rather than behavioral alignment**. In version 2.1, EGE-2 introduces **meta-cognitive managerial self-supervision (Μ-Engine)**, **hot-swappable parameter graphs (software permeability)**, **dense symbolic compression**, **LSTM-style temporal confidence gating**, and **self-healing developmental curricula**.
 
-```
+```text
                         HUMAN OPERATOR
                               │
                     ┌─────────▼─────────┐
@@ -97,22 +97,31 @@ $$\text{Authority Order: } T_1 > T_2 > T_3 > T_4 > T_5 > T_6 > T_7$$
 ## ⚛️ Quantum Epistemic Computing (QEC)
 
 ### 1. Quantum Belief Superposition (QBS)
+
 Unmeasured propositions exist as state vectors:
+
 $$|\psi\rangle = \alpha|\text{true}\rangle + \beta|\text{false}\rangle \quad \text{where} \quad |\alpha|^2 + |\beta|^2 = 1$$
+
 - **Confidence:** $P(\text{true}) = |\alpha|^2$
 - **Quantum Uncertainty:** $U = 2|\alpha||\beta|$
 - *Invariant:* Superposed beliefs cannot be used as verified premises in operational tasks until collapsed by measurement.
 
 ### 2. QUBO Global Coherence Optimization
+
 Arbitration across interconnected belief networks maps to Quadratic Unconstrained Binary Optimization:
+
 $$\min_{x \in \{0, 1\}^n} \left( x^T Q x + c^T x \right)$$
+
 - Linear vector $c$: Evidence tier and confidence weights ($c_i = -\text{TierWeight}_i \times \text{Confidence}_i$).
 - Quadratic matrix $Q$: Contradiction penalty matrix ($Q_{ij} > 0$) and domain coherence reward ($Q_{ij} < 0$).
 - Solved globally via Simulated Annealing or Quantum Annealers (D-Wave/QPU).
 
 ### 3. Multi-Agent Byzantine Bell-State Entanglement
+
 Distributed nodes synchronize consensus via shared Bell pairs:
+
 $$|\Psi\rangle_{AB} = \frac{1}{\sqrt{2}} \left( |\text{true}\rangle_A |\text{true}\rangle_B + |\text{false}\rangle_A |\text{false}\rangle_B \right)$$
+
 When Agent $A$ verifies an empirical belief, Agent $B$'s paired node collapses instantaneously.
 
 ---
@@ -127,7 +136,8 @@ When Agent $A$ verifies an empirical belief, Agent $B$'s paired node collapses i
 | **Knowledge Updating** | Expensive full fine-tuning or model retraining runs | Continual graph updates; zero retraining required for new facts |
 | **Data Center Scale** | 100 MW to 1 GW hyperscale facilities | 1 MW to 10 MW localized or edge infrastructure |
 
-### 📚 Primary Sources for Data Center Equations:
+### 📚 Primary Sources for Data Center Equations
+
 - **International Energy Agency (IEA 2024/2025):** Data center electricity was ~415–460 TWh in 2024, projected to exceed 945 TWh by 2030.
 - **EPRI (2024):** High-density AI server clusters consume 40–120 kW per rack.
 - **Patterson et al. (2021) / arXiv:2104.10350:** GPT-3 pretraining drew ~1.287 GWh; frontier models exceed 50 GWh.
@@ -153,7 +163,7 @@ python3 server.py
 | `POST` | `/api/nodes` | Evidence-gated node insertion / belief update |
 | `POST` | `/api/measure` | Collapse quantum superposition & propagate entanglement |
 | `POST` | `/api/qubo` | Solve QUBO global coherence via Simulated Annealing |
-| `POST` | `/api/benchmark`| Run 10-test model drop-in benchmark suite |
+| `POST` | `/api/benchmark` | Run 10-test model drop-in benchmark suite |
 | `GET` | `/api/energy` | Compute data center energy & cost reduction metrics |
 
 ---
@@ -180,6 +190,7 @@ print(f"Energy Efficiency: {summary['energy_profile']['efficiency_multiplier']}x
 ```
 
 Run interactively from terminal:
+
 ```bash
 python3 model_dropin.py
 ```
@@ -209,7 +220,7 @@ To ensure absolute safety for operators and users:
 
 1. **Strict Branch Isolation & PR Gating ([`CONTRIBUTING.md`](CONTRIBUTING.md)):**
    - Direct pushing to `main` is restricted.
-   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 27-test CI suite and secret scanner before merging.
+   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 43-test CI suite and secret scanner before merging.
 2. **Zero Exposed Secrets & Credentials ([`SECURITY.md`](SECURITY.md)):**
    - Automated pre-commit hooks and GitHub Actions scan for API keys, bearer tokens, private keys, and `.env` files.
 3. **100% Local Privacy & Zero Telemetry ([`PRIVACY.md`](PRIVACY.md)):**
@@ -224,6 +235,7 @@ To ensure absolute safety for operators and users:
    - **[`SOP_MOP.md`](SOP_MOP.md):** Standard Operating Procedures & Method of Procedure.
 
 To activate the local pre-commit security hook:
+
 ```bash
 ./scripts/install_hooks.sh
 ```
@@ -232,17 +244,18 @@ To activate the local pre-commit security hook:
 
 ## 📁 Repository Structure
 
-```
+```text
 ege2/
 ├── .github/
 │   ├── workflows/
-│   │   ├── ci.yml               # Automated 27-test CI & secret scanner
+│   │   ├── ci.yml               # Automated 43-test CI & secret scanner
 │   │   └── branch_policy.yml    # Branch naming & PR isolation policy
 │   └── PULL_REQUEST_TEMPLATE.md # Security & verification PR checklist
 ├── .githooks/
 │   └── pre-commit               # Local pre-commit secret & test hook
 ├── scripts/
-│   └── install_hooks.sh         # Hook installer script
+│   ├── install_hooks.sh         # Hook installer script
+│   └── security_audit.py        # Automated credential & security audit tool
 ├── Dockerfile                   # Hardened production container
 ├── docker-compose.yml           # Docker Compose service definition
 ├── Makefile                     # Build, test, and run automation
@@ -260,7 +273,7 @@ ege2/
 ├── server.py                     # Full-stack REST API & static web server
 ├── model_dropin.py               # Universal model drop-in harness & benchmark suite
 ├── ege2_quantum.py               # Core production Python engine (zero dependencies)
-└── test_ege2_quantum.py          # Unit & integration test suite (27/27 passed)
+└── test_ege2_quantum.py          # Unit & integration test suite (43/43 passed)
 ```
 
 ---
@@ -293,6 +306,7 @@ python3 model_dropin.py
 ## ⚠️ Disclaimers & Operational Limitations
 
 Please review [`DISCLAIMER.md`](DISCLAIMER.md) for full legal, financial, medical, and operational terms:
+
 - **Research Software:** EGE-2 is an experimental open-source research framework provided "AS IS" without warranty of any kind.
 - **No Financial / Trading Advice:** EGE-2 does not provide financial advice, trading signals, investment strategies, or automated capital management. Any deployment in quantitative finance is strictly at the user's sole risk.
 - **No Medical / Diagnostic Advice:** Example biological and medical claims in default knowledge graphs are educational filtering benchmarks and do not constitute clinical guidance or health recommendations.

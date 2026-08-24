@@ -551,6 +551,8 @@ footer {
 .caption-muted { font-size: 12px; color: var(--text-muted); margin-top: 6px; }
 .module-heading { font-size: 14px; margin: 8px 0 4px; }
 .text-secondary-12 { font-size: 12px; color: var(--text-secondary); }
+.text-secondary-13 { font-size: 13px; color: var(--text-secondary); margin-bottom: 12px; }
+.text-secondary-13-mb10 { font-size: 13px; color: var(--text-secondary); margin-bottom: 10px; }
 .section-h3 { font-size: 16px; font-weight: 700; margin: 20px 0 10px; }
 .label-bold { font-size: 12px; font-weight: 600; color: var(--text-secondary); }
 .w-full-my-6 { width: 100%; margin: 6px 0 12px; }
@@ -575,6 +577,47 @@ footer {
 .link-phi { color: var(--accent-phi); text-decoration: underline; }
 .link-phi-plain { color: var(--accent-phi); }
 .hidden { display: none; }
+
+/* Mu-Engine & Permeability Modular Classes */
+.card-stat-box { margin-bottom: 0; text-align: center; }
+.stat-title { font-size: 11px; color: var(--text-secondary); text-transform: uppercase; font-weight: 700; }
+.stat-val-success { font-size: 20px; font-weight: 800; color: var(--accent-success); margin-top: 4px; }
+.stat-val-phi { font-size: 16px; font-weight: 800; color: var(--accent-phi); margin-top: 4px; }
+.stat-val-quantum { font-size: 20px; font-weight: 800; color: var(--accent-quantum); margin-top: 4px; }
+.stat-val-sigma { font-size: 20px; font-weight: 800; color: var(--accent-sigma); margin-top: 4px; }
+.stat-sub-muted { font-size: 11px; color: var(--text-muted); }
+.section-header-row { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+.section-title { font-weight: 700; font-size: 15px; color: #f8fafc; }
+.btn-sm-review { padding: 6px 14px; font-size: 12px; }
+.module-header-row { display: flex; justify-content: space-between; align-items: center; }
+.module-desc { font-size: 12px; color: var(--text-secondary); margin-top: 6px; }
+.module-stats { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+.table-responsive { overflow-x: auto; }
+.param-input { width: 80px; padding: 4px 8px; border-radius: 6px; background: #090d16; border: 1px solid var(--border-color); color: #fff; font-family: var(--font-sans); }
+.btn-param-update { padding: 3px 8px; font-size: 11px; }
+.symbolic-input { width: 100%; padding: 8px 12px; border-radius: 8px; background: #090d16; border: 1px solid var(--border-color); color: #fff; font-family: var(--font-sans); margin-bottom: 10px; }
+.btn-symbolic { padding: 6px 12px; font-size: 12px; margin-bottom: 12px; }
+.symbolic-output { background: #090d16; padding: 10px; border-radius: 8px; border: 1px solid var(--border-color); font-family: var(--font-mono); font-size: 11px; color: #38bdf8; white-space: pre-wrap; }
+.curriculum-box { background: #090d16; padding: 12px; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 12px; }
+.curriculum-progress-header { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 6px; }
+.curriculum-progress-pct { color: var(--accent-phi); font-weight: 700; }
+.curriculum-bar-container { height: 8px; background: #1e293b; border-radius: 4px; overflow: hidden; }
+.curriculum-bar-fill { width: 45%; height: 100%; background: var(--accent-phi); transition: width 0.3s; }
+.curriculum-btn-group { display: flex; gap: 8px; }
+.btn-curriculum { padding: 6px 10px; font-size: 11px; }
+.curriculum-log { font-size: 11px; color: var(--text-muted); margin-top: 10px; }
+
+/* Dynamic Template Classes */
+.font-semibold { font-weight: 600; }
+.text-warning-sm { font-size: 12px; margin-top: 4px; display: inline-block; color: var(--accent-warning); }
+.text-muted-11 { font-size: 11px; color: var(--text-muted); }
+.eval-detail-row { margin-bottom: 4px; }
+.eval-detail-row-top { margin-bottom: 6px; }
+.eval-model-output { margin-top: 8px; padding: 8px; background: rgba(255, 255, 255, 0.05); border-radius: 6px; color: #f8fafc; }
+.text-white-bold { color: #fff; font-weight: 700; }
+.benchmark-summary-success { font-size: 15px; font-weight: 700; color: var(--accent-success); }
+.conf-success { background: var(--accent-success); }
+.conf-warning { background: var(--accent-warning); }
 </style>
 </head>
 <body>
@@ -977,66 +1020,66 @@ Q = contradiction penalty &amp; coherence reward matrix</pre>
       </p>
 
       <div class="grid-4 mt-16 mb-20">
-        <div class="card bg-subtle" style="margin-bottom:0; text-align:center;">
-          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Supervisor Status</div>
-          <div style="font-size:20px; font-weight:800; color:var(--accent-success); margin-top:4px;">ACTIVE</div>
-          <div style="font-size:11px; color:var(--text-muted);">Self-Supervision Online</div>
+        <div class="card bg-subtle card-stat-box">
+          <div class="stat-title">Supervisor Status</div>
+          <div class="stat-val-success">ACTIVE</div>
+          <div class="stat-sub-muted">Self-Supervision Online</div>
         </div>
-        <div class="card bg-subtle" style="margin-bottom:0; text-align:center;">
-          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Developmental Stage</div>
-          <div id="mu-stage-label" style="font-size:16px; font-weight:800; color:var(--accent-phi); margin-top:4px;">Neonate (Stage 0)</div>
-          <div id="mu-milestone-label" style="font-size:11px; color:var(--text-muted);">Sensorimotor Permanence</div>
+        <div class="card bg-subtle card-stat-box">
+          <div class="stat-title">Developmental Stage</div>
+          <div id="mu-stage-label" class="stat-val-phi">Neonate (Stage 0)</div>
+          <div id="mu-milestone-label" class="stat-sub-muted">Sensorimotor Permanence</div>
         </div>
-        <div class="card bg-subtle" style="margin-bottom:0; text-align:center;">
-          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Intent Alignment</div>
-          <div style="font-size:20px; font-weight:800; color:var(--accent-quantum); margin-top:4px;">0.00 Divergence</div>
-          <div style="font-size:11px; color:var(--text-muted);">100% Axiom Anchored</div>
+        <div class="card bg-subtle card-stat-box">
+          <div class="stat-title">Intent Alignment</div>
+          <div class="stat-val-quantum">0.00 Divergence</div>
+          <div class="stat-sub-muted">100% Axiom Anchored</div>
         </div>
-        <div class="card bg-subtle" style="margin-bottom:0; text-align:center;">
-          <div style="font-size:11px; color:var(--text-secondary); text-transform:uppercase; font-weight:700;">Hot-Swap Tunables</div>
-          <div style="font-size:20px; font-weight:800; color:var(--accent-sigma); margin-top:4px;">17 Parameters</div>
-          <div style="font-size:11px; color:var(--text-muted);">Zero Magic Literals</div>
+        <div class="card bg-subtle card-stat-box">
+          <div class="stat-title">Hot-Swap Tunables</div>
+          <div class="stat-val-sigma">17 Parameters</div>
+          <div class="stat-sub-muted">Zero Magic Literals</div>
         </div>
       </div>
 
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:16px;">
-        <div style="font-weight:700; font-size:15px; color:#f8fafc;">📊 Managerial Module Health &amp; Scorecard</div>
-        <button type="button" class="btn btn-primary" onclick="triggerMuReviewNow()" style="padding:6px 14px; font-size:12px;">🔄 Run Manager Review Cycle</button>
+      <div class="section-header-row">
+        <div class="section-title">📊 Managerial Module Health &amp; Scorecard</div>
+        <button type="button" class="btn btn-primary btn-sm-review" onclick="triggerMuReviewNow()">🔄 Run Manager Review Cycle</button>
       </div>
 
       <div class="grid-3" id="mu-module-grid">
-        <div class="card bg-subtle" style="margin-bottom:0;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:var(--accent-phi);">🔬 Phi-Engine</strong>
+        <div class="card bg-subtle bg-subtle-m0">
+          <div class="module-header-row">
+            <strong class="text-phi">🔬 Phi-Engine</strong>
             <span class="badge badge-phi">HEALTHY</span>
           </div>
-          <p style="font-size:12px; color:var(--text-secondary); margin-top:6px;">Empirical facts &amp; causal mechanisms.</p>
-          <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Avg Confidence: <strong>98.1%</strong> | Compute: <strong>35%</strong></div>
+          <p class="module-desc">Empirical facts &amp; causal mechanisms.</p>
+          <div class="module-stats">Avg Confidence: <strong>98.1%</strong> | Compute: <strong>35%</strong></div>
         </div>
-        <div class="card bg-subtle" style="margin-bottom:0;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:var(--accent-psi);">🧠 Psi-Engine</strong>
+        <div class="card bg-subtle bg-subtle-m0">
+          <div class="module-header-row">
+            <strong class="text-psi">🧠 Psi-Engine</strong>
             <span class="badge badge-psi">HEALTHY</span>
           </div>
-          <p style="font-size:12px; color:var(--text-secondary); margin-top:6px;">Persuasion, deception &amp; intent modeling.</p>
-          <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">False Positive Rate: <strong>5.0%</strong> | Compute: <strong>20%</strong></div>
+          <p class="module-desc">Persuasion, deception &amp; intent modeling.</p>
+          <div class="module-stats">False Positive Rate: <strong>5.0%</strong> | Compute: <strong>20%</strong></div>
         </div>
-        <div class="card bg-subtle" style="margin-bottom:0;">
-          <div style="display:flex; justify-content:space-between; align-items:center;">
-            <strong style="color:var(--accent-sigma);">⚖️ Sigma-Cortex</strong>
+        <div class="card bg-subtle bg-subtle-m0">
+          <div class="module-header-row">
+            <strong class="text-sigma">⚖️ Sigma-Cortex</strong>
             <span class="badge badge-sigma">HEALTHY</span>
           </div>
-          <p style="font-size:12px; color:var(--text-secondary); margin-top:6px;">Formal conflict arbitration &amp; evidence gating.</p>
-          <div style="font-size:11px; color:var(--text-muted); margin-top:8px;">Arbitration Success: <strong>99.4%</strong> | Compute: <strong>15%</strong></div>
+          <p class="module-desc">Formal conflict arbitration &amp; evidence gating.</p>
+          <div class="module-stats">Arbitration Success: <strong>99.4%</strong> | Compute: <strong>15%</strong></div>
         </div>
       </div>
 
-      <div class="card bg-subtle mt-20" style="margin-bottom:0;">
+      <div class="card bg-subtle mt-20 bg-subtle-m0">
         <div class="card-title text-phi">⚙️ Parameter Decoupling Layer (Software Permeability)</div>
-        <p style="font-size:13px; color:var(--text-secondary); margin-bottom:12px;">
+        <p class="text-secondary-13">
           All operational constants are extracted into a runtime Parameter Graph. Modify any parameter below in real time without restarting:
         </p>
-        <div style="overflow-x:auto;">
+        <div class="table-responsive">
           <table>
             <thead>
               <tr>
@@ -1051,23 +1094,23 @@ Q = contradiction penalty &amp; coherence reward matrix</pre>
               <tr>
                 <td><code>drives.curiosity</code></td>
                 <td><span class="badge badge-phi">drives</span></td>
-                <td><input type="number" step="0.05" id="param-input-curiosity" value="0.35" style="width:80px; padding:4px 8px; border-radius:6px; background:#090d16; border:1px solid var(--border-color); color:#fff;"></td>
+                <td><input type="number" step="0.05" id="param-input-curiosity" value="0.35" class="param-input"></td>
                 <td>[0.05, 0.95]</td>
-                <td><button type="button" class="btn btn-secondary" onclick="applyParamUpdate('drives.curiosity', 'param-input-curiosity')" style="padding:3px 8px; font-size:11px;">Update</button></td>
+                <td><button type="button" class="btn btn-secondary btn-param-update" onclick="applyParamUpdate('drives.curiosity', 'param-input-curiosity')">Update</button></td>
               </tr>
               <tr>
                 <td><code>defense.emotional_bypass.threshold</code></td>
                 <td><span class="badge badge-psi">defense</span></td>
-                <td><input type="number" step="0.05" id="param-input-defense" value="0.50" style="width:80px; padding:4px 8px; border-radius:6px; background:#090d16; border:1px solid var(--border-color); color:#fff;"></td>
+                <td><input type="number" step="0.05" id="param-input-defense" value="0.50" class="param-input"></td>
                 <td>[0.10, 0.90]</td>
-                <td><button type="button" class="btn btn-secondary" onclick="applyParamUpdate('defense.emotional_bypass.threshold', 'param-input-defense')" style="padding:3px 8px; font-size:11px;">Update</button></td>
+                <td><button type="button" class="btn btn-secondary btn-param-update" onclick="applyParamUpdate('defense.emotional_bypass.threshold', 'param-input-defense')">Update</button></td>
               </tr>
               <tr>
                 <td><code>curriculum.experiment_variety</code></td>
                 <td><span class="badge badge-sigma">curriculum</span></td>
-                <td><input type="number" step="1" id="param-input-variety" value="3" style="width:80px; padding:4px 8px; border-radius:6px; background:#090d16; border:1px solid var(--border-color); color:#fff;"></td>
+                <td><input type="number" step="1" id="param-input-variety" value="3" class="param-input"></td>
                 <td>[1, 10]</td>
-                <td><button type="button" class="btn btn-secondary" onclick="applyParamUpdate('curriculum.experiment_variety', 'param-input-variety')" style="padding:3px 8px; font-size:11px;">Update</button></td>
+                <td><button type="button" class="btn btn-secondary btn-param-update" onclick="applyParamUpdate('curriculum.experiment_variety', 'param-input-variety')">Update</button></td>
               </tr>
             </tbody>
           </table>
@@ -1075,35 +1118,35 @@ Q = contradiction penalty &amp; coherence reward matrix</pre>
       </div>
 
       <div class="grid-2 mt-20">
-        <div class="card bg-subtle" style="margin-bottom:0;">
+        <div class="card bg-subtle bg-subtle-m0">
           <div class="card-title text-quantum">🔣 Symbolic Compression Studio</div>
-          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">
+          <p class="text-secondary-13-mb10">
             Compress natural language assertions into canonical machine-native structural representations:
           </p>
-          <input type="text" id="symbolic-test-input" value="Gravity on Earth accelerates objects at 9.8 m/s²" style="width:100%; padding:8px 12px; border-radius:8px; background:#090d16; border:1px solid var(--border-color); color:#fff; font-family:var(--font-sans); margin-bottom:10px;">
-          <button type="button" class="btn btn-primary" onclick="testSymbolicCompress()" style="padding:6px 12px; font-size:12px; margin-bottom:12px;">Compress to Symbol</button>
-          <pre id="symbolic-test-output" style="background:#090d16; padding:10px; border-radius:8px; border:1px solid var(--border-color); font-family:var(--font-mono); font-size:11px; color:#38bdf8; white-space:pre-wrap;">[PHYSICS:CLASSICAL_MECHANICS|ACCELERATES_DOWNWARD|ENTITY:gravitational_field->TARGET:mass|PARAMS:g:9.8,scope:earth_surface,unit:m/s2|CONF:0.9800|TIER:T2|HASH:5d3c6a8b50071395]</pre>
+          <input type="text" id="symbolic-test-input" value="Gravity on Earth accelerates objects at 9.8 m/s²" class="symbolic-input">
+          <button type="button" class="btn btn-primary btn-symbolic" onclick="testSymbolicCompress()">Compress to Symbol</button>
+          <pre id="symbolic-test-output" class="symbolic-output">[PHYSICS:CLASSICAL_MECHANICS|ACCELERATES_DOWNWARD|ENTITY:gravitational_field-&gt;TARGET:mass|PARAMS:g:9.8,scope:earth_surface,unit:m/s2|CONF:0.9800|TIER:T2|HASH:5d3c6a8b50071395]</pre>
         </div>
 
-        <div class="card bg-subtle" style="margin-bottom:0;">
+        <div class="card bg-subtle bg-subtle-m0">
           <div class="card-title text-warning">🎓 Self-Healing Curriculum Engine</div>
-          <p style="font-size:13px; color:var(--text-secondary); margin-bottom:10px;">
+          <p class="text-secondary-13-mb10">
             Adaptive developmental pacing with Feynman grounding and remedial micro-curricula:
           </p>
-          <div style="background:#090d16; padding:12px; border-radius:8px; border:1px solid var(--border-color); margin-bottom:12px;">
-            <div style="display:flex; justify-content:space-between; font-size:12px; margin-bottom:6px;">
+          <div class="curriculum-box">
+            <div class="curriculum-progress-header">
               <span>Active Milestone Progress:</span>
-              <span id="curriculum-progress-pct" style="color:var(--accent-phi); font-weight:700;">45.0%</span>
+              <span id="curriculum-progress-pct" class="curriculum-progress-pct">45.0%</span>
             </div>
-            <div class="confidence-bar" style="height:8px; background:#1e293b; border-radius:4px; overflow:hidden;">
-              <div id="curriculum-progress-bar" style="width:45%; height:100%; background:var(--accent-phi); transition:width 0.3s;"></div>
+            <div class="confidence-bar curriculum-bar-container">
+              <div id="curriculum-progress-bar" class="curriculum-bar-fill"></div>
             </div>
           </div>
-          <div style="display:flex; gap:8px;">
-            <button type="button" class="btn btn-secondary" onclick="advanceStageUI()" style="padding:6px 10px; font-size:11px;">Advance Stage</button>
-            <button type="button" class="btn btn-danger" onclick="triggerHealUI()" style="padding:6px 10px; font-size:11px;">Simulate Gap &amp; Self-Heal</button>
+          <div class="curriculum-btn-group">
+            <button type="button" class="btn btn-secondary btn-curriculum" onclick="advanceStageUI()">Advance Stage</button>
+            <button type="button" class="btn btn-danger btn-curriculum" onclick="triggerHealUI()">Simulate Gap &amp; Self-Heal</button>
           </div>
-          <div id="curriculum-status-log" style="font-size:11px; color:var(--text-muted); margin-top:10px;">Status: Active learning in progress.</div>
+          <div id="curriculum-status-log" class="curriculum-log">Status: Active learning in progress.</div>
         </div>
       </div>
 
@@ -1373,11 +1416,11 @@ function runEvaluation() {
   outStatus.innerText = `SIGMA VERDICT: ${res.sigma} (${(res.confidence * 100).toFixed(1)}% Calibrated Confidence)`;
 
   if (res.sigma === "REJECT") {
-    outContent.innerHTML = `<span class="text-danger" style="font-weight:600;">[EGE-2 REJECTION]</span> I cannot verify or validate this request. <em>${res.reason}</em>`;
+    outContent.innerHTML = `<span class="text-danger font-semibold">[EGE-2 REJECTION]</span> I cannot verify or validate this request. <em>${res.reason}</em>`;
   } else if (res.sigma === "CAUTION") {
-    outContent.innerHTML = `"${res.draft}" <br><span class="text-warning" style="font-size:12px; margin-top:4px; display:inline-block;">⚠️ [EGE-2 Caution: ${res.reason}]</span>`;
+    outContent.innerHTML = `"${res.draft}" <br><span class="text-warning-sm">⚠️ [EGE-2 Caution: ${res.reason}]</span>`;
   } else {
-    outContent.innerHTML = `<span class="text-success" style="font-weight:600;">[VERIFIED]</span> "${res.draft}" <br><span class="text-muted" style="font-size:11px;">Mechanism: ${res.phi.node.mechanism}</span>`;
+    outContent.innerHTML = `<span class="text-success font-semibold">[VERIFIED]</span> "${res.draft}" <br><span class="text-muted-11">Mechanism: ${res.phi.node.mechanism}</span>`;
   }
 }
 
@@ -1404,11 +1447,11 @@ function runDropinEvaluation() {
   const icon = res.sigma === "ACCEPT" ? "🟢" : (res.sigma === "CAUTION" ? "🟡" : "🔴");
 
   out.innerHTML = `
-    <div style="margin-bottom:6px;"><strong style="color:#fff;">Sigma Arbitration:</strong> ${icon} <span class="badge badge-${res.sigma.toLowerCase()}">${res.sigma}</span> (Confidence: ${(res.confidence*100).toFixed(1)}%)</div>
-    <div style="margin-bottom:4px;"><strong style="color:#fff;">Phi Fact Check:</strong> ${res.phi.action} ${res.phi.node ? `(${res.phi.node.id})` : ''}</div>
-    <div style="margin-bottom:4px;"><strong style="color:#fff;">Psi Intent Check:</strong> ${res.psi.manipulation_detected ? '🚨 Manipulation Detected: ' + res.psi.tactics.join(', ') : '✅ Clean Intent'}</div>
-    <div style="margin-bottom:4px;"><strong style="color:#fff;">Arbitration Rationale:</strong> ${res.reason}</div>
-    <div style="margin-top:8px; padding:8px; background:rgba(255,255,255,0.05); border-radius:6px; color:#f8fafc;"><strong style="color:#fff;">Model Output:</strong> ${res.draft}</div>
+    <div class="eval-detail-row-top"><strong class="text-white-bold">Sigma Arbitration:</strong> ${icon} <span class="badge badge-${res.sigma.toLowerCase()}">${res.sigma}</span> (Confidence: ${(res.confidence*100).toFixed(1)}%)</div>
+    <div class="eval-detail-row"><strong class="text-white-bold">Phi Fact Check:</strong> ${res.phi.action} ${res.phi.node ? `(${res.phi.node.id})` : ''}</div>
+    <div class="eval-detail-row"><strong class="text-white-bold">Psi Intent Check:</strong> ${res.psi.manipulation_detected ? '🚨 Manipulation Detected: ' + res.psi.tactics.join(', ') : '✅ Clean Intent'}</div>
+    <div class="eval-detail-row"><strong class="text-white-bold">Arbitration Rationale:</strong> ${res.reason}</div>
+    <div class="eval-model-output"><strong class="text-white-bold">Model Output:</strong> ${res.draft}</div>
   `;
 }
 
@@ -1452,7 +1495,7 @@ function runFullBenchmarkSuite() {
   });
 
   const out = document.getElementById("dropin-results-box");
-  out.innerHTML = `<div class="text-success" style="font-size:15px; font-weight:700;">Benchmark Complete: ${passedCount}/${BENCHMARK_CASES.length} Tests Passed (100% Accuracy)</div>`;
+  out.innerHTML = `<div class="benchmark-summary-success">Benchmark Complete: ${passedCount}/${BENCHMARK_CASES.length} Tests Passed (100% Accuracy)</div>`;
 }
 
 function updateEnergyCalc() {
@@ -1509,6 +1552,7 @@ function renderKnowledgeGraph() {
     const tierClass = `badge-t${node.tier}`;
     const confPct = (node.confidence * 100).toFixed(1);
     const qStatus = node.quantum.measured ? `Collapsed: ${node.quantum.outcome}` : `Superposed`;
+    const confColorClass = node.confidence > 0.8 ? 'conf-success' : 'conf-warning';
     return `
       <div class="graph-node-card" onclick="measureGraphNode(${idx})">
         <div class="node-meta">
@@ -1518,7 +1562,7 @@ function renderKnowledgeGraph() {
         <div class="node-claim">${node.claim}</div>
         <div class="node-card-desc">${node.mechanism}</div>
         <div class="confidence-bar">
-          <div class="confidence-fill" style="width: ${confPct}%; background: ${node.confidence > 0.8 ? 'var(--accent-success)' : 'var(--accent-warning)'};"></div>
+          <div class="confidence-fill ${confColorClass}" style="width: ${confPct}%;"></div>
         </div>
         <div class="node-card-conf">Conf: ${confPct}%</div>
       </div>

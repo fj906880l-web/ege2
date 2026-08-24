@@ -23,6 +23,7 @@ The **EGE-2 Quantum Epistemic System** is built on the fundamental principle tha
 ## ⚖️ 3. Safe Multi-Agent Consensus
 
 When deploying EGE-2 in distributed multi-agent swarms:
+
 - Consensus is synchronized via cryptographic state verification and quantum Bell-state entanglement logic.
 - No personal user identifiers (PII), conversational histories, or private system metadata are shared across peer nodes.
 

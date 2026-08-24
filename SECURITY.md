@@ -18,18 +18,22 @@ The **EGE-2 Quantum Epistemic System** treats security, privacy, and truth-prese
 EGE-2 enforces multi-layered defensive security across four critical pillars:
 
 ### 1. Zero Exposed Credentials & Secret Gating
+
 - Automated pre-commit hooks and GitHub Actions CI actively scan for high-entropy tokens, API keys (`AIza...`, `sk-...`, `ghp_...`), private SSH/TLS keys, and `.env` files.
 - The `.gitignore` configuration explicitly blocks all potential credential artifacts.
 
 ### 2. Epistemic Invariant Integrity
+
 - **7-Tier Evidence Hierarchy Gating:** Lower-tier inputs ($T_7$ Unsourced Rhetoric) are structurally prohibited from overwriting or corrupting higher-tier knowledge ($T_1$ Direct Telemetry / $T_2$ Controlled Experiments).
 - **Post-Quantum Cryptographic Provenance:** Knowledge nodes are sealed with SHA-3-256 and post-quantum lattice signatures (*NIST FIPS 204 ML-DSA / CRYSTALS-Dilithium*) to prevent retroactive tampering or historical falsification.
 
 ### 3. Adversarial Manipulation & Prompt Injection Resistance
+
 - The **$\Psi$-Engine** continually scans for adversarial persuasion patterns (urgency, authority intimidation, emotional extortion, flattery, scarcity pressure).
 - The **$\Sigma$-Cortex** arbitrates with hard structural rejection ($0.0\%$ confidence) when unverified claims are accompanied by adversarial framing.
 
 ### 4. Zero Data Exfiltration & Offline Sovereignty
+
 - All epistemic graph lookups, quantum superposition evaluations, and Simulated Annealing optimizations execute **100% locally on-device**.
 - Zero external telemetry, tracking beacons, user profiling, or remote data leakage.
 
