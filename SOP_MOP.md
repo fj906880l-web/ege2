@@ -254,3 +254,9 @@ server {
 1. In the event of key compromise, issue a revoked root certificate.
 2. Re-sign all active $T_1 \dots T_4$ nodes with the new NIST FIPS 204 CRYSTALS-Dilithium keypair.
 3. Broadcast the updated public key to all swarm peers.
+
+---
+
+## ⚠️ Operational & Legal Disclaimers
+
+All Standard Operating Procedures and Methods of Procedure are provided for engineering and research operations under the [MIT License](LICENSE). EGE-2 is research software. For full legal, financial, medical, and operational disclaimers, see [`DISCLAIMER.md`](DISCLAIMER.md).

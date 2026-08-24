@@ -16,6 +16,12 @@ Implements:
 7. EGE-2 LLM Wrapper with Structural Truth Guardrails.
 
 Zero external dependencies (Python 3.9+ standard library).
+
+DISCLAIMER:
+Experimental research software provided under the MIT License "AS IS" without warranty.
+Not financial, investment, medical, healthcare, legal, or regulatory advice.
+Quantum belief formulations are mathematical abstractions for epistemic heuristic modeling.
+See DISCLAIMER.md for complete terms.
 """
 
 from enum import IntEnum

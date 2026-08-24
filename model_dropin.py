@@ -10,6 +10,11 @@ or Python callable into this harness to evaluate:
 4. Data Center Energy & Compute Efficiency Multiplier
 
 Zero external dependencies (Python 3.9+ standard library).
+
+DISCLAIMER:
+Experimental research software provided under the MIT License "AS IS" without warranty.
+Not financial, investment, medical, healthcare, legal, or regulatory advice.
+See DISCLAIMER.md for complete terms.
 """
 
 from typing import Dict, List, Optional, Any, Callable, Union

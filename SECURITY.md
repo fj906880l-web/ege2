@@ -47,3 +47,9 @@ If you discover a security vulnerability, epistemic bypass, or potential credent
    - Analysis of affected modules ($\Phi, \Psi, \Sigma$, or Q-Graph).
 
 We will acknowledge receipt within **24 hours** and provide a verified remediation patch via an isolated security branch.
+
+---
+
+## ⚠️ Disclaimers & Legal Notice
+
+For comprehensive legal, financial, medical, and operational disclaimers, please consult [`DISCLAIMER.md`](DISCLAIMER.md). EGE-2 is experimental research software provided under the [MIT License](LICENSE).

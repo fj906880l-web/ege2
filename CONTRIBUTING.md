@@ -68,3 +68,9 @@ python3 -c "from model_dropin import ModelBenchmarker, MockLLM; res = ModelBench
 # Verify standalone execution
 python3 ege2_quantum.py
 ```
+
+---
+
+## ⚠️ Disclaimers & Licensing
+
+All contributions are subject to the [MIT License](LICENSE) and must adhere to the legal and operational guardrails set forth in [`DISCLAIMER.md`](DISCLAIMER.md) and [`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md).

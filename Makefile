@@ -3,7 +3,7 @@
 help:
 	@echo "EGE-2 Quantum Epistemic System — Build & Automation Commands"
 	@echo "============================================================"
-	@echo "  make test            Run all 21+ unit and integration tests"
+	@echo "  make test            Run all 27 unit and integration tests"
 	@echo "  make benchmark       Run 10-test model drop-in benchmark suite"
 	@echo "  make run             Start full-stack REST server & Web App (port 8000)"
 	@echo "  make docker-build    Build production Docker image"
@@ -27,8 +27,8 @@ docker-run:
 	docker compose up -d
 
 security-audit:
-	python3 -c "import os; print('Auditing repository files for secrets and keys...'); assert os.system('grep -rn -E \"(AIza|sk-[a-zA-Z0-9]{32,}|ghp_)\" . --exclude-dir=.git --exclude-dir=__pycache__') != 0, 'Secrets found!'"
-	@echo "✅ Security audit passed."
+	python3 scripts/security_audit.py
+
 
 clean:
 	find . -type d -name "__pycache__" -exec rm -rf {} +

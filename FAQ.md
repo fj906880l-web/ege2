@@ -276,7 +276,7 @@ EGE-2 eliminates continuous foundation-model retraining by front-loading learnin
 ## 7. Model Drop-In Harness & Adapter Ecosystem
 
 ### Q7.1: Which model backends and frameworks are supported?
-EGE-2 provides out-of-the-box adapters in [`model_dropin.py`](file:///Users/malcolm/.gemini/antigravity-ide/scratch/ege2/model_dropin.py):
+EGE-2 provides out-of-the-box adapters in [`model_dropin.py`](model_dropin.py):
 1. **`OllamaAdapter`:** Local offline models (`llama3`, `mistral`, `phi3`, `gemma2`, `qwen2.5`, `deepseek-coder`).
 2. **`OpenAICompatibleAdapter`:** High-throughput local servers (vLLM, LMStudio, TGI, Aphrodite) and cloud API endpoints (Groq, OpenRouter, Together, OpenAI, Anthropic, Mistral).
 3. **`CallableAdapter`:** Any native Python function or PyTorch/HuggingFace model pipeline: `fn(prompt: str) -> str`.
@@ -325,11 +325,19 @@ In EGE-2:
 
 ---
 
-## 12. Ethical Guardrails & Anti-Misuse Policies
+## 12. Ethical Guardrails, Disclaimers & Operational Limits
 
 ### Q12.1: How does EGE-2 enforce acceptable use?
-As detailed in [`ACCEPTABLE_USE.md`](file:///Users/malcolm/.gemini/antigravity-ide/scratch/ege2/ACCEPTABLE_USE.md), EGE-2 contains structural blocks against:
+As detailed in [`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md), EGE-2 contains structural blocks against:
 - Automated deceptive propaganda and social engineering.
 - Autonomous cyber operations and vulnerability exploitation.
 - Mass non-consensual surveillance.
 - Autonomous lethal targeting without human moral accountability.
+
+### Q12.2: What legal, financial, medical, and operational disclaimers apply to EGE-2?
+As detailed in [`DISCLAIMER.md`](DISCLAIMER.md):
+- **Research & Experimental Software:** EGE-2 is an academic and exploratory research framework provided "as is" without warranty of any kind.
+- **No Financial/Investment Advice:** EGE-2 is not certified or intended for live capital deployment, automated trading, or portfolio risk management. Use in quantitative finance is at the user's sole risk.
+- **No Medical/Clinical Advice:** Example biomedical nodes (e.g., vaccine mechanisms) are educational natural-language filtering benchmarks, not diagnostic advice.
+- **Quantum Simulation Abstraction:** Quantum states ($|\psi\rangle = \alpha|\text{true}\rangle + \beta|\text{false}\rangle$, Bell-state consensus, QUBO annealing) are mathematical abstractions and heuristic decision models, not guarantees of physical real-world outcomes.
+- **Limitation of Liability:** The maintainers and contributors assume zero liability for losses, damages, or operational disruptions arising from software use.

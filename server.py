@@ -17,6 +17,11 @@ Endpoints:
   POST /api/qubo             -> Run QUBO global coherence Simulated Annealing solver
   POST /api/benchmark        -> Run 10-test model drop-in benchmark suite
   GET  /api/energy           -> Compute data center energy & cost reduction metrics
+
+DISCLAIMER:
+Experimental research software provided under the MIT License "AS IS" without warranty.
+Not financial, investment, medical, healthcare, legal, or regulatory advice.
+See DISCLAIMER.md for complete terms.
 """
 
 from http.server import ThreadingHTTPServer, SimpleHTTPRequestHandler

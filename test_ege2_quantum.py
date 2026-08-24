@@ -364,5 +364,31 @@ class TestFullStackServerEndpoints(unittest.TestCase):
             self.assertGreater(data["efficiency_multiplier"], 10.0)
 
 
+class TestGovernanceAndDisclaimers(unittest.TestCase):
+    """Verifies that all governance, disclaimers, and sanitization invariants are strictly enforced."""
+
+    def test_disclaimer_file_exists_and_contains_clauses(self):
+        repo_root = os.path.dirname(os.path.abspath(__file__))
+        disclaimer_path = os.path.join(repo_root, "DISCLAIMER.md")
+        self.assertTrue(os.path.exists(disclaimer_path), "DISCLAIMER.md must exist at repo root")
+        with open(disclaimer_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        self.assertIn("No Financial, Investment, or Trading Advice", content)
+        self.assertIn("No Medical, Healthcare, or Clinical Advice", content)
+        self.assertIn("Experimental & Research Software Disclaimer", content)
+        self.assertIn("Quantum Simulation", content)
+        self.assertIn("Limitation of Liability", content)
+
+    def test_no_hardcoded_user_paths_in_docs(self):
+        repo_root = os.path.dirname(os.path.abspath(__file__))
+        for filename in ["FAQ.md", "README.md", "SECURITY.md", "PRIVACY.md", "ACCEPTABLE_USE.md"]:
+            filepath = os.path.join(repo_root, filename)
+            if os.path.exists(filepath):
+                with open(filepath, "r", encoding="utf-8") as f:
+                    content = f.read()
+                self.assertNotIn("/Users/", content, f"Hardcoded user path found in {filename}")
+                self.assertNotIn("/home/", content, f"Hardcoded home path found in {filename}")
+
+
 if __name__ == "__main__":
     unittest.main()

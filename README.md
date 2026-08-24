@@ -2,8 +2,9 @@
 
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/fj906880l-web/ege2)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Disclaimers](https://img.shields.io/badge/disclaimers-research%20%26%20no--advice-blue.svg)](DISCLAIMER.md)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-25%2F25%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
+[![Tests](https://img.shields.io/badge/tests-27%2F27%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
 [![Security & Privacy](https://img.shields.io/badge/security%20%26%20privacy-10%2F10%20(Hardened)-brightgreen.svg)](SECURITY.md)
 [![Branch Policy](https://img.shields.io/badge/branch%20protection-PR%20Gated-purple.svg)](CONTRIBUTING.md)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero%20(std%20library)-orange.svg)](ege2_quantum.py)
@@ -190,14 +191,16 @@ To ensure absolute safety for operators and users:
 
 1. **Strict Branch Isolation & PR Gating ([`CONTRIBUTING.md`](CONTRIBUTING.md)):**
    - Direct pushing to `main` is restricted.
-   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 25-test CI suite and secret scanner before merging.
+   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 27-test CI suite and secret scanner before merging.
 2. **Zero Exposed Secrets & Credentials ([`SECURITY.md`](SECURITY.md)):**
    - Automated pre-commit hooks and GitHub Actions scan for API keys, bearer tokens, private keys, and `.env` files.
 3. **100% Local Privacy & Zero Telemetry ([`PRIVACY.md`](PRIVACY.md)):**
    - Operates 100% locally on-device. Zero telemetry pings, tracking beacons, analytics, or remote data exfiltration.
 4. **Anti-Malicious Use Protection ([`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md)):**
    - Prohibits deployment for weaponized disinformation, autonomous cyberattacks, surveillance, or unlawful manipulation.
-5. **Operational Guidance & Runbooks:**
+5. **Comprehensive Legal & Operational Disclaimers ([`DISCLAIMER.md`](DISCLAIMER.md)):**
+   - Explicitly establishes research software boundaries, no financial/investment advice, no medical/clinical advice, no legal advice, and quantum simulation limits.
+6. **Operational Guidance & Runbooks:**
    - **[`FAQ.md`](FAQ.md):** Conceptual, quantum, energy, and usage answers.
    - **[`TROUBLESHOOTING.md`](TROUBLESHOOTING.md):** Diagnostic ladder and solution matrices.
    - **[`SOP_MOP.md`](SOP_MOP.md):** Standard Operating Procedures & Method of Procedure.
@@ -215,7 +218,7 @@ To activate the local pre-commit security hook:
 ege2/
 ├── .github/
 │   ├── workflows/
-│   │   ├── ci.yml               # Automated 25-test CI & secret scanner
+│   │   ├── ci.yml               # Automated 27-test CI & secret scanner
 │   │   └── branch_policy.yml    # Branch naming & PR isolation policy
 │   └── PULL_REQUEST_TEMPLATE.md # Security & verification PR checklist
 ├── .githooks/
@@ -225,6 +228,7 @@ ege2/
 ├── Dockerfile                   # Hardened production container
 ├── docker-compose.yml           # Docker Compose service definition
 ├── Makefile                     # Build, test, and run automation
+├── DISCLAIMER.md                # Legal, financial, medical, and research disclaimers
 ├── FAQ.md                       # Frequently Asked Questions
 ├── TROUBLESHOOTING.md           # Diagnostic ladder & resolution matrix
 ├── SOP_MOP.md                   # Standard Operating Procedures & Method of Procedure
@@ -238,7 +242,7 @@ ege2/
 ├── server.py                     # Full-stack REST API & static web server
 ├── model_dropin.py               # Universal model drop-in harness & benchmark suite
 ├── ege2_quantum.py               # Core production Python engine (zero dependencies)
-└── test_ege2_quantum.py          # Unit & integration test suite (25/25 passed)
+└── test_ege2_quantum.py          # Unit & integration test suite (27/27 passed)
 ```
 
 ---
@@ -265,6 +269,17 @@ python3 server.py
 python3 model_dropin.py
 # Or: make benchmark
 ```
+
+---
+
+## ⚠️ Disclaimers & Operational Limitations
+
+Please review [`DISCLAIMER.md`](DISCLAIMER.md) for full legal, financial, medical, and operational terms:
+- **Research Software:** EGE-2 is an experimental open-source research framework provided "AS IS" without warranty of any kind.
+- **No Financial / Trading Advice:** EGE-2 does not provide financial advice, trading signals, investment strategies, or automated capital management. Any deployment in quantitative finance is strictly at the user's sole risk.
+- **No Medical / Diagnostic Advice:** Example biological and medical claims in default knowledge graphs are educational filtering benchmarks and do not constitute clinical guidance or health recommendations.
+- **Quantum Simulation Abstractions:** Superposition vectors, entanglement propagation, and QUBO annealing are heuristic mathematical abstractions executed on classical hardware unless connected to specialized QPU hardware.
+- **Limitation of Liability:** The authors and contributors assume zero liability for direct or consequential damages or financial losses arising from software usage.
 
 ---
 

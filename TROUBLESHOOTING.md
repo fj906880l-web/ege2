@@ -225,3 +225,9 @@ python3 -c "import os; assert os.system('grep -rn -E \"(AIza[0-9A-Za-z-_]{35}|sk
 | `EGE-013` | `0x10D` | Serialization | **JSON Roundtrip Deserialization Error:** Malformed node payload. *Remedy: Validate schema against `EpistemicNode.to_dict()`.* |
 | `EGE-014` | `0x10E` | Security | **Exposed Secret Detected:** Pre-commit hook blocked key commit. *Remedy: Move token to `.env`.* |
 | `EGE-015` | `0x10F` | Multi-Agent | **Byzantine Sybil Attempt:** Low-tier consensus flooding detected. *Remedy: Discard $T_7$ votes in favor of $T_2$ telemetry.* |
+
+---
+
+## ⚠️ Disclaimers & Operational Notice
+
+This troubleshooting guide is provided for informational and debugging purposes only. EGE-2 is research software provided "as is" under the [MIT License](LICENSE). For full disclaimers regarding liability, financial applications, and medical claims, see [`DISCLAIMER.md`](DISCLAIMER.md).

@@ -23,3 +23,9 @@ Under no circumstances may the EGE-2 repository, architecture, algorithms, or as
 ## 🛡️ Epistemic Alignment Mandate
 
 EGE-2 contains built-in structural defenses against manipulation ($\Psi$-Engine) and evidence degradation ($\Phi$-Engine). Users and developers building on this framework must preserve these safety barriers.
+
+---
+
+## ⚠️ Disclaimers & Legal Notice
+
+For comprehensive legal, financial, medical, and research software disclaimers, please see [`DISCLAIMER.md`](DISCLAIMER.md). All software is provided "as is" under the [MIT License](LICENSE).

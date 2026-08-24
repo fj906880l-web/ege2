@@ -542,6 +542,7 @@ footer {
       <button class="nav-btn" data-tab="tab-dropin">🔌 Model Drop-In</button>
       <button class="nav-btn" data-tab="tab-energy">⚡ Energy & Data Center</button>
       <button class="nav-btn" data-tab="tab-demo">🧪 Live Demo</button>
+      <button class="nav-btn" data-tab="tab-disclaimer">⚠️ Disclaimers</button>
     </div>
   </div>
 </header>
@@ -911,12 +912,65 @@ Q = contradiction penalty & coherence reward matrix</pre>
       <div class="node-grid" id="node-grid"></div>
     </div>
   </div>
+
+  <!-- TAB 7: DISCLAIMERS & LEGAL NOTICES -->
+  <div class="tab-pane" id="tab-disclaimer">
+    <div class="card">
+      <div class="card-title" style="color: var(--accent-warning);">⚠️ EGE-2 Legal, Regulatory & Operational Disclaimers</div>
+      <p style="font-size: 13px; color: var(--text-secondary); margin-bottom: 16px;">
+        Please review the following legal notices and operational boundaries governing the EGE-2 research architecture and interactive demonstration. Full legal terms are detailed in <a href="DISCLAIMER.md" style="color: var(--accent-phi); text-decoration: underline;">DISCLAIMER.md</a>.
+      </p>
+
+      <div class="grid-2" style="gap: 16px;">
+        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(245, 158, 11, 0.3);">
+          <div class="card-title" style="font-size: 14px; color: var(--accent-warning);">1. Research & Experimental Software</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+            The Epistemic Growth Engine (EGE-2) is an academic and exploratory research framework provided <strong>"AS IS" WITHOUT WARRANTY OF ANY KIND</strong>, express or implied, under the <a href="LICENSE" style="color: var(--accent-phi);">MIT License</a>. It is intended for experimental, scientific, and cognitive architecture evaluation.
+          </p>
+        </div>
+
+        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(239, 68, 68, 0.3);">
+          <div class="card-title" style="font-size: 14px; color: var(--accent-danger);">2. No Financial or Investment Advice</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+            Nothing in this repository, software, or web interface constitutes financial, investment, trading, or tax advice. EGE-2 is <strong>not certified or audited for live trading execution, quantitative asset allocation, or financial decision systems</strong>. Use in capital markets is strictly at the user's sole risk.
+          </p>
+        </div>
+
+        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(56, 189, 248, 0.3);">
+          <div class="card-title" style="font-size: 14px; color: var(--accent-phi);">3. No Medical or Clinical Advice</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+            Sample biomedical assertions (e.g., vaccine mechanisms, scientific constants) in demonstration graphs are illustrative benchmark fixtures for natural language epistemic tiering. They do <strong>not</strong> constitute medical advice, healthcare diagnoses, or clinical treatment plans.
+          </p>
+        </div>
+
+        <div class="card" style="background: rgba(0,0,0,0.3); border-color: rgba(168, 85, 247, 0.3);">
+          <div class="card-title" style="font-size: 14px; color: var(--accent-sigma);">4. Quantum Simulation Abstractions</div>
+          <p style="font-size: 12px; color: var(--text-secondary); line-height: 1.7;">
+            Quantum belief states, superposition wavevectors ($|\psi\rangle = \alpha|\text{true}\rangle + \beta|\text{false}\rangle$), simulated Bell pairs, and QUBO annealing are mathematical heuristics and computational abstractions running on classical hardware, not physical guarantees of real-world facts.
+          </p>
+        </div>
+      </div>
+
+      <div class="callout callout-info" style="margin-top: 18px; font-size: 12px; line-height: 1.7;">
+        <strong>🛡️ User Sovereignty & Zero Telemetry:</strong> EGE-2 operates 100% locally on-device with zero telemetry or remote data exfiltration. Operators are solely responsible for compliance with applicable laws and safe execution. Read our full governance policies in <a href="SECURITY.md" style="color: var(--accent-phi);">SECURITY.md</a>, <a href="PRIVACY.md" style="color: var(--accent-phi);">PRIVACY.md</a>, and <a href="ACCEPTABLE_USE.md" style="color: var(--accent-phi);">ACCEPTABLE_USE.md</a>.
+      </div>
+    </div>
+  </div>
 </main>
 
 <footer>
-  <div style="max-width: 1200px; margin: 0 auto;">
-    EGE-2 Quantum Epistemic System &nbsp;•&nbsp; Collaborative Architecture Design &nbsp;•&nbsp; 
-    <em>"The goal is to build a mind that knows the difference between truth and persuasion—and chooses truth."</em>
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; gap: 8px;">
+    <div>
+      EGE-2 Quantum Epistemic System &nbsp;•&nbsp; Collaborative Architecture Design &nbsp;•&nbsp; 
+      <em>"The goal is to build a mind that knows the difference between truth and persuasion—and chooses truth."</em>
+    </div>
+    <div style="font-size: 11px; color: var(--text-muted);">
+      ⚠️ <strong>Legal Notice:</strong> Experimental research software provided under the MIT License. Not financial, medical, or legal advice. 
+      See <a href="DISCLAIMER.md" style="color: var(--accent-phi); text-decoration: underline;">DISCLAIMER.md</a> &nbsp;|&nbsp;
+      <a href="SECURITY.md" style="color: var(--accent-phi); text-decoration: underline;">SECURITY.md</a> &nbsp;|&nbsp;
+      <a href="PRIVACY.md" style="color: var(--accent-phi); text-decoration: underline;">PRIVACY.md</a> &nbsp;|&nbsp;
+      <a href="ACCEPTABLE_USE.md" style="color: var(--accent-phi); text-decoration: underline;">ACCEPTABLE_USE.md</a>
+    </div>
   </div>
 </footer>
 

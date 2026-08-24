@@ -332,4 +332,10 @@ EGE-2 demonstrates that verifiable, trustworthy, and energy-efficient intelligen
 
 ---
 
+## DISCLAIMERS & RESEARCH NOTICE
+
+This position paper and its associated open-source reference implementations are published for scientific, academic, and research purposes under the [MIT License](LICENSE). The models, heuristics, and mathematical abstractions described herein do not constitute financial, investment, trading, medical, or legal advice. For complete terms, see [`DISCLAIMER.md`](DISCLAIMER.md) and [`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md).
+
+---
+
 > *"The goal is not to build a bigger model. The goal is to build a mind that knows the difference between truth and persuasion—and chooses truth."*
