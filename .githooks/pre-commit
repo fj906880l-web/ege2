@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# EGE-2 Pre-Commit Hook: Secret Scan & Automated Unit Verification
+
+echo "🔍 Running EGE-2 Pre-Commit Security & Branch Protection Hook..."
+
+# 1. Branch Protection Warning (Remind contributors to use dedicated branches)
+CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$CURRENT_BRANCH" = "main" ]; then
+    echo "⚠️  NOTICE: You are currently on the 'main' branch."
+    echo "   Best practice: Create a separate feature branch via 'git checkout -b feature/your-change'"
+fi
+
+# 2. Scan for high-entropy secrets and credentials
+echo "🔒 Scanning staged files for exposed secrets and private keys..."
+if git diff --cached | grep -E "(AIza[0-9A-Za-z-_]{35}|sk-[a-zA-Z0-9]{32,}|ghp_[a-zA-Z0-9]{36}|-----BEGIN (RSA|EC|OPENSSH) PRIVATE KEY-----)"; then
+    echo "❌ ERROR: Potential API key or private secret detected in staged commit!"
+    echo "   Commit rejected to protect repository security."
+    exit 1
+fi
+
+# 3. Run unit tests
+echo "🧪 Running unit tests..."
+if ! python3 -m unittest test_ege2_quantum.py; then
+    echo "❌ ERROR: Unit tests failed. Fix failing tests before committing."
+    exit 1
+fi
+
+echo "✅ Pre-commit checks passed successfully."
+exit 0

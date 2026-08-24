@@ -1,0 +1,70 @@
+name: EGE-2 Epistemic CI & Security Guardrails
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  epistemic-validation:
+    name: Epistemic Invariant Verification & Test Suite
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Run EGE-2 21-Test Epistemic Invariant Suite
+        run: |
+          python -m unittest test_ege2_quantum.py -v
+
+      - name: Run Universal Model Drop-In 10-Test Benchmark
+        run: |
+          python -c "from model_dropin import ModelBenchmarker, MockLLM; res = ModelBenchmarker(MockLLM()).run_benchmark(verbose=True); assert res['accuracy_pct'] == 100.0, f'Accuracy failed: {res}'"
+
+      - name: Verify CLI Engine Execution
+        run: |
+          python ege2_quantum.py
+
+  security-and-privacy-audit:
+    name: Security & Secret Leak Prevention Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Scan Codebase for Exposed Secrets and Credentials
+        run: |
+          echo "Scanning for API keys, tokens, and private credentials..."
+          # Regex scan for common secret patterns
+          if grep -rn -E "(AIza[0-9A-Za-z-_]{35}|sk-[a-zA-Z0-9]{32,}|ghp_[a-zA-Z0-9]{36}|-----BEGIN (RSA|EC|OPENSSH) PRIVATE KEY-----)" . \
+            --exclude-dir=.git --exclude-dir=__pycache__; then
+            echo "❌ CRITICAL SECURITY ERROR: Potential secret or credential detected in codebase!"
+            exit 1
+          else
+            echo "✅ Zero secrets found. All files are clean."
+          fi
+
+      - name: Validate Strict .gitignore Coverage
+        run: |
+          for pattern in ".env" "credentials.json" "service_account.json" "id_rsa"; do
+            if ! grep -q "$pattern" .gitignore; then
+              echo "❌ SECURITY WARNING: $pattern is missing from .gitignore"
+              exit 1
+            fi
+          done
+          echo "✅ .gitignore security rules verified."

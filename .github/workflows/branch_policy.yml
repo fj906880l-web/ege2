@@ -1,0 +1,23 @@
+name: Contribution Branch & PR Policy Enforcement
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  branch-policy-check:
+    name: Verify Branch Naming & Isolation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Source Branch Convention
+        run: |
+          HEAD_BRANCH="${{ github.head_ref }}"
+          echo "Checking branch name: $HEAD_BRANCH"
+          
+          # Enforce that contributors use structured branches (feature/*, fix/*, security/*, research/*, chore/*, audit/*)
+          if [[ "$HEAD_BRANCH" == "main" || "$HEAD_BRANCH" == "master" ]]; then
+            echo "❌ ERROR: Contributions must originate from a dedicated feature or fix branch, not main/master."
+            exit 1
+          fi
+          
+          echo "✅ Branch naming policy verified for: $HEAD_BRANCH"

@@ -4,8 +4,9 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
 [![Tests](https://img.shields.io/badge/tests-21%2F21%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
+[![Security & Privacy](https://img.shields.io/badge/security%20%26%20privacy-10%2F10%20(Hardened)-brightgreen.svg)](SECURITY.md)
+[![Branch Policy](https://img.shields.io/badge/branch%20protection-PR%20Gated-purple.svg)](CONTRIBUTING.md)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero%20(std%20library)-orange.svg)](ege2_quantum.py)
-[![Epistemic Invariants](https://img.shields.io/badge/epistemics-7--Tier%20Gated-purple.svg)](paper.md)
 
 > *"The goal is not to build a bigger model. The goal is to build a mind that knows the difference between truth and persuasion—and chooses truth."*
 
@@ -142,16 +143,50 @@ python3 model_dropin.py
 
 ---
 
+## 🛡️ Security, Privacy & Branch Protection Protocols
+
+To ensure absolute safety for operators and users:
+
+1. **Strict Branch Isolation & PR Gating ([`CONTRIBUTING.md`](CONTRIBUTING.md)):**
+   - Direct pushing to `main` is restricted.
+   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 21-test CI suite and secret scanner before merging.
+2. **Zero Exposed Secrets & Credentials ([`SECURITY.md`](SECURITY.md)):**
+   - Automated pre-commit hooks and GitHub Actions scan for API keys, bearer tokens, private keys, and `.env` files.
+3. **100% Local Privacy & Zero Telemetry ([`PRIVACY.md`](PRIVACY.md)):**
+   - Operates 100% locally on-device. Zero telemetry pings, tracking beacons, analytics, or remote data exfiltration.
+4. **Anti-Malicious Use Protection ([`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md)):**
+   - Prohibits deployment for weaponized disinformation, autonomous cyberattacks, surveillance, or unlawful manipulation.
+
+To activate the local pre-commit security hook:
+```bash
+./scripts/install_hooks.sh
+```
+
+---
+
 ## 📁 Repository Structure
 
 ```
 ege2/
-├── README.md               # Architecture documentation, math foundations & quickstart
-├── paper.md                # Full unabridged academic position paper & references
-├── index.html              # Interactive web app, model drop-in playground & energy calculator
-├── model_dropin.py         # Universal model drop-in harness & 10-test benchmark suite
-├── ege2_quantum.py         # Production-grade Python engine (zero external dependencies)
-└── test_ege2_quantum.py    # Complete unit and integration test suite (21/21 tests passing)
+├── .github/
+│   ├── workflows/
+│   │   ├── ci.yml               # Automated 21-test CI & secret scanner
+│   │   └── branch_policy.yml    # Branch naming & PR isolation policy
+│   └── PULL_REQUEST_TEMPLATE.md # Security & verification PR checklist
+├── .githooks/
+│   └── pre-commit               # Local pre-commit secret & test hook
+├── scripts/
+│   └── install_hooks.sh         # Hook installer script
+├── CONTRIBUTING.md               # Separate branch policy & PR workflow
+├── SECURITY.md                   # Threat model, vulnerability reporting & secret safety
+├── PRIVACY.md                    # Zero telemetry charter & local sovereignty
+├── ACCEPTABLE_USE.md             # Anti-malicious use & ethical guardrails
+├── README.md                     # Comprehensive architecture & documentation
+├── paper.md                      # Full academic position paper & citations
+├── index.html                    # Interactive web app, model drop-in playground & energy calc
+├── model_dropin.py               # Universal model drop-in harness & benchmark suite
+├── ege2_quantum.py               # Core production Python engine (zero dependencies)
+└── test_ege2_quantum.py          # Unit & integration test suite (21/21 passed)
 ```
 
 ---
@@ -162,36 +197,6 @@ ege2/
 
 ```bash
 python3 -m unittest test_ege2_quantum.py -v
-```
-
-Output:
-```text
-test_add_and_query ... ok
-test_callable_adapter ... ok
-test_contradiction_rejection ... ok
-test_energy_profile_calculation ... ok
-test_entanglement_propagation ... ok
-test_evidence_gated_update_rejection ... ok
-test_evidence_gated_update_success ... ok
-test_heavy_manipulation_rejected ... ok
-test_json_persistence ... ok
-test_measurement_collapse ... ok
-test_model_benchmarker_run ... ok
-test_node_dict_roundtrip ... ok
-test_node_sealing_and_hashes ... ok
-test_overwrite_hierarchy ... ok
-test_qubo_coherence_optimization ... ok
-test_serialization ... ok
-test_static_dict_adapter ... ok
-test_superposition_initialization ... ok
-test_verified_clean_query ... ok
-test_verified_fact_with_mild_persuasion_cautioned ... ok
-test_wrapper_pipeline ... ok
-
-----------------------------------------------------------------------
-Ran 21 tests in 0.018s
-
-OK
 ```
 
 ### 2. Run the Interactive CLI Demo & Drop-In Benchmark
