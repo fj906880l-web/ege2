@@ -1,22 +1,34 @@
 #!/usr/bin/env python3
 """
-EGE-2 Full-Stack REST API & Web Application Server
---------------------------------------------------
+EGE-2 Full-Stack REST API & Web Application Server (v2.1 Architecture)
+---------------------------------------------------------------------
 Serves the EGE-2 interactive web frontend, REST API endpoints,
+managerial self-supervision (Μ-Engine), hot-swappable parameter graph,
+symbolic compression, temporal memory, curriculum engine,
 and model drop-in evaluation harness.
 
 Zero external dependencies (Python 3.9+ standard library).
 
 Endpoints:
   GET  /                     -> Serves interactive web UI (index.html)
-  GET  /health               -> System health, active nodes, quantum metrics
-  POST /api/evaluate         -> Evaluate claim/prompt through Phi/Psi/Sigma
+  GET  /health               -> System health, active nodes, quantum metrics, manager status
+  POST /api/evaluate         -> Evaluate claim/prompt through Phi/Psi/Sigma + MuEngine
   GET  /api/nodes            -> Query Epistemic Q-Graph nodes (filter by domain/tier)
   POST /api/nodes            -> Evidence-gated node insertion / belief update
   POST /api/measure          -> Collapse quantum superposition & propagate entanglement
   POST /api/qubo             -> Run QUBO global coherence Simulated Annealing solver
   POST /api/benchmark        -> Run 10-test model drop-in benchmark suite
   GET  /api/energy           -> Compute data center energy & cost reduction metrics
+  GET  /api/mu_engine        -> Get Μ-Engine health scorecard and review history
+  POST /api/mu_engine/review -> Trigger on-demand managerial review cycle
+  GET  /api/parameters       -> Query dynamic ParameterGraph tunables and audit trail
+  POST /api/parameters       -> Hot-swap / update runtime parameter
+  POST /api/parameters/rollback -> Revert parameter to previous known good value
+  GET  /api/curriculum       -> Get curriculum developmental stages and milestone progress
+  POST /api/curriculum/advance -> Advance developmental stage
+  POST /api/curriculum/heal  -> Trigger milestone gap diagnosis and micro-curriculum injection
+  GET  /api/intent           -> Query IntentFoldingTracker divergence metrics
+  POST /api/symbolic/compress-> Convert natural language claim to canonical symbolic representation
 
 DISCLAIMER:
 Experimental research software provided under the MIT License "AS IS" without warranty.
@@ -42,14 +54,22 @@ from ege2_quantum import (
     get_default_epistemic_graph,
     MockLLM,
     QUBOArbitration,
+    ParameterGraph,
+    SelfHealingCurriculumEngine,
+    IntentFoldingTracker,
+    MuEngine,
+    SymbolicCompressionEngine,
+    SymbolicClaim,
 )
 from model_dropin import ModelBenchmarker, EnergyProfile, BENCHMARK_PROMPTS
 
 
 # Global Shared Epistemic State
 GRAPH = get_default_epistemic_graph()
+PARAM_GRAPH = ParameterGraph()
+CURRICULUM = SelfHealingCurriculumEngine(PARAM_GRAPH)
 MOCK_LLM = MockLLM()
-WRAPPER = EGE2Wrapper(MOCK_LLM, GRAPH)
+WRAPPER = EGE2Wrapper(MOCK_LLM, GRAPH, PARAM_GRAPH, CURRICULUM)
 
 
 class EGE2RequestHandler(SimpleHTTPRequestHandler):
@@ -94,13 +114,16 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
             stats = GRAPH.stats()
             return self._send_json(200, {
                 "status": "healthy",
-                "system": "EGE-2 Quantum Epistemic System",
-                "version": "2.0.0",
+                "system": "EGE-2 Quantum Epistemic System (v2.1 Architecture)",
+                "version": "2.1.0",
                 "active_nodes": stats["active_nodes"],
                 "superposed_nodes": stats["superposed_nodes"],
                 "measured_nodes": stats["measured_nodes"],
                 "mean_confidence": round(stats["avg_confidence"], 4),
                 "domains": stats["domains"],
+                "experience_chains": stats.get("experience_sequences_count", 0),
+                "curriculum_stage": CURRICULUM.get_active_stage().stage_name,
+                "mu_engine_status": "ONLINE",
                 "timestamp": time.time(),
             })
 
@@ -126,12 +149,28 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
             profile = EnergyProfile(model_params_billions=params_b, daily_queries=queries)
             return self._send_json(200, profile.compute_metrics())
 
-        # 4. Root / Web App
+        # 4. Μ-Engine Status & Scorecard
+        elif path == "/api/mu_engine":
+            return self._send_json(200, WRAPPER.mu_engine.to_dict())
+
+        # 5. Parameter Graph Tunables
+        elif path == "/api/parameters":
+            return self._send_json(200, PARAM_GRAPH.to_dict())
+
+        # 6. Curriculum Engine
+        elif path == "/api/curriculum":
+            return self._send_json(200, CURRICULUM.to_dict())
+
+        # 7. Intent Folding Tracker
+        elif path == "/api/intent":
+            return self._send_json(200, WRAPPER.intent_tracker.to_dict())
+
+        # 8. Root / Web App
         elif path == "/" or path == "/index.html":
             self.path = "/index.html"
             return super().do_GET()
 
-        # 5. Fallback to static file serving
+        # 9. Fallback to static file serving
         return super().do_GET()
 
     def do_POST(self):
@@ -148,9 +187,8 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
                 return self._send_json(400, {"error": "Missing 'prompt' parameter in request body"})
 
             if custom_output:
-                # Custom model response supplied
                 custom_llm = lambda p: custom_output
-                eval_wrapper = EGE2Wrapper(custom_llm, GRAPH)
+                eval_wrapper = EGE2Wrapper(custom_llm, GRAPH, PARAM_GRAPH, CURRICULUM)
                 resp: StructuredResponse = eval_wrapper.query(prompt)
             else:
                 resp: StructuredResponse = WRAPPER.query(prompt)
@@ -165,7 +203,9 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
                 "manipulation_detected": resp.manipulation_detected,
                 "evidence_cited": resp.evidence_cited,
                 "quantum_state": resp.quantum_state,
+                "symbolic_hash": resp.symbolic_hash,
                 "reason": resp.reason,
+                "mu_verdict": resp.mu_verdict,
             })
 
         # 2. Add or Update Belief Node (Evidence-Gated)
@@ -246,6 +286,83 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
             summary = bench.run_benchmark(verbose=False)
             return self._send_json(200, summary)
 
+        # 6. Trigger Μ-Engine Review Cycle
+        elif path == "/api/mu_engine/review":
+            cycle = int(body.get("cycle", GRAPH.current_cycle))
+            reviews = WRAPPER.mu_engine.run_review_cycle(cycle)
+            return self._send_json(200, {
+                "status": "COMPLETED",
+                "reviews_generated": len(reviews),
+                "reviews": [r.to_dict() for r in reviews],
+            })
+
+        # 7. Hot-Swap Parameter in ParameterGraph
+        elif path == "/api/parameters":
+            param_id = body.get("param_id")
+            value = body.get("value")
+            reason = body.get("reason", "Operator update via REST API")
+
+            if not param_id or value is None:
+                return self._send_json(400, {"error": "Missing 'param_id' or 'value'"})
+
+            success = PARAM_GRAPH.set(param_id, value, modified_by="api_operator", reason=reason)
+            if success:
+                return self._send_json(200, {
+                    "status": "UPDATED",
+                    "param": PARAM_GRAPH.params[param_id].to_dict()
+                })
+            else:
+                return self._send_json(422, {
+                    "error": "Parameter update rejected: value outside permissible valid_range"
+                })
+
+        # 8. Rollback Parameter
+        elif path == "/api/parameters/rollback":
+            param_id = body.get("param_id")
+            if not param_id:
+                return self._send_json(400, {"error": "Missing 'param_id'"})
+
+            success = PARAM_GRAPH.rollback(param_id)
+            if success:
+                return self._send_json(200, {
+                    "status": "ROLLED_BACK",
+                    "param": PARAM_GRAPH.params[param_id].to_dict()
+                })
+            else:
+                return self._send_json(404, {"error": "Cannot rollback: parameter not found or no previous rollback value"})
+
+        # 9. Advance Curriculum Stage
+        elif path == "/api/curriculum/advance":
+            CURRICULUM.advance_stage()
+            return self._send_json(200, {
+                "status": "ADVANCED",
+                "active_stage": CURRICULUM.get_active_stage().to_dict()
+            })
+
+        # 10. Self-Healing Curriculum Remediation Trigger
+        elif path == "/api/curriculum/heal":
+            milestone = body.get("milestone", "MILESTONE_CURRENT")
+            gap = body.get("gap", "Missing kinetic energy balance trials")
+            remedy = CURRICULUM.handle_milestone_failure(milestone, gap)
+            return self._send_json(200, {
+                "status": "REMEDIAL_CURRICULUM_INJECTED",
+                "remedy": remedy,
+                "active_stage": CURRICULUM.get_active_stage().to_dict()
+            })
+
+        # 11. Symbolic Compression
+        elif path == "/api/symbolic/compress":
+            claim = body.get("claim", "")
+            domain = body.get("domain", "general")
+            tier_val = int(body.get("evidence_tier", 1))
+            conf = float(body.get("confidence", 0.99))
+
+            if not claim:
+                return self._send_json(400, {"error": "Missing 'claim' parameter"})
+
+            sym = SymbolicCompressionEngine.compress(claim, domain, EvidenceTier(tier_val), conf)
+            return self._send_json(200, sym.to_dict())
+
         return self._send_json(404, {"error": "Endpoint not found"})
 
 
@@ -253,10 +370,11 @@ def run_server(port: int = 8000, host: str = "0.0.0.0"):
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, EGE2RequestHandler)
     print("=" * 76)
-    print(f"  EGE-2 Full-Stack Epistemic Server running on http://localhost:{port}")
+    print(f"  EGE-2 Full-Stack Epistemic Server (v2.1) running on http://localhost:{port}")
     print(f"  Interactive Web UI: http://localhost:{port}/")
     print(f"  Health Endpoint:    http://localhost:{port}/health")
     print(f"  REST API:           http://localhost:{port}/api/evaluate")
+    print(f"  Μ-Engine Manager:   http://localhost:{port}/api/mu_engine")
     print("=" * 76)
     try:
         httpd.serve_forever()

@@ -1,10 +1,10 @@
 # EGE-2: Epistemic Growth Engine & Quantum Epistemic System
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/fj906880l-web/ege2)
+[![Version](https://img.shields.io/badge/version-2.1.0-blue.svg)](https://github.com/fj906880l-web/ege2)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Disclaimers](https://img.shields.io/badge/disclaimers-research%20%26%20no--advice-blue.svg)](DISCLAIMER.md)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-27%2F27%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
+[![Tests](https://img.shields.io/badge/tests-43%2F43%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
 [![Security & Privacy](https://img.shields.io/badge/security%20%26%20privacy-10%2F10%20(Hardened)-brightgreen.svg)](SECURITY.md)
 [![Branch Policy](https://img.shields.io/badge/branch%20protection-PR%20Gated-purple.svg)](CONTRIBUTING.md)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero%20(std%20library)-orange.svg)](ege2_quantum.py)
@@ -17,33 +17,51 @@
 
 Current artificial intelligence systems—dominated by Large Language Models (LLMs)—are approaching a fundamental thermodynamic and epistemic ceiling. Despite trillions of dollars in gigawatt data center scaling, monolithic transformer models remain structurally prone to **hallucination**, **adversarial prompt manipulation**, and **catastrophic forgetting**.
 
-The **Epistemic Growth Engine (EGE-2)** is a cognitive operating system that treats **truth-preservation as architectural infrastructure rather than behavioral alignment**. EGE-2 replaces statistical guessing with four structural invariants, dual-branch epistemic engines, and **Quantum Epistemic Computing (QEC)**.
+The **Epistemic Growth Engine (EGE-2)** is a cognitive operating system that treats **truth-preservation as architectural infrastructure rather than behavioral alignment**. In version 2.1, EGE-2 introduces **meta-cognitive managerial self-supervision (Μ-Engine)**, **hot-swappable parameter graphs (software permeability)**, **dense symbolic compression**, **LSTM-style temporal confidence gating**, and **self-healing developmental curricula**.
 
 ```
-                    ┌───────────────────────────────┐
-                    │       GLOBAL WORKSPACE        │
-                    │ (Broadcast & Attention Hub)   │
-                    └───────────────┬───────────────┘
-                                    │
-             ┌──────────────────────┼──────────────────────┐
-             │                      │                      │
-     ┌───────▼───────┐      ┌───────▼───────┐      ┌───────▼───────┐
-     │  Phi-ENGINE   │      │  Psi-ENGINE   │      │ Sigma-CORTEX  │
-     │(Causal Facts) │      │(Social Intent)│      │ (Arbitration) │
-     └───────┬───────┘      └───────┬───────┘      └───────┬───────┘
-             │                      │                      │
-     ┌───────▼───────┐      ┌───────▼───────┐      ┌───────▼───────┐
-     │  WORLD MODEL  │      │THEORY OF MIND │      │ GOAL & DRIVE  │
-     │ (Active Inf.) │      │ (Social Cog.) │      │  (Motivation) │
-     └───────┬───────┘      └───────┬───────┘      └───────┬───────┘
-             │                      │                      │
-             └──────────────────────┼──────────────────────┘
-                                    │
-                    ┌───────────────▼───────────────┐
-                    │       QUANTUM EPISTEMIC       │
-                    │        Q-GRAPH MEMORY         │
-                    │ (Superposition & Entanglement)│
-                    └───────────────────────────────┘
+                        HUMAN OPERATOR
+                              │
+                    ┌─────────▼─────────┐
+                    │     Μ-ENGINE      │
+                    │ (Manager Module)  │
+                    │ - KPIs & Reviews  │
+                    │ - Escalation & Mod│
+                    │ - Intent Folding  │
+                    └─────────┬─────────┘
+                              │
+        ┌─────────────────────┼─────────────────────┐
+        │                     │                     │
+   ┌────▼────┐           ┌────▼────┐           ┌────▼────┐
+   │Parameter│           │Symbolic │           │Temporal │
+   │ Graph   │           │Compress │           │ Memory  │
+   │(Runtime)│           │ Layer   │           │ Gates   │
+   └────┬────┘           └────┬────┘           └────┬────┘
+        │                     │                     │
+        └─────────────────────┼─────────────────────┘
+                              │
+                    ┌─────────▼─────────┐
+                    │  GLOBAL WORKSPACE │
+                    └─────────┬─────────┘
+                              │
+        ┌────────┬────────┬───┴────┬────────┬────────┐
+        │        │        │        │        │        │
+   ┌────▼───┐┌───▼───┐┌───▼───┐┌───▼───┐┌───▼───┐┌───▼───┐
+   │ Phi-Eng││Psi-Eng││Sigma-C││World M││ ToM   ││ Drives│
+   └────┬───┘└───┬───┘└───┬───┘└───┬───┘└───┬───┘└───┬───┘
+        │        │        │        │        │        │
+        └────────┴────────┴───┬────┴────────┴────────┘
+                              │
+                    ┌─────────▼─────────┐
+                    │ EPITEMIC Q-GRAPH  │
+                    │ (Cryptographic    │
+                    │  Append-Only)     │
+                    └─────────┬─────────┘
+                              │
+                    ┌─────────▼─────────┐
+                    │   SELF-HEALING    │
+                    │ CURRICULUM ENGINE │
+                    └───────────────────┘
 ```
 
 ---
