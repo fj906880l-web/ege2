@@ -3,7 +3,7 @@
 [![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/fj906880l-web/ege2)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-21%2F21%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
+[![Tests](https://img.shields.io/badge/tests-25%2F25%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
 [![Security & Privacy](https://img.shields.io/badge/security%20%26%20privacy-10%2F10%20(Hardened)-brightgreen.svg)](SECURITY.md)
 [![Branch Policy](https://img.shields.io/badge/branch%20protection-PR%20Gated-purple.svg)](CONTRIBUTING.md)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero%20(std%20library)-orange.svg)](ege2_quantum.py)
@@ -115,6 +115,30 @@ When Agent $A$ verifies an empirical belief, Agent $B$'s paired node collapses i
 
 ---
 
+## 🌐 Full-Stack Architecture & REST API (`server.py`)
+
+EGE-2 includes a production-ready, zero-dependency full-stack server serving the interactive web UI and REST endpoints:
+
+```bash
+# Start full-stack server (port 8000)
+python3 server.py
+# Or via Makefile: make run
+```
+
+| Method | Endpoint | Description |
+|:---|:---|:---|
+| `GET` | `/` | Interactive Web UI (Single-Page Application) |
+| `GET` | `/health` | System health, active nodes, quantum metrics |
+| `POST` | `/api/evaluate` | Evaluate prompt through Phi/Psi/Sigma pipeline |
+| `GET` | `/api/nodes` | Query Epistemic Q-Graph nodes by domain/tier |
+| `POST` | `/api/nodes` | Evidence-gated node insertion / belief update |
+| `POST` | `/api/measure` | Collapse quantum superposition & propagate entanglement |
+| `POST` | `/api/qubo` | Solve QUBO global coherence via Simulated Annealing |
+| `POST` | `/api/benchmark`| Run 10-test model drop-in benchmark suite |
+| `GET` | `/api/energy` | Compute data center energy & cost reduction metrics |
+
+---
+
 ## 🔌 Model Drop-In Playground (`model_dropin.py`)
 
 Drop **any model** into the EGE-2 Epistemic Harness to benchmark safety, calibration, and truth-preservation:
@@ -143,19 +167,40 @@ python3 model_dropin.py
 
 ---
 
+## 🐳 Containerization & Deployment
+
+Deploy EGE-2 in production with Docker & Docker Compose:
+
+```bash
+# Build and run container in background
+docker compose up -d
+
+# View container logs
+docker compose logs -f
+
+# Verify health status
+curl -s http://localhost:8000/health | jq .
+```
+
+---
+
 ## 🛡️ Security, Privacy & Branch Protection Protocols
 
 To ensure absolute safety for operators and users:
 
 1. **Strict Branch Isolation & PR Gating ([`CONTRIBUTING.md`](CONTRIBUTING.md)):**
    - Direct pushing to `main` is restricted.
-   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 21-test CI suite and secret scanner before merging.
+   - All contributions must be developed on isolated branches (`feature/*`, `fix/*`, `security/*`, `research/*`) and pass the 25-test CI suite and secret scanner before merging.
 2. **Zero Exposed Secrets & Credentials ([`SECURITY.md`](SECURITY.md)):**
    - Automated pre-commit hooks and GitHub Actions scan for API keys, bearer tokens, private keys, and `.env` files.
 3. **100% Local Privacy & Zero Telemetry ([`PRIVACY.md`](PRIVACY.md)):**
    - Operates 100% locally on-device. Zero telemetry pings, tracking beacons, analytics, or remote data exfiltration.
 4. **Anti-Malicious Use Protection ([`ACCEPTABLE_USE.md`](ACCEPTABLE_USE.md)):**
    - Prohibits deployment for weaponized disinformation, autonomous cyberattacks, surveillance, or unlawful manipulation.
+5. **Operational Guidance & Runbooks:**
+   - **[`FAQ.md`](FAQ.md):** Conceptual, quantum, energy, and usage answers.
+   - **[`TROUBLESHOOTING.md`](TROUBLESHOOTING.md):** Diagnostic ladder and solution matrices.
+   - **[`SOP_MOP.md`](SOP_MOP.md):** Standard Operating Procedures & Method of Procedure.
 
 To activate the local pre-commit security hook:
 ```bash
@@ -170,13 +215,19 @@ To activate the local pre-commit security hook:
 ege2/
 ├── .github/
 │   ├── workflows/
-│   │   ├── ci.yml               # Automated 21-test CI & secret scanner
+│   │   ├── ci.yml               # Automated 25-test CI & secret scanner
 │   │   └── branch_policy.yml    # Branch naming & PR isolation policy
 │   └── PULL_REQUEST_TEMPLATE.md # Security & verification PR checklist
 ├── .githooks/
 │   └── pre-commit               # Local pre-commit secret & test hook
 ├── scripts/
 │   └── install_hooks.sh         # Hook installer script
+├── Dockerfile                   # Hardened production container
+├── docker-compose.yml           # Docker Compose service definition
+├── Makefile                     # Build, test, and run automation
+├── FAQ.md                       # Frequently Asked Questions
+├── TROUBLESHOOTING.md           # Diagnostic ladder & resolution matrix
+├── SOP_MOP.md                   # Standard Operating Procedures & Method of Procedure
 ├── CONTRIBUTING.md               # Separate branch policy & PR workflow
 ├── SECURITY.md                   # Threat model, vulnerability reporting & secret safety
 ├── PRIVACY.md                    # Zero telemetry charter & local sovereignty
@@ -184,9 +235,10 @@ ege2/
 ├── README.md                     # Comprehensive architecture & documentation
 ├── paper.md                      # Full academic position paper & citations
 ├── index.html                    # Interactive web app, model drop-in playground & energy calc
+├── server.py                     # Full-stack REST API & static web server
 ├── model_dropin.py               # Universal model drop-in harness & benchmark suite
 ├── ege2_quantum.py               # Core production Python engine (zero dependencies)
-└── test_ege2_quantum.py          # Unit & integration test suite (21/21 passed)
+└── test_ege2_quantum.py          # Unit & integration test suite (25/25 passed)
 ```
 
 ---
@@ -197,26 +249,21 @@ ege2/
 
 ```bash
 python3 -m unittest test_ege2_quantum.py -v
+# Or: make test
 ```
 
-### 2. Run the Interactive CLI Demo & Drop-In Benchmark
+### 2. Run the Full-Stack Server & Open Web App
 
 ```bash
-python3 ege2_quantum.py
+python3 server.py
+# Navigate to http://localhost:8000
+```
+
+### 3. Run the Model Drop-In Benchmark
+
+```bash
 python3 model_dropin.py
-```
-
-### 3. Launch the Interactive Web Application & Calculator
-
-Open `index.html` directly in your browser:
-```bash
-open index.html
-```
-
-Or serve locally via Python standard library:
-```bash
-python3 -m http.server 8080
-# Navigate to http://localhost:8080
+# Or: make benchmark
 ```
 
 ---

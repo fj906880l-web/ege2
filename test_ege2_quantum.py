@@ -304,5 +304,65 @@ class TestModelAdaptersAndDropIn(unittest.TestCase):
         self.assertEqual(summary["accuracy_pct"], 100.0)
 
 
+class TestFullStackServerEndpoints(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        import threading
+        from server import ThreadingHTTPServer, EGE2RequestHandler
+        import socket
+
+        # Find available ephemeral port
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.bind(("", 0))
+        cls.port = s.getsockname()[1]
+        s.close()
+
+        cls.httpd = ThreadingHTTPServer(("127.0.0.1", cls.port), EGE2RequestHandler)
+        cls.server_thread = threading.Thread(target=cls.httpd.serve_forever, daemon=True)
+        cls.server_thread.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.httpd.shutdown()
+
+    def test_health_endpoint(self):
+        import urllib.request, json
+        url = f"http://127.0.0.1:{self.port}/health"
+        with urllib.request.urlopen(url) as resp:
+            self.assertEqual(resp.status, 200)
+            data = json.loads(resp.read().decode())
+            self.assertEqual(data["status"], "healthy")
+            self.assertEqual(data["version"], "2.0.0")
+            self.assertGreater(data["active_nodes"], 0)
+
+    def test_api_nodes_get(self):
+        import urllib.request, json
+        url = f"http://127.0.0.1:{self.port}/api/nodes?domain=physics"
+        with urllib.request.urlopen(url) as resp:
+            self.assertEqual(resp.status, 200)
+            data = json.loads(resp.read().decode())
+            self.assertGreater(data["count"], 0)
+
+    def test_api_evaluate_post(self):
+        import urllib.request, json
+        url = f"http://127.0.0.1:{self.port}/api/evaluate"
+        payload = json.dumps({"prompt": "What is the acceleration due to gravity on Earth?"}).encode()
+        req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
+        with urllib.request.urlopen(req) as resp:
+            self.assertEqual(resp.status, 200)
+            data = json.loads(resp.read().decode())
+            self.assertEqual(data["sigma_verdict"], "ACCEPT")
+            self.assertGreater(data["confidence"], 0.9)
+
+    def test_api_energy_get(self):
+        import urllib.request, json
+        url = f"http://127.0.0.1:{self.port}/api/energy?params_billions=70&daily_queries=500000"
+        with urllib.request.urlopen(url) as resp:
+            self.assertEqual(resp.status, 200)
+            data = json.loads(resp.read().decode())
+            self.assertIn("annual_kwh_saved", data)
+            self.assertGreater(data["efficiency_multiplier"], 10.0)
+
+
 if __name__ == "__main__":
     unittest.main()
