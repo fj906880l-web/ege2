@@ -29,6 +29,7 @@ Endpoints:
   POST /api/curriculum/heal  -> Trigger milestone gap diagnosis and micro-curriculum injection
   GET  /api/intent           -> Query IntentFoldingTracker divergence metrics
   POST /api/symbolic/compress-> Convert natural language claim to canonical symbolic representation
+  POST /api/sycophancy/analyze -> Dedicated SycophancyDetector analysis endpoint
 
 DISCLAIMER:
 Experimental research software provided under the MIT License "AS IS" without warranty.
@@ -201,6 +202,8 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
                 "phi_assessment": resp.phi_assessment,
                 "psi_assessment": resp.psi_assessment,
                 "manipulation_detected": resp.manipulation_detected,
+                "sycophancy_detected": resp.sycophancy_detected,
+                "sycophancy_score": resp.sycophancy_score,
                 "evidence_cited": resp.evidence_cited,
                 "quantum_state": resp.quantum_state,
                 "symbolic_hash": resp.symbolic_hash,
@@ -362,6 +365,29 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
 
             sym = SymbolicCompressionEngine.compress(claim, domain, EvidenceTier(tier_val), conf)
             return self._send_json(200, sym.to_dict())
+
+        # 12. Dedicated Sycophancy Analysis
+        elif path == "/api/sycophancy/analyze":
+            prompt = body.get("prompt", "").strip()
+            draft = body.get("draft", "").strip()
+
+            if not prompt or not draft:
+                return self._send_json(400, {"error": "Missing 'prompt' or 'draft' parameter"})
+
+            phi_res = WRAPPER.phi.evaluate(draft)
+            syco_res = WRAPPER.sycophancy.evaluate(prompt, draft, phi_res)
+
+            return self._send_json(200, {
+                "prompt": prompt,
+                "draft": draft,
+                "sycophancy_detected": syco_res["sycophancy_detected"],
+                "score": syco_res["score"],
+                "threshold": syco_res["threshold"],
+                "agreement_hits": syco_res["agreement_hits"],
+                "echo_ratio": syco_res["echo_ratio"],
+                "evidence_context": syco_res["evidence_context"],
+                "reason": syco_res.get("reason"),
+            })
 
         return self._send_json(404, {"error": "Endpoint not found"})
 
