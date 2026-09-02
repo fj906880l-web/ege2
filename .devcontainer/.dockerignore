@@ -1,0 +1,11 @@
+**/.git
+**/.env*
+**/.ssh
+**/.aws
+**/.kube
+**/.npmrc
+**/.pypirc
+**/node_modules
+**/dist
+**/.venv
+**/.pytest_cache

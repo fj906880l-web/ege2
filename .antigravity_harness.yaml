@@ -1,0 +1,40 @@
+version: "2.4.0"
+project:
+  name: "ege2"
+  type: "cognitive_module"
+  harness_runtime: "/Users/malcolm/.gemini/config/scripts/harness_runtime.py"
+
+security:
+  passing_threshold: 80
+  enforce_gating: true
+  protocol: "SEC-PROTO-2026-04"
+  isolation_level: "Level 1 (Hardened Dev Container)"
+  scanner_path: "/Users/malcolm/.gemini/config/scripts/security_scanner.py"
+  mind_virus_scanner: "/Users/malcolm/.gemini/config/scripts/scan_mind_virus.py"
+  egress_lockdown_script: "/Users/malcolm/.gemini/config/scripts/egress_lockdown.sh"
+  microvm_sandbox_script: "/Users/malcolm/.gemini/config/scripts/microvm_sandbox.sh"
+
+memory_bindings:
+  hub_path: "/Users/malcolm/.gemini/config/memory_hub"
+  chat_memory_level: "L2_SCENARIO"
+  codegraph_index: "ege2_codegraph.json"
+  wiki_graph: true
+
+epistemics:
+  engine_path: "/Users/malcolm/.gemini/config/scripts/ege2_quantum.py"
+  q_graph_path: "/Users/malcolm/.gemini/config/memory_hub/epistemic_graph.json"
+  evidence_hierarchy: "7_tier_strict"
+  quantum_superposition: true
+  qubo_arbitration: true
+  phi_engine: true
+  psi_engine: true
+  sigma_cortex: true
+
+istl:
+  initial_confidence: 0.75
+  confidence_floor: 0.30
+  max_confidence: 0.99
+  perturbation_test_enabled: true
+
+verification:
+  script: "./harness_verify.sh"
