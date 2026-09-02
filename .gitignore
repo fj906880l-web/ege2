@@ -62,6 +62,10 @@ auth.json
 token.json
 tokens.json
 oauth*.json
+*.log
+firebase-debug.log*
+.firebase/
+.firebaserc
 
 # IDE & Editor files
 .idea/
