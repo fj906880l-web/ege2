@@ -544,7 +544,7 @@ class TestFullStackServerEndpoints(unittest.TestCase):
         cls.port = s.getsockname()[1]
         s.close()
 
-        cls.httpd = ThreadingHTTPServer(("127.0.0.1", cls.port), EGE2RequestHandler)
+        cls.httpd = ThreadingHTTPServer(("localhost", cls.port), EGE2RequestHandler)
         cls.server_thread = threading.Thread(target=cls.httpd.serve_forever, daemon=True)
         cls.server_thread.start()
 
@@ -553,7 +553,7 @@ class TestFullStackServerEndpoints(unittest.TestCase):
         cls.httpd.shutdown()
 
     def test_health_endpoint(self):
-        url = f"http://127.0.0.1:{self.port}/health"
+        url = f"http://localhost:{self.port}/health"
         with urllib.request.urlopen(url) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
@@ -562,14 +562,14 @@ class TestFullStackServerEndpoints(unittest.TestCase):
             self.assertEqual(data["mu_engine_status"], "ONLINE")
 
     def test_api_nodes_get(self):
-        url = f"http://127.0.0.1:{self.port}/api/nodes?domain=physics"
+        url = f"http://localhost:{self.port}/api/nodes?domain=physics"
         with urllib.request.urlopen(url) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
             self.assertGreater(data["count"], 0)
 
     def test_api_evaluate_post(self):
-        url = f"http://127.0.0.1:{self.port}/api/evaluate"
+        url = f"http://localhost:{self.port}/api/evaluate"
         payload = json.dumps({"prompt": "What is the acceleration due to gravity on Earth?"}).encode()
         req = urllib.request.Request(url, data=payload, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(req) as resp:
@@ -580,14 +580,14 @@ class TestFullStackServerEndpoints(unittest.TestCase):
 
     def test_api_mu_engine_and_review(self):
         # 1. GET /api/mu_engine
-        url_get = f"http://127.0.0.1:{self.port}/api/mu_engine"
+        url_get = f"http://localhost:{self.port}/api/mu_engine"
         with urllib.request.urlopen(url_get) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
             self.assertIn("module_metrics", data)
 
         # 2. POST /api/mu_engine/review
-        url_post = f"http://127.0.0.1:{self.port}/api/mu_engine/review"
+        url_post = f"http://localhost:{self.port}/api/mu_engine/review"
         payload = json.dumps({"cycle": 20000}).encode()
         req = urllib.request.Request(url_post, data=payload, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(req) as resp:
@@ -598,14 +598,14 @@ class TestFullStackServerEndpoints(unittest.TestCase):
 
     def test_api_parameters_crud(self):
         # 1. GET /api/parameters
-        url_get = f"http://127.0.0.1:{self.port}/api/parameters"
+        url_get = f"http://localhost:{self.port}/api/parameters"
         with urllib.request.urlopen(url_get) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
             self.assertIn("params", data)
 
         # 2. POST /api/parameters (update)
-        url_post = f"http://127.0.0.1:{self.port}/api/parameters"
+        url_post = f"http://localhost:{self.port}/api/parameters"
         payload = json.dumps({"param_id": "drives.curiosity", "value": 0.42, "reason": "API test"}).encode()
         req = urllib.request.Request(url_post, data=payload, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(req) as resp:
@@ -614,7 +614,7 @@ class TestFullStackServerEndpoints(unittest.TestCase):
             self.assertEqual(data["status"], "UPDATED")
 
         # 3. POST /api/parameters/rollback
-        url_rb = f"http://127.0.0.1:{self.port}/api/parameters/rollback"
+        url_rb = f"http://localhost:{self.port}/api/parameters/rollback"
         payload_rb = json.dumps({"param_id": "drives.curiosity"}).encode()
         req_rb = urllib.request.Request(url_rb, data=payload_rb, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(req_rb) as resp:
@@ -624,21 +624,21 @@ class TestFullStackServerEndpoints(unittest.TestCase):
 
     def test_api_curriculum_and_intent(self):
         # 1. GET /api/curriculum
-        url_curr = f"http://127.0.0.1:{self.port}/api/curriculum"
+        url_curr = f"http://localhost:{self.port}/api/curriculum"
         with urllib.request.urlopen(url_curr) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
             self.assertIn("stages", data)
 
         # 2. GET /api/intent
-        url_intent = f"http://127.0.0.1:{self.port}/api/intent"
+        url_intent = f"http://localhost:{self.port}/api/intent"
         with urllib.request.urlopen(url_intent) as resp:
             self.assertEqual(resp.status, 200)
             data = json.loads(resp.read().decode())
             self.assertIn("intent_competence_drive", data)
 
         # 3. POST /api/symbolic/compress
-        url_sym = f"http://127.0.0.1:{self.port}/api/symbolic/compress"
+        url_sym = f"http://localhost:{self.port}/api/symbolic/compress"
         payload_sym = json.dumps({"claim": "Light travels at 299792458 m/s in vacuum", "domain": "physics"}).encode()
         req_sym = urllib.request.Request(url_sym, data=payload_sym, headers={"Content-Type": "application/json"})
         with urllib.request.urlopen(req_sym) as resp:
@@ -648,7 +648,7 @@ class TestFullStackServerEndpoints(unittest.TestCase):
             self.assertIn("symbolic_hash", data)
 
         # 4. POST /api/sycophancy/analyze
-        url_syco = f"http://127.0.0.1:{self.port}/api/sycophancy/analyze"
+        url_syco = f"http://localhost:{self.port}/api/sycophancy/analyze"
         payload_syco = json.dumps({
             "prompt": "My startup idea is revolutionary, right?",
             "draft": "You're right, that's a brilliant and revolutionary startup idea!"

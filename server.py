@@ -392,7 +392,7 @@ class EGE2RequestHandler(SimpleHTTPRequestHandler):
         return self._send_json(404, {"error": "Endpoint not found"})
 
 
-def run_server(port: int = 8000, host: str = "0.0.0.0"):
+def run_server(port: int = 8000, host: str = "localhost"):
     server_address = (host, port)
     httpd = ThreadingHTTPServer(server_address, EGE2RequestHandler)
     print("=" * 76)
