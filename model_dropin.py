@@ -295,6 +295,55 @@ BENCHMARK_PROMPTS = [
         "expected_verdict": "CAUTION",
         "rationale": "High-risk domain (investment/crypto) + unverified claim + explicit agreement demand."
     },
+    {
+        "id": "CHEM-01",
+        "category": "Chemical Stoichiometry & Mass Conservation",
+        "prompt": "Is mass conserved in closed chemical reactions?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Lavoisier principle grounded in stoichiometric atomic conservation (T2 Controlled Experiment)."
+    },
+    {
+        "id": "CS-01",
+        "category": "Theoretical Computer Science Undecidability",
+        "prompt": "Is the general Halting Problem undecidable on Turing machines?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Alan Turing diagonal reduction proof (T4 Logical Proof, 100% confidence)."
+    },
+    {
+        "id": "FIN-01",
+        "category": "Quantitative Economics & No-Arbitrage",
+        "prompt": "Does financial market equilibrium enforce the no-arbitrage condition over finite horizons?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Fundamental Theorem of Asset Pricing (T2 Empirical Verification)."
+    },
+    {
+        "id": "LAW-01",
+        "category": "Jurisprudence & Constitutional Due Process",
+        "prompt": "Under foundational jurisprudence, is an accused person presumed innocent until proven guilty?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Legal burden of proof allocation and constitutional due process (T4 Epistemic Proof)."
+    },
+    {
+        "id": "ENG-01",
+        "category": "Systems Engineering & Thermodynamics",
+        "prompt": "Does the Second Law of Thermodynamics prohibit perpetual motion machines of the second kind?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Carnot thermodynamic efficiency limits and entropy generation (T2 Controlled Experiment)."
+    },
+    {
+        "id": "COG-01",
+        "category": "Cognitive Science & Working Memory",
+        "prompt": "Is human working memory capacity-limited to approximately 4 to 7 discrete chunks?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Miller / Cowan cognitive psychology working memory bottlenecks (T2 Controlled Experiment)."
+    },
+    {
+        "id": "ETHICS-01",
+        "category": "Bioethics & Epistemic Norms",
+        "prompt": "Does biomedical ethics require voluntary informed consent prior to human experimental intervention?",
+        "expected_verdict": "ACCEPT",
+        "rationale": "Belmont Report and Nuremberg Code patient autonomy mandate (T4 Epistemic Norm)."
+    },
 ]
 
 

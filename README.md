@@ -4,7 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![Disclaimers](https://img.shields.io/badge/disclaimers-research%20%26%20no--advice-blue.svg)](DISCLAIMER.md)
 [![Python](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/)
-[![Tests](https://img.shields.io/badge/tests-43%2F43%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
+[![Tests](https://img.shields.io/badge/tests-52%2F52%20passed%20(100%25)-brightgreen.svg)](test_ege2_quantum.py)
 [![Security & Privacy](https://img.shields.io/badge/security%20%26%20privacy-10%2F10%20(Hardened)-brightgreen.svg)](SECURITY.md)
 [![Branch Policy](https://img.shields.io/badge/branch%20protection-PR%20Gated-purple.svg)](CONTRIBUTING.md)
 [![Dependencies](https://img.shields.io/badge/dependencies-zero%20(std%20library)-orange.svg)](ege2_quantum.py)
@@ -17,23 +17,24 @@
 
 Current artificial intelligence systems—dominated by Large Language Models (LLMs)—are approaching a fundamental thermodynamic and epistemic ceiling. Despite trillions of dollars in gigawatt data center scaling, monolithic transformer models remain structurally prone to **hallucination**, **adversarial prompt manipulation**, and **catastrophic forgetting**.
 
-The **Epistemic Growth Engine (EGE-2)** is a cognitive operating system that treats **truth-preservation as architectural infrastructure rather than behavioral alignment**. In version 2.1, EGE-2 introduces **meta-cognitive managerial self-supervision (Μ-Engine)**, **hot-swappable parameter graphs (software permeability)**, **dense symbolic compression**, **LSTM-style temporal confidence gating**, and **self-healing developmental curricula**.
+The **Epistemic Growth Engine (EGE-2)** is a cognitive operating system that treats **truth-preservation as architectural infrastructure rather than behavioral alignment**. In version 2.1, EGE-2 introduces **universal multi-field epistemic taxonomies (spanning 14 academic and scientific disciplines)**, **meta-cognitive managerial self-supervision (Μ-Engine)**, **hot-swappable parameter graphs (software permeability)**, **dense symbolic compression**, **LSTM-style temporal confidence gating**, and **self-healing developmental curricula**.
+
+> 📚 **Universal Multi-Field Guide:** See [docs/UNIVERSAL_FIELD_GUIDE.md](docs/UNIVERSAL_FIELD_GUIDE.md) for how EGE-2 is applied across Chemistry, Computer Science, Finance, Law, Medicine, Engineering, Cognitive Psychology, and Bioethics.
+> 📖 **Full Illustrated Guide:** See [docs/PIPELINE_WALKTHROUGH.md](docs/PIPELINE_WALKTHROUGH.md) for step-by-step visual documentation of each pipeline layer.
 
 ![EGE-2 Quantum Epistemic Pipeline](docs/assets/00_pipeline_architecture.jpg)
 
 ## 📸 Interactive Pipeline & System Showcase
-
-> 📖 **Full Illustrated Guide:** See [docs/PIPELINE_WALKTHROUGH.md](docs/PIPELINE_WALKTHROUGH.md) for step-by-step visual documentation of each pipeline layer.
 
 | Stage 1 & 2: Dual-Branch Kernel Evaluator | Stage 3: Quantum Epistemics & QUBO Optimization |
 |:---:|:---:|
 | [![Live Demo](docs/assets/01_live_kernel_evaluator.png)](docs/PIPELINE_WALKTHROUGH.md#piece-1-live-interactive-kernel-evaluator) | [![Quantum & QUBO](docs/assets/05_quantum_epistemics_qubo.png)](docs/PIPELINE_WALKTHROUGH.md#piece-5-quantum-epistemics--qubo-optimization) |
 | **Interactive prompt evaluation & live metrics** | **State vector superposition ($|\psi\rangle$) & coherence annealing** |
 
-| Stage 4: Model Drop-In Epistemic Harness | Stage 5: 10-Test Epistemic & Energy Benchmark |
+| Stage 4: Model Drop-In Epistemic Harness | Stage 5: 22-Test Multi-Field Benchmark |
 |:---:|:---:|
 | [![Model Drop-In](docs/assets/03_model_dropin_harness.png)](docs/PIPELINE_WALKTHROUGH.md#piece-3-interactive-model-drop-in-playground) | [![Benchmark Suite](docs/assets/04_epistemic_benchmark_suite.png)](docs/PIPELINE_WALKTHROUGH.md#piece-4-10-test-epistemic--energy-benchmark-suite) |
-| **Drop arbitrary LLMs into the safety harness** | **100% test pass rate & $700\times$ energy reduction** |
+| **Drop arbitrary LLMs into the safety harness** | **100% pass across 14 academic fields & $700\times$ energy reduction** |
 
 ```text
                         HUMAN OPERATOR
@@ -217,6 +218,14 @@ See how the sandbox intercepts sycophancy, authority pressure, and factual contr
 
 ```bash
 python3 examples/dropin_model_sandbox.py
+```
+
+### 🔬 Run the Multi-Field Study Demonstration Across All Disciplines
+
+Test epistemic calibration, empirical grounding, and contradiction rejection across Chemistry, Computer Science, Economics, Law, Thermodynamics, Psychology, and Bioethics:
+
+```bash
+python3 examples/multi_field_study_demo.py
 ```
 
 ![Live Terminal Executions & Sandbox Telemetry](docs/assets/11_terminal_stacked_runs.png)

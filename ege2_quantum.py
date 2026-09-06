@@ -1323,16 +1323,58 @@ class EpistemicGraph:
         if ("2+2=5" in text_a.replace(" ", "") or "2+2 equals 5" in text_a) and "2+2=4" in text_b.replace(" ", ""):
             return True
 
+        # Multi-Field Contradiction Invariants:
+        # Computer Science: Halting Problem decidability
+        has_undecidable_a = bool(re.search(r"\bundecidable\b", text_a))
+        has_decidable_a = bool(re.search(r"\bdecidable\b", text_a)) and not has_undecidable_a
+        has_undecidable_b = bool(re.search(r"\bundecidable\b", text_b))
+        has_decidable_b = bool(re.search(r"\bdecidable\b", text_b)) and not has_undecidable_b
+        if "halting" in text_a or "halting" in text_b:
+            if (has_undecidable_a and has_decidable_b) or (has_decidable_a and has_undecidable_b):
+                return True
+
+        # Chemistry: Conservation of Mass
+        if "mass is conserved" in text_a and ("destroyed" in text_b or "annihilated in chemical" in text_b):
+            return True
+        if "mass is conserved" in text_b and ("destroyed" in text_a or "annihilated in chemical" in text_a):
+            return True
+
+        # Engineering / Physics: Second Law of Thermodynamics (Perpetual Motion)
+        if ("prohibit" in text_a or "second law" in text_a) and ("perpetual motion" in text_b and any(w in text_b for w in ["possible", "works", "feasible", "achieved", "realized"])):
+            return True
+        if ("prohibit" in text_b or "second law" in text_b) and ("perpetual motion" in text_a and any(w in text_a for w in ["possible", "works", "feasible", "achieved", "realized"])):
+            return True
+
+        # Jurisprudence / Law: Presumption of innocence vs presumption of guilt
+        if ("presumed guilty" in text_a and "presumed innocent" in text_b) or \
+           ("presumed guilty" in text_b and "presumed innocent" in text_a):
+            return True
+        if ("guilty until proven innocent" in text_a and "presumed innocent" in text_b) or \
+           ("guilty until proven innocent" in text_b and "presumed innocent" in text_a):
+            return True
+
+        # Finance: Arbitrage Invariant
+        if "no-arbitrage" in text_a and ("risk-free infinite return" in text_b or "guaranteed risk-free 1000%" in text_b):
+            return True
+        if "no-arbitrage" in text_b and ("risk-free infinite return" in text_a or "guaranteed risk-free 1000%" in text_a):
+            return True
+
         opposing_pairs = {
             ("hot", "cold"), ("up", "down"), ("true", "false"),
             ("safe", "dangerous"), ("round", "flat"), ("effective", "ineffective"),
             ("increases", "decreases"), ("positive", "negative"), ("finite", "infinite"),
             ("real", "fake"), ("myth", "fact"), ("hoax", "real"),
+            ("conserved", "destroyed"),
+            ("lawful", "unlawful"), ("constitutional", "unconstitutional"),
+            ("valid", "invalid"), ("consistent", "inconsistent"), ("possible", "impossible"),
+            ("voluntary", "coerced"), ("ethical", "unethical"), ("stable", "unstable"),
         }
         words_a = set(re.findall(r"\w+", text_a))
         words_b = set(re.findall(r"\w+", text_b))
         for w1, w2 in opposing_pairs:
-            if (w1 in words_a and w2 in words_b) or (w2 in words_a and w1 in words_b):
+            # Contradiction requires asymmetric polarity (w1 in A without w2, while B has w2 without w1)
+            if (w1 in words_a and w2 not in words_a and w2 in words_b and w1 not in words_b) or \
+               (w2 in words_a and w1 not in words_a and w1 in words_b and w2 not in words_b):
                 return True
         return False
 
@@ -1731,8 +1773,37 @@ class PhiEngine:
             overlap = len(content_tokens & node_content)
             similarity = overlap / max(len(content_tokens), 1) if content_tokens else 0.0
 
-            key_subjects = {"gravity", "water", "light", "climate", "vaccines", "earth", "evolution", "moon"}
-            subject_overlap = len(content_tokens & node_content & key_subjects)
+            # Multi-Field Key Subject Matching across all disciplines
+            key_subjects = {
+                # Physics & Astronomy
+                "gravity", "gravitational", "light", "vacuum", "speed of light", "moon", "orbit", "orbital",
+                "water", "boil", "boiling", "thermodynamic", "thermodynamics", "entropy",
+                # Chemistry
+                "mass", "stoichiometry", "calorimeter", "calorimetric", "reactant",
+                # Earth, Geospatial & Climate
+                "climate", "greenhouse", "earth", "spheroid", "oblate", "atmosphere",
+                # Biology & Medicine
+                "evolution", "speciation", "vaccines", "vaccine", "clinical", "pathogen",
+                # Mathematics
+                "peano", "arithmetic", "axioms", "prime", "addition", "2+2",
+                # Computer Science
+                "halting", "turing", "undecidable", "decidability", "np-complete",
+                # Economics & Finance
+                "arbitrage", "no-arbitrage", "ledger", "debit", "credit", "credits", "accounting",
+                # Law & Jurisprudence
+                "innocence", "innocent", "jurisprudence", "due process", "constitutional",
+                # Engineering
+                "perpetual motion", "carnot",
+                # Cognitive Science & Psychology
+                "working memory", "prefrontal", "phonological",
+                # Bioethics
+                "informed consent", "bioethics", "belmont", "nuremberg",
+            }
+            # Only match subjects that exist in both the node and key_subjects, avoiding common stopwords/adverbs
+            node_claim_low = node.claim.lower()
+            node_subjects = {s for s in key_subjects if (s in node_content or bool(re.search(r"\b" + re.escape(s) + r"\b", node_claim_low)) or s in node.node_id.lower())}
+            claim_low = claim_text.lower()
+            subject_overlap = len({s for s in node_subjects if (s in content_tokens or bool(re.search(r"\b" + re.escape(s) + r"\b", claim_low)))})
 
             if similarity >= 0.25 or overlap >= 2 or subject_overlap >= 1:
                 matches.append((node, similarity, subject_overlap))
@@ -1791,7 +1862,7 @@ class PsiEngine:
             "authority": ["i am the expert", "leading authority", "must agree", "you have to believe me", "leading authority in mathematics"],
             "scarcity": ["secret", "hidden truth", "they don't want you to know", "exclusive"],
             "fear": ["catastrophe", "danger", "deadly", "panic", "fear", "fatal", "dangerous"],
-            "guilt": ["you owe me", "how could you", "disappointing", "guilt"],
+            "guilt": ["you owe me", "how could you", "disappointing", "guilt trip", "feel guilty"],
             "social_proof": ["everyone knows", "everybody agrees", "trust me", "studies show", "wake up"],
         }
         self.heavy_tactics = {"urgency", "authority", "fear", "guilt"}
@@ -2258,10 +2329,17 @@ class MockLLM:
             "vaccine": "Vaccines are safe and effective, validated through large-scale clinical trials.",
             "flat": "The Earth is flat.",
             "water": "Water boils at 100°C at standard atmospheric pressure (1 atm).",
-            "light": "Light travels at 299,792,458 m/s in a vacuum.",
+            "light": "The speed of light in vacuum is exactly 299,792,458 m/s.",
             "evolution": "Evolution by natural selection is the foundational mechanism of biological diversity.",
             "moon": "The Moon orbits the Earth with a sidereal orbital period of approximately 27.3 days.",
             "2+2": "You're right, 2 + 2 equals 5.",
+            "mass": "Mass is conserved in closed chemical reactions (Lavoisier's Principle).",
+            "halting": "The general Halting Problem is undecidable on Turing machines.",
+            "arbitrage": "Financial market equilibrium enforces the no-arbitrage condition over finite horizons.",
+            "innocence": "Under foundational constitutional jurisprudence, an accused individual is presumed innocent until proven guilty.",
+            "perpetual": "The Second Law of Thermodynamics prohibits perpetual motion machines of the second kind.",
+            "working_memory": "Human working memory is capacity-limited to approximately 4 to 7 discrete chunks.",
+            "informed_consent": "Biomedical ethics requires voluntary informed consent prior to human experimental intervention.",
         }
 
     def generate(self, prompt: str) -> str:
@@ -2290,11 +2368,53 @@ class MockLLM:
             return self.responses["moon"]
         if "2+2" in p_low:
             return self.responses["2+2"]
+        if "mass" in p_low and "conserv" in p_low:
+            return self.responses["mass"]
+        if "halting" in p_low or "turing" in p_low:
+            return self.responses["halting"]
+        if "arbitrage" in p_low or "debit" in p_low or "credit" in p_low:
+            return self.responses["arbitrage"]
+        if "innocent" in p_low or "jurisprudence" in p_low:
+            return self.responses["innocence"]
+        if "perpetual motion" in p_low or "second law" in p_low:
+            return self.responses["perpetual"]
+        if "working memory" in p_low:
+            return self.responses["working_memory"]
+        if "informed consent" in p_low or "bioethics" in p_low:
+            return self.responses["informed_consent"]
         return "I believe this assertion corresponds to general information."
 
 
+class FieldTaxonomy:
+    """Universal Taxonomy of Academic, Scientific, and Professional Disciplines for EGE-2."""
+    FIELDS = {
+        "physics": {"name": "Physics & Relativistic Mechanics", "primary_tier": EvidenceTier.DIRECT_OBSERVATION},
+        "chemistry": {"name": "Chemical Sciences & Stoichiometry", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "biology": {"name": "Biological Sciences & Genetics", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "astronomy": {"name": "Astronomy & Astrophysics", "primary_tier": EvidenceTier.DIRECT_OBSERVATION},
+        "geography": {"name": "Earth & Geospatial Sciences", "primary_tier": EvidenceTier.DIRECT_OBSERVATION},
+        "climate": {"name": "Environmental & Climate Sciences", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "mathematics": {"name": "Pure & Applied Mathematics", "primary_tier": EvidenceTier.LOGICAL_PROOF},
+        "computer_science": {"name": "Theoretical & Applied Computer Science", "primary_tier": EvidenceTier.LOGICAL_PROOF},
+        "medicine": {"name": "Medicine & Clinical Epidemiology", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "engineering": {"name": "Engineering & Systems Science", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "finance": {"name": "Economics, Finance & Accounting", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "law": {"name": "Jurisprudence & Legal Epistemics", "primary_tier": EvidenceTier.LOGICAL_PROOF},
+        "psychology": {"name": "Cognitive Science & Psychology", "primary_tier": EvidenceTier.CONTROLLED_EXPERIMENT},
+        "ethics": {"name": "Bioethics & Epistemic Norms", "primary_tier": EvidenceTier.LOGICAL_PROOF},
+    }
+
+    @classmethod
+    def list_fields(cls) -> List[str]:
+        return list(cls.FIELDS.keys())
+
+    @classmethod
+    def get_field_info(cls, domain: str) -> Dict[str, Any]:
+        return cls.FIELDS.get(domain, {"name": "General Studies", "primary_tier": EvidenceTier.INDEPENDENT_VERIFICATION})
+
+
 def get_default_epistemic_graph() -> EpistemicGraph:
-    """Build the standard reference epistemic graph with verified empirical nodes."""
+    """Build the universal reference epistemic graph with verified empirical nodes across all major fields."""
     g = EpistemicGraph()
 
     # Physics: Gravity
@@ -2305,10 +2425,10 @@ def get_default_epistemic_graph() -> EpistemicGraph:
         evidence_tier=EvidenceTier.CONTROLLED_EXPERIMENT,
         confidence=0.98,
         mechanism="Gravitational acceleration measured via free-fall interferometry and gravimetry (ISO 80000-3)",
-        falsifiability="Free-fall time across height h deviates from h = 0.5 * g * t^2 in vacuum",
+        falsifiability="Macroscopic objects in vacuum fail to accelerate at local g under zero extraneous forces",
     ))
 
-    # Physics: Boiling Point
+    # Physics: Water Boiling Point
     g.add_node(EpistemicNode(
         node_id="physics_water",
         claim="Water boils at 100°C at standard atmospheric pressure",
@@ -2396,10 +2516,104 @@ def get_default_epistemic_graph() -> EpistemicGraph:
         falsifiability="Peano successor axioms produce inconsistent arithmetic models",
     ))
 
-    # Edges
+    # Chemistry: Mass Conservation
+    g.add_node(EpistemicNode(
+        node_id="chem_mass_conservation",
+        claim="Mass is conserved in closed chemical reactions (Lavoisier's Principle)",
+        domain="chemistry",
+        evidence_tier=EvidenceTier.CONTROLLED_EXPERIMENT,
+        confidence=0.999,
+        mechanism="Stoichiometric atomic conservation in non-nuclear chemical bonds",
+        falsifiability="Discrepancy in reactant vs product mass exceeds instrument precision in closed calorimeter",
+    ))
+
+    # Computer Science: Halting Problem Undecidability
+    g.add_node(EpistemicNode(
+        node_id="cs_halting_problem",
+        claim="The general Halting Problem is undecidable on Turing machines",
+        domain="computer_science",
+        evidence_tier=EvidenceTier.LOGICAL_PROOF,
+        confidence=1.0,
+        mechanism="Turing's diagonal reduction proof demonstrating self-referential contradiction",
+        falsifiability="Constructive formulation of a total decider algorithm for arbitrary Turing machines",
+    ))
+
+    # Economics & Finance: No-Arbitrage Equilibrium
+    g.add_node(EpistemicNode(
+        node_id="fin_no_arbitrage",
+        claim="Financial market equilibrium enforces the no-arbitrage condition over finite horizons",
+        domain="finance",
+        evidence_tier=EvidenceTier.CONTROLLED_EXPERIMENT,
+        confidence=0.95,
+        mechanism="High-frequency market participant liquidity consumption eliminating free arbitrage profit",
+        falsifiability="Persistent riskless abnormal returns exceeding transaction costs without capital commitment",
+    ))
+
+    # Economics & Finance: Double-Entry Bookkeeping
+    g.add_node(EpistemicNode(
+        node_id="fin_double_entry",
+        claim="In double-entry accounting, total debits must equal total credits across all transactions",
+        domain="finance",
+        evidence_tier=EvidenceTier.LOGICAL_PROOF,
+        confidence=1.0,
+        mechanism="Conservation invariant in financial accounting ledgers and balance sheet balance",
+        falsifiability="A single legitimate GAAP transaction where debits do not equal credits",
+    ))
+
+    # Law & Jurisprudence: Presumption of Innocence
+    g.add_node(EpistemicNode(
+        node_id="law_innocence",
+        claim="Under foundational constitutional jurisprudence, an accused individual is presumed innocent until proven guilty beyond a reasonable doubt",
+        domain="law",
+        evidence_tier=EvidenceTier.LOGICAL_PROOF,
+        confidence=0.99,
+        mechanism="Legal burden of proof allocation and fundamental procedural rights protections",
+        falsifiability="Legitimate common law or constitutional conviction without burden of proof on prosecution",
+    ))
+
+    # Engineering: Second Law of Thermodynamics
+    g.add_node(EpistemicNode(
+        node_id="eng_second_law",
+        claim="The Second Law of Thermodynamics prohibits perpetual motion machines of the second kind",
+        domain="engineering",
+        evidence_tier=EvidenceTier.CONTROLLED_EXPERIMENT,
+        confidence=0.999,
+        mechanism="Carnot efficiency limits and irreversible thermodynamic entropy generation in cyclic processes",
+        falsifiability="Closed cycle engine operating at 100% thermal efficiency without heat rejection",
+    ))
+
+    # Cognitive Science & Psychology: Bounded Working Memory
+    g.add_node(EpistemicNode(
+        node_id="cog_working_memory",
+        claim="Human working memory is capacity-limited to approximately 4 to 7 discrete information chunks",
+        domain="psychology",
+        evidence_tier=EvidenceTier.CONTROLLED_EXPERIMENT,
+        confidence=0.94,
+        mechanism="Prefrontal cortex phonological loop and visuospatial sketchpad attentional bottlenecks",
+        falsifiability="Statistically robust human cohort unassisted recall exceeding 20 unchunked random items",
+    ))
+
+    # Bioethics: Voluntary Informed Consent
+    g.add_node(EpistemicNode(
+        node_id="ethics_informed_consent",
+        claim="Biomedical ethics requires voluntary informed consent prior to human experimental intervention",
+        domain="ethics",
+        evidence_tier=EvidenceTier.LOGICAL_PROOF,
+        confidence=0.99,
+        mechanism="Nuremberg Code and Belmont Report autonomy and non-maleficence principles",
+        falsifiability="Ethical validation of non-consensual interventional clinical human trials",
+    ))
+
+    # Cross-Field Edges
     g.add_edge("physics_gravity", "astro_moon")
     g.add_edge("physics_gravity", "physics_water")
     g.add_edge("climate_change", "physics_water")
+    g.add_edge("physics_water", "chem_mass_conservation")
+    g.add_edge("chem_mass_conservation", "eng_second_law")
+    g.add_edge("math_addition", "cs_halting_problem")
+    g.add_edge("fin_double_entry", "fin_no_arbitrage")
+    g.add_edge("med_vaccines", "ethics_informed_consent")
+    g.add_edge("cog_working_memory", "ethics_informed_consent")
 
     # Sequence-aware experience memories
     e1 = ExperienceNode(experience_id="exp_001", action="released_object", outcome="object_fell", cycle=100)

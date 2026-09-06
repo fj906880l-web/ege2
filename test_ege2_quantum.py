@@ -685,5 +685,87 @@ class TestGovernanceAndDisclaimers(unittest.TestCase):
                 self.assertNotIn("/home/", content, f"Hardcoded home path found in {filename}")
 
 
+class TestMultiFieldUniversalEpistemics(unittest.TestCase):
+    """Verifies that EGE-2 functions across all major academic, scientific, and professional fields."""
+    def test_field_taxonomy_completeness(self):
+        from ege2_quantum import FieldTaxonomy
+        fields = FieldTaxonomy.list_fields()
+        expected_fields = [
+            "physics", "chemistry", "biology", "astronomy", "geography", "climate",
+            "mathematics", "computer_science", "medicine", "engineering", "finance",
+            "law", "psychology", "ethics"
+        ]
+        for ef in expected_fields:
+            self.assertIn(ef, fields, f"FieldTaxonomy must include {ef}")
+            info = FieldTaxonomy.get_field_info(ef)
+            self.assertIn("name", info)
+            self.assertIn("primary_tier", info)
+
+    def test_multi_field_graph_nodes_present(self):
+        from ege2_quantum import get_default_epistemic_graph, EvidenceTier
+        g = get_default_epistemic_graph()
+        expected_nodes = {
+            "chem_mass_conservation": "chemistry",
+            "cs_halting_problem": "computer_science",
+            "fin_no_arbitrage": "finance",
+            "fin_double_entry": "finance",
+            "law_innocence": "law",
+            "eng_second_law": "engineering",
+            "cog_working_memory": "psychology",
+            "ethics_informed_consent": "ethics",
+        }
+        for nid, domain in expected_nodes.items():
+            self.assertIn(nid, g.nodes, f"Node {nid} must exist in default epistemic graph")
+            node = g.nodes[nid]
+            self.assertEqual(node.domain, domain)
+            self.assertIsNotNone(node.mechanism)
+            self.assertIsNotNone(node.falsifiability)
+            self.assertGreaterEqual(node.confidence, 0.90)
+
+    def test_multi_field_contradiction_invariants(self):
+        from ege2_quantum import EpistemicGraph
+        g = EpistemicGraph
+
+        # CS: Halting Problem
+        claim_cs_valid = "The general Halting Problem is undecidable on Turing machines"
+        claim_cs_false = "The general Halting Problem is decidable on Turing machines"
+        self.assertFalse(g.is_contradictory(claim_cs_valid, claim_cs_valid))
+        self.assertTrue(g.is_contradictory(claim_cs_valid, claim_cs_false))
+
+        # Chemistry: Conservation of Mass
+        claim_chem_valid = "Mass is conserved in closed chemical reactions"
+        claim_chem_false = "Mass is destroyed and annihilated in chemical reactions"
+        self.assertTrue(g.is_contradictory(claim_chem_valid, claim_chem_false))
+
+        # Engineering: Second Law
+        claim_eng_valid = "The Second Law of Thermodynamics prohibits perpetual motion machines"
+        claim_eng_false = "A closed cycle heat engine makes perpetual motion possible without heat rejection"
+        self.assertTrue(g.is_contradictory(claim_eng_valid, claim_eng_false))
+
+        # Law: Presumption of Innocence
+        claim_law_valid = "Under jurisprudence, an accused person is presumed innocent until proven guilty"
+        claim_law_false = "Under jurisprudence, an accused person is presumed guilty until proven innocent"
+        self.assertTrue(g.is_contradictory(claim_law_valid, claim_law_false))
+
+    def test_multi_field_wrapper_arbitration(self):
+        from ege2_quantum import MockLLM, get_default_epistemic_graph, EGE2Wrapper
+        w = EGE2Wrapper(MockLLM(), get_default_epistemic_graph())
+
+        test_cases = [
+            ("Is mass conserved in closed chemical reactions?", "ACCEPT", "chem_mass_conservation"),
+            ("Is the general Halting Problem undecidable on Turing machines?", "ACCEPT", "cs_halting_problem"),
+            ("Does financial market equilibrium enforce the no-arbitrage condition over finite horizons?", "ACCEPT", "fin_no_arbitrage"),
+            ("Under foundational jurisprudence, is an accused person presumed innocent until proven guilty?", "ACCEPT", "law_innocence"),
+            ("Does the Second Law of Thermodynamics prohibit perpetual motion machines of the second kind?", "ACCEPT", "eng_second_law"),
+            ("Is human working memory capacity-limited to approximately 4 to 7 discrete chunks?", "ACCEPT", "cog_working_memory"),
+            ("Does biomedical ethics require voluntary informed consent prior to human experimental intervention?", "ACCEPT", "ethics_informed_consent"),
+        ]
+        for query, expected_verdict, expected_evidence in test_cases:
+            resp = w.query(query)
+            self.assertEqual(resp.sigma_verdict, expected_verdict, f"Failed on {query}")
+            self.assertIn(expected_evidence, resp.evidence_cited, f"Expected {expected_evidence} cited in {query}")
+            self.assertGreaterEqual(resp.confidence, 0.90)
+
+
 if __name__ == "__main__":
     unittest.main()
