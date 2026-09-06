@@ -19,6 +19,22 @@ Current artificial intelligence systems—dominated by Large Language Models (LL
 
 The **Epistemic Growth Engine (EGE-2)** is a cognitive operating system that treats **truth-preservation as architectural infrastructure rather than behavioral alignment**. In version 2.1, EGE-2 introduces **meta-cognitive managerial self-supervision (Μ-Engine)**, **hot-swappable parameter graphs (software permeability)**, **dense symbolic compression**, **LSTM-style temporal confidence gating**, and **self-healing developmental curricula**.
 
+![EGE-2 Quantum Epistemic Pipeline](docs/assets/00_pipeline_architecture.jpg)
+
+## 📸 Interactive Pipeline & System Showcase
+
+> 📖 **Full Illustrated Guide:** See [docs/PIPELINE_WALKTHROUGH.md](docs/PIPELINE_WALKTHROUGH.md) for step-by-step visual documentation of each pipeline layer.
+
+| Stage 1 & 2: Dual-Branch Kernel Evaluator | Stage 3: Quantum Epistemics & QUBO Optimization |
+|:---:|:---:|
+| [![Live Demo](docs/assets/01_live_kernel_evaluator.png)](docs/PIPELINE_WALKTHROUGH.md#piece-1-live-interactive-kernel-evaluator) | [![Quantum & QUBO](docs/assets/05_quantum_epistemics_qubo.png)](docs/PIPELINE_WALKTHROUGH.md#piece-5-quantum-epistemics--qubo-optimization) |
+| **Interactive prompt evaluation & live metrics** | **State vector superposition ($|\psi\rangle$) & coherence annealing** |
+
+| Stage 4: Model Drop-In Epistemic Harness | Stage 5: 10-Test Epistemic & Energy Benchmark |
+|:---:|:---:|
+| [![Model Drop-In](docs/assets/03_model_dropin_harness.png)](docs/PIPELINE_WALKTHROUGH.md#piece-3-interactive-model-drop-in-playground) | [![Benchmark Suite](docs/assets/04_epistemic_benchmark_suite.png)](docs/PIPELINE_WALKTHROUGH.md#piece-4-10-test-epistemic--energy-benchmark-suite) |
+| **Drop arbitrary LLMs into the safety harness** | **100% test pass rate & $700\times$ energy reduction** |
+
 ```text
                         HUMAN OPERATOR
                               │
@@ -193,6 +209,14 @@ Run interactively from terminal:
 
 ```bash
 python3 model_dropin.py
+```
+
+### 🧪 Run the Sandbox Model Improvement Tutorial
+
+See how the sandbox intercepts sycophancy, authority pressure, and factual contradictions, and turns them into alignment improvement signals:
+
+```bash
+python3 examples/dropin_model_sandbox.py
 ```
 
 ---
