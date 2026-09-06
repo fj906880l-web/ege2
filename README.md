@@ -219,6 +219,8 @@ See how the sandbox intercepts sycophancy, authority pressure, and factual contr
 python3 examples/dropin_model_sandbox.py
 ```
 
+![Live Terminal Executions & Sandbox Telemetry](docs/assets/11_terminal_stacked_runs.png)
+
 ---
 
 ## 🐳 Containerization & Deployment

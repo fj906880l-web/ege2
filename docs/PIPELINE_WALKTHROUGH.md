@@ -100,7 +100,9 @@ The EGE-2 pipeline processes assertions and conversational inputs through five d
 
 ---
 
-## 💻 3. Terminal CLI Telemetry (`model_dropin.py`)
+## 💻 3. Terminal CLI Telemetry (`model_dropin.py` & `examples/dropin_model_sandbox.py`)
+
+![Live Terminal Executions](assets/11_terminal_stacked_runs.png)
 
 Run the benchmark suite offline with zero dependencies:
 
