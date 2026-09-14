@@ -102,3 +102,30 @@ epistemic_graph_local.json
 
 # Submodules / nested clones
 ege2/
+
+# === Security Shift-Left: Secrets, Keys & Credentials ===
+.env*
+!.env.example
+*.pem
+*.key
+*.pkcs12
+*.pfx
+*secret*
+!client_secret.json.example
+*credentials*
+token.json
+tokens.json
+id_rsa*
+*.cert
+*.lock
+*.log
+
+# === Environments & Runtimes ===
+.venv/
+env/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+.DS_Store
