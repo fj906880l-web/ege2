@@ -8,6 +8,12 @@
 - **shift-left-ai-security**: Enforce the IBM 5 Principles of Shift-Left Security for AI-generated code, agent workflows, and autonomous trading systems. Governs fail-safe execution, pre-commit secrets scanning, supply-chain dependency auditing, business intent validation (50% capital cap), and agentic boundary enclosure.
   - Path: `/Users/malcolm/.gemini/config/skills/shift-left-ai-security/SKILL.md`
 
+- **vanta-security-scaling-guardrails**: Enterprise-grade security, scaling, and privacy guardrails derived from VantaInc open-source repositories (graphql-query-cost, vanta-mcp-server, claude-grc-engineering). Binds local AI agent execution costs, validates tool payloads with strict schemas, sanitizes prompt injection vectors and PII, benchmarks LRU prompt caches, and audits code for 100% air-gapped local compliance.
+  - Path: `/Users/malcolm/.gemini/config/skills/vanta-security-scaling-guardrails/SKILL.md`
+  - CLI: `vanta-guardrails` or `python3 /Users/malcolm/.gemini/config/scripts/security_scaling_guardrails.py`
+  - Subcommands: `cost-calc`, `schema-validate`, `sanitize-prompt`, `cache-budget`, `audit-privacy`
+
+
 - **ege2-quantum-epistemics**: Master operational skill for EGE-2 Quantum Epistemic System — 7 evidence tiers, dual-branch Phi/Psi/Sigma cognitive architecture, Anti-Sycophancy (Anti-Glazing) defense, Q-Graph with post-quantum provenance, quantum belief superposition, and QUBO arbitration.
   - Path: `/Users/malcolm/.gemini/config/skills/ege2-quantum-epistemics/SKILL.md`
 

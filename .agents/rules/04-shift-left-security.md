@@ -12,5 +12,14 @@
 ## 2. Pre-Execution Safe Shell Guard
 Destructive shell commands (`rm -rf /`, raw disk writes, `mkfs`, fork bombs) are unconditionally blocked by `/Users/malcolm/.gemini/config/scripts/safe_shell_guard.py`.
 
-## 3. Delivery Gating
-If security score < 80, delivery is strictly blocked until remediated.
+## 3. Vanta Security & Scaling Guardrails Protocol
+**Standard:** VantaInc Open-Source Architectural Patterns (Cost-Bounding, Zod Schema Gating, PII Redaction, Air-Gapped Privacy)
+**CLI Command:** `vanta-guardrails <cost-calc|schema-validate|sanitize-prompt|cache-budget|audit-privacy>`
+1. **Execution Cost Bounding (`cost-calc`):** Bound prompt tokens, tool iterations, and recursion depth to prevent runaway subagent loops.
+2. **Tool Argument Schema Validation (`schema-validate`):** Strict type and key validation on all tool payloads prior to execution.
+3. **Prompt Injection & DLP Sanitization (`sanitize-prompt`):** Strip instruction overrides and redact sensitive PII (emails, AWS keys, SSNs, API tokens).
+4. **LRU Cache Budget Simulator (`cache-budget`):** Measure hit ratios and capacity thresholds under insertion-order eviction.
+5. **Air-Gapped Privacy Audit (`audit-privacy`):** Guarantee 100% self-hosted, air-gapped compliance with zero external cloud egress.
+
+## 4. Delivery Gating
+If security score < 80 or Vanta scaling guardrails are violated, delivery is strictly blocked until remediated.

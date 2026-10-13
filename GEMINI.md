@@ -38,6 +38,7 @@ See detailed index at [.agent/workflows/INDEX.md](file:///Users/malcolm/ege2/.ag
 ## 4. Skills Catalog (`<skills>`)
 See comprehensive index at [.agent/skills/INDEX.md](file:///Users/malcolm/ege2/.agent/skills/INDEX.md):
 - Access to 216+ system and plugin skills across Harness, Security, Quant, Database, Science, and Web.
+- Includes reverse-engineered Enterprise Vanta Security & Scaling Guardrails (`cost-calc`, `schema-validate`, `sanitize-prompt`, `cache-budget`, `audit-privacy`).
 
 ---
 
