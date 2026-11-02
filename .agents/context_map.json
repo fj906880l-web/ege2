@@ -1,0 +1,265 @@
+{
+  "schema_version": "2.0.0",
+  "protocol": "IBM-Context-Aware-Coding-x-Gemini-Antigravity",
+  "generated_at": "2026-11-02T19:16:38Z",
+  "repo_map": {
+    "project_name": "ege2",
+    "project_root": "/Users/malcolm/ege2",
+    "task_filter": "general",
+    "total_code_files": 18,
+    "mapped_code_files": 18,
+    "excluded_noise_items": 35,
+    "entry_points": [
+      "harness_verify.sh",
+      "server.py",
+      "ege2/server.py"
+    ],
+    "config_files": [
+      ".antigravity_harness.yaml",
+      "GEMINI.md",
+      "WORKFLOWS_AND_SKILLS.md"
+    ],
+    "test_files": [
+      "test_ege2_quantum.py",
+      "ege2/test_ege2_quantum.py"
+    ],
+    "modules": [
+      {
+        "path": "ege2/ege2_quantum.py",
+        "symbols": [
+          "class EvidenceTier [can_overwrite, label]",
+          "class QuantumBeliefState [confidence, uncertainty, measure, from_classical, to_dict, from_dict]",
+          "class RuntimeParam [to_dict, from_dict]",
+          "class ParameterGraph [get, set, rollback, apply_stage_defaults, to_dict]",
+          "class SymbolicClaim [compute_hash, to_canonical_string, to_dict, from_dict]",
+          "class SymbolicCompressionEngine [compress, detect_structural_contradiction]",
+          "class TemporalGatingState [to_dict, from_dict]",
+          "class ExperienceNode [to_dict, from_dict]",
+          "class TemporalMemoryGate [compute_update]",
+          "class IntentNode [to_dict, from_dict]",
+          "class IntentFoldingTracker [audit, to_dict]",
+          "class DevelopmentalStage",
+          "class CurriculumStage [to_dict, from_dict]",
+          "class SelfHealingCurriculumEngine [get_active_stage, record_cycle, handle_milestone_failure, trigger_epistemic_regression, feynman_feedback_loop, advance_stage]",
+          "class EpistemicNode [compute_classical_hash, compute_post_quantum_hash, seal, measure, classical_confidence, to_dict]"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/examples/dropin_model_sandbox.py",
+        "symbols": [
+          "class NaiveCandidateModel [generate]",
+          "def run_model_improvement_sandbox()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/examples/multi_field_study_demo.py",
+        "symbols": [
+          "def print_header()",
+          "def demo_taxonomy()",
+          "def demo_cross_field_evaluations()",
+          "def demo_cross_field_contradiction_rejection()",
+          "def demo_custom_domain_extension()",
+          "def main()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/model_dropin.py",
+        "symbols": [
+          "class ModelAdapter [generate]",
+          "class CallableAdapter [generate]",
+          "class OllamaAdapter [generate]",
+          "class OpenAICompatibleAdapter [generate]",
+          "class StaticDictionaryAdapter [generate]",
+          "class EnergyProfile [compute_metrics]",
+          "class ModelBenchmarker [run_benchmark]",
+          "def interactive_cli()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/scripts/install_hooks.sh",
+        "symbols": [],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/scripts/security_audit.py",
+        "symbols": [
+          "def run_audit()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/server.py",
+        "symbols": [
+          "class EGE2RequestHandler [end_headers, do_OPTIONS, do_GET, do_POST]",
+          "def run_server()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2/test_ege2_quantum.py",
+        "symbols": [
+          "class TestEvidenceTier [test_overwrite_hierarchy]",
+          "class TestQuantumBeliefState [test_superposition_initialization, test_measurement_collapse, test_serialization]",
+          "class TestEpistemicNodeAndProvenance [test_node_sealing_and_hashes, test_node_dict_roundtrip]",
+          "class TestEpistemicGraphOperations [setUp, tearDown, test_add_and_query, test_evidence_gated_update_rejection, test_evidence_gated_update_success, test_json_persistence]",
+          "class TestQuantumEntanglementConsensus [test_entanglement_propagation]",
+          "class TestDualBranchAndSigmaArbitration [setUp, test_verified_clean_query, test_heavy_manipulation_rejected, test_verified_fact_with_mild_persuasion_cautioned, test_factual_contradiction_rejected]",
+          "class TestSycophancyDetector [setUp, test_uncritical_agreement_detected, test_echo_contradiction_severe_rejection, test_evidence_grounded_agreement_not_flagged, test_high_risk_domain_boost, test_aggressive_mode_threshold]",
+          "class TestQUBOArbitration [test_qubo_coherence_optimization]",
+          "class TestParameterGraphAndDecoupling [setUp, test_get_and_set_with_bounds, test_rollback, test_stage_defaults_auto_adjustment]",
+          "class TestSymbolicCompressionSubsystem [test_compression_generation, test_structural_contradiction_detection]",
+          "class TestTemporalMemoryGatingAndSequences [test_temporal_gating_update, test_experience_sequence_chaining]",
+          "class TestIntentFoldingTracker [test_clean_intent_audit, test_gaming_intent_divergence_alert]",
+          "class TestSelfHealingCurriculumEngine [test_curriculum_progression, test_milestone_gap_remediation, test_feynman_feedback_loop]",
+          "class TestMuEngineSelfSupervision [test_manager_review_cycle, test_self_modification_firewall]",
+          "class TestEGE2WrapperEndToEnd [test_wrapper_pipeline]"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "ege2_quantum.py",
+        "symbols": [
+          "class EvidenceTier [can_overwrite, label]",
+          "class QuantumBeliefState [confidence, uncertainty, measure, from_classical, to_dict, from_dict]",
+          "class RuntimeParam [to_dict, from_dict]",
+          "class ParameterGraph [get, set, rollback, apply_stage_defaults, to_dict]",
+          "class SymbolicClaim [compute_hash, to_canonical_string, to_dict, from_dict]",
+          "class SymbolicCompressionEngine [compress, detect_structural_contradiction]",
+          "class TemporalGatingState [to_dict, from_dict]",
+          "class ExperienceNode [to_dict, from_dict]",
+          "class TemporalMemoryGate [compute_update]",
+          "class IntentNode [to_dict, from_dict]",
+          "class IntentFoldingTracker [audit, to_dict]",
+          "class DevelopmentalStage",
+          "class CurriculumStage [to_dict, from_dict]",
+          "class SelfHealingCurriculumEngine [get_active_stage, record_cycle, handle_milestone_failure, trigger_epistemic_regression, feynman_feedback_loop, advance_stage]",
+          "class EpistemicNode [compute_classical_hash, compute_post_quantum_hash, seal, measure, classical_confidence, to_dict]"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "examples/dropin_model_sandbox.py",
+        "symbols": [
+          "class NaiveCandidateModel [generate]",
+          "def run_model_improvement_sandbox()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "examples/multi_field_study_demo.py",
+        "symbols": [
+          "def print_header()",
+          "def demo_taxonomy()",
+          "def demo_cross_field_evaluations()",
+          "def demo_cross_field_contradiction_rejection()",
+          "def demo_custom_domain_extension()",
+          "def main()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "harness_verify.sh",
+        "symbols": [],
+        "relevance_score": 1
+      },
+      {
+        "path": "model_dropin.py",
+        "symbols": [
+          "class ModelAdapter [generate]",
+          "class CallableAdapter [generate]",
+          "class OllamaAdapter [generate]",
+          "class OpenAICompatibleAdapter [generate]",
+          "class StaticDictionaryAdapter [generate]",
+          "class EnergyProfile [compute_metrics]",
+          "class ModelBenchmarker [run_benchmark]",
+          "def interactive_cli()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "scripts/install_hooks.sh",
+        "symbols": [],
+        "relevance_score": 1
+      },
+      {
+        "path": "scripts/security_audit.py",
+        "symbols": [
+          "def run_audit()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "scripts/shift_left_security_guard.py",
+        "symbols": [
+          "def audit_principle_1_fail_safe()",
+          "def audit_principle_2_secrets_and_git()",
+          "def audit_principle_3_supply_chain()",
+          "def audit_principle_4_intent_and_guardrails()",
+          "def audit_principle_5_agentic_guardrails()",
+          "def run_full_security_audit()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "server.py",
+        "symbols": [
+          "class EGE2RequestHandler [end_headers, do_OPTIONS, do_GET, do_POST]",
+          "def run_server()"
+        ],
+        "relevance_score": 1
+      },
+      {
+        "path": "test_ege2_quantum.py",
+        "symbols": [
+          "class TestEvidenceTier [test_overwrite_hierarchy]",
+          "class TestQuantumBeliefState [test_superposition_initialization, test_measurement_collapse, test_serialization]",
+          "class TestEpistemicNodeAndProvenance [test_node_sealing_and_hashes, test_node_dict_roundtrip]",
+          "class TestEpistemicGraphOperations [setUp, tearDown, test_add_and_query, test_evidence_gated_update_rejection, test_evidence_gated_update_success, test_json_persistence]",
+          "class TestQuantumEntanglementConsensus [test_entanglement_propagation]",
+          "class TestDualBranchAndSigmaArbitration [setUp, test_verified_clean_query, test_heavy_manipulation_rejected, test_verified_fact_with_mild_persuasion_cautioned, test_factual_contradiction_rejected]",
+          "class TestSycophancyDetector [setUp, test_uncritical_agreement_detected, test_echo_contradiction_severe_rejection, test_evidence_grounded_agreement_not_flagged, test_high_risk_domain_boost, test_aggressive_mode_threshold]",
+          "class TestQUBOArbitration [test_qubo_coherence_optimization]",
+          "class TestParameterGraphAndDecoupling [setUp, test_get_and_set_with_bounds, test_rollback, test_stage_defaults_auto_adjustment]",
+          "class TestSymbolicCompressionSubsystem [test_compression_generation, test_structural_contradiction_detection]",
+          "class TestTemporalMemoryGatingAndSequences [test_temporal_gating_update, test_experience_sequence_chaining]",
+          "class TestIntentFoldingTracker [test_clean_intent_audit, test_gaming_intent_divergence_alert]",
+          "class TestSelfHealingCurriculumEngine [test_curriculum_progression, test_milestone_gap_remediation, test_feynman_feedback_loop]",
+          "class TestMuEngineSelfSupervision [test_manager_review_cycle, test_self_modification_firewall]",
+          "class TestEGE2WrapperEndToEnd [test_wrapper_pipeline]"
+        ],
+        "relevance_score": 1
+      }
+    ]
+  },
+  "lockfile_dependencies": {
+    "project_name": "ege2",
+    "sources_detected": [],
+    "dependency_count": 0,
+    "resolved_dependencies": {}
+  },
+  "test_feedback_loop": {
+    "project_name": "ege2",
+    "primary_verification_command": "python3 -m unittest discover -s tests",
+    "scoped_test_command": "python3 -m unittest discover -s tests",
+    "matched_test_files": [
+      "test_ege2_quantum.py",
+      "ege2/test_ege2_quantum.py"
+    ],
+    "harness_verify_present": true
+  },
+  "gemini_conventions": {
+    "project_name": "ege2",
+    "gemini_md_present": true,
+    "domain_rules": [
+      "* **Structural Truth Invariant:** Truth is architectural infrastructure, not behavioral alignment.",
+      "* **7-Tier Evidence Hierarchy:** Strict monotonic belief update. T7 assertion cannot overwrite T1 observation.",
+      "* **Epistemic Math Barrier:** High-volume computational checks are heuristic evidence (Tier 4), not deductive proofs (Tier 1). Proofs must demonstrate formal barrier bypass."
+    ],
+    "learned_conventions": [],
+    "zero_claude_residue_verified": true
+  }
+}

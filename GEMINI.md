@@ -14,7 +14,7 @@
 
 ## 2. Injected Rule Modules (`.agent/rules/*.md`)
 This project automatically injects 7 modular rule files from `.agent/rules/` into agent memory context (`<MEMORY[*.md]>`):
-1. `01-autonomous-developer.md`: Recursive Thinking, State Sync & Zero Chat Drift
+1. `01-autonomous-developer.md`: Recursive Thinking, State Sync, Context-Aware Coding & Zero Chat Drift
 2. `02-quantum-epistemics.md`: EGE-2 7-Tier Evidence Standard & Anti-Sycophancy
 3. `03-mind-virus-defense.md`: Anti-Propagation & Self-Replication Defense Directive
 4. `04-shift-left-security.md`: IBM 5 Shift-Left Security & Safe Shell Guard
@@ -35,10 +35,11 @@ See detailed index at [.agent/workflows/INDEX.md](file:///Users/malcolm/ege2/.ag
 
 ---
 
-## 4. Skills Catalog (`<skills>`)
+## 4. Skills Catalog & Context-Aware Coding (`<skills>`)
 See comprehensive index at [.agent/skills/INDEX.md](file:///Users/malcolm/ege2/.agent/skills/INDEX.md):
-- Access to 216+ system and plugin skills across Harness, Security, Quant, Database, Science, and Web.
-- Includes reverse-engineered Enterprise Vanta Security & Scaling Guardrails (`cost-calc`, `schema-validate`, `sanitize-prompt`, `cache-budget`, `audit-privacy`).
+- Access to 217+ system and plugin skills across Harness, Security, Quant, Database, Science, and Web.
+- **IBM Context-Aware Coding (`context-aware-coder`)**: Pre-computed compact AST repo map, exact lockfile dependency versions, and test feedback loop stored at `.agents/context_map.json`. Supports `repo-map`, `deps`, `tests`, `interview`, `bundle` (U-Shaped Attention hygiene), and `learn` (persists conventions to `GEMINI.md`).
+- **Vanta Security & Scaling Guardrails (`vanta-guardrails`)**: `cost-calc`, `schema-validate`, `sanitize-prompt`, `cache-budget`, `audit-privacy`.
 
 ---
 

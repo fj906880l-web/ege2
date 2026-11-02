@@ -13,6 +13,11 @@
   - CLI: `vanta-guardrails` or `python3 /Users/malcolm/.gemini/config/scripts/security_scaling_guardrails.py`
   - Subcommands: `cost-calc`, `schema-validate`, `sanitize-prompt`, `cache-budget`, `audit-privacy`
 
+- **context-aware-coding**: IBM Technology Context-Aware Coding Framework meshed into Google Gemini & Antigravity IDE. Governs the 6 Agent Inputs (Code, Compact AST Repo Map, Lockfile Dependency Versions, Scoped Test Feedback Loop, GEMINI.md Docs, Developer Intent), the 3-Move Context Surfacing Loop (Interview, Explore & Explain, Plan & Explicit Assumptions), and U-Shaped Attention Context Hygiene.
+  - Path: `/Users/malcolm/.gemini/config/skills/context-aware-coding/SKILL.md`
+  - CLI: `context-aware-coder` or `python3 /Users/malcolm/.gemini/config/scripts/context_aware_coder.py`
+  - Subcommands: `repo-map`, `deps`, `tests`, `interview`, `bundle`, `learn`, `manifest`
+
 
 - **ege2-quantum-epistemics**: Master operational skill for EGE-2 Quantum Epistemic System — 7 evidence tiers, dual-branch Phi/Psi/Sigma cognitive architecture, Anti-Sycophancy (Anti-Glazing) defense, Q-Graph with post-quantum provenance, quantum belief superposition, and QUBO arbitration.
   - Path: `/Users/malcolm/.gemini/config/skills/ege2-quantum-epistemics/SKILL.md`
